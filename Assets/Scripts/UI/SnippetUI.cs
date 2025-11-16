@@ -26,11 +26,6 @@ public class SnippetUI :MonoBehaviour {
                 if (float.TryParse(newValue, out float parsedValue))
                 {
                     value = parsedValue;
-                    //if (value < 7 && commandType == CommandSnippet.CommandType.Jump)
-                    //{
-                    //    value = 7f;
-                    //    valueInput.text = "7";
-                    //}
                 }
                 else
                 {
@@ -42,11 +37,6 @@ public class SnippetUI :MonoBehaviour {
                 if (float.TryParse(newValue, out float parsedValue))
                 {
                     value = parsedValue;
-                    //if (value < 7 && commandType == CommandSnippet.CommandType.Jump)
-                    //{
-                    //    value = 7f;
-                    //    valueInput.text = "7";
-                    //}
                 }
                 else
                 {

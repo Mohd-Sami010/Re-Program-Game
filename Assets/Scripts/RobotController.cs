@@ -97,7 +97,7 @@ public class RobotController :MonoBehaviour {
 
             robotState = RobotState.Moving;
             SoundManager.Instance.PlayRobotMoveSound();
-            StartCoroutine(MoveCoroutine(e.moveDuration));
+            StartCoroutine(MoveCoroutine(e.moveDuration > 0 ? e.moveDuration : 0.05f));
             OnRobotStartMoving?.Invoke(this, System.EventArgs.Empty);
         }
     }

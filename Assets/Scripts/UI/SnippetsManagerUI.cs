@@ -6,7 +6,7 @@ public class SnippetsManagerUI :MonoBehaviour {
 
     public static SnippetsManagerUI Instance { get; private set; }
 
-    private List<SnippetUI> snippetUIs = new List<SnippetUI>();
+    private List<SnippetUI> snippetUIs = new();
 
     [SerializeField] private Button addMoveSnippetButton;
     [SerializeField] private Button addJumpSnippetButton;
