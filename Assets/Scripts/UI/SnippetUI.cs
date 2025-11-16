@@ -25,7 +25,7 @@ public class SnippetUI :MonoBehaviour {
 
         if (commandType == CommandType.Start)
         {
-            GameManager.Instance.OnGameRestart += (GameManager, e) => ChangeVisualColor(visualColorWhenRunning);
+            GameManager.Instance.OnGameRestart += GameManager_OnGameRestart;
         }
         else
         {
@@ -57,6 +57,12 @@ public class SnippetUI :MonoBehaviour {
         GameManager.Instance.OnGameStop += ResetSnippetToDefault;
         if (commandType != CommandType.Start) GameManager.Instance.OnGameRestart += ResetSnippetToDefault;
     }
+
+    private void GameManager_OnGameRestart(object sender, System.EventArgs e)
+    {
+        ChangeVisualColor(visualColorWhenRunning);
+    }
+
     private void ResetSnippetToDefault(object sender, System.EventArgs e)
     {
         done = false;
@@ -97,5 +103,13 @@ public class SnippetUI :MonoBehaviour {
             }
         }
     }
-
+    private void OnDestroy()
+    {
+        if (commandType == CommandType.Start)
+        {
+            GameManager.Instance.OnGameRestart += GameManager_OnGameRestart;
+        }
+        GameManager.Instance.OnGameStop -= ResetSnippetToDefault;
+        if (commandType != CommandType.Start) GameManager.Instance.OnGameRestart -= ResetSnippetToDefault;
+    }
 }

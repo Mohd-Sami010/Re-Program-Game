@@ -19,9 +19,18 @@ public class SnippetDragArea :MonoBehaviour, IDragHandler, IBeginDragHandler, IE
         parentRectTransform = SnippetsManagerUI.Instance.GetComponent<RectTransform>();
         canvas = FindFirstObjectByType<Canvas>();
 
-        GameManager.Instance.OnGameRestart += (GameManager, e) => gameObject.SetActive(false);
-        GameManager.Instance.OnGameStop += (GameManager, e) => gameObject.SetActive(true);
+        GameManager.Instance.OnGameRestart += GameManager_OnGameRestart; ;
+        GameManager.Instance.OnGameStop += GameManager_OnGameStop;
     }
+    private void GameManager_OnGameRestart(object sender, System.EventArgs e)
+    {
+        gameObject.SetActive(false);
+    }
+    private void GameManager_OnGameStop(object sender, System.EventArgs e)
+    {
+        gameObject.SetActive(true);
+    }
+
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -76,5 +85,10 @@ public class SnippetDragArea :MonoBehaviour, IDragHandler, IBeginDragHandler, IE
     public Transform GetParentSnippet()
     {
         return dragRectTransform.transform;
+    }
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnGameRestart -= GameManager_OnGameRestart;
+        GameManager.Instance.OnGameStop -= GameManager_OnGameStop;
     }
 }
