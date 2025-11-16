@@ -1,0 +1,1038 @@
+fileFormatVersion: 2
+guid: 476934f0a1496214c8da4da8c8a452ad
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1086278653824548498
+    second: BYOG 2025 Splash Screen - Dark Bg_0
+  - first:
+      213: -151113257940351273
+    second: BYOG 2025 Splash Screen - Dark Bg_1
+  - first:
+      213: -4977093434932027157
+    second: BYOG 2025 Splash Screen - Dark Bg_2
+  - first:
+      213: 6379574926758741473
+    second: BYOG 2025 Splash Screen - Dark Bg_3
+  - first:
+      213: -3738501671877769449
+    second: BYOG 2025 Splash Screen - Dark Bg_4
+  - first:
+      213: 1543600849525185270
+    second: BYOG 2025 Splash Screen - Dark Bg_5
+  - first:
+      213: 2437438244085080090
+    second: BYOG 2025 Splash Screen - Dark Bg_6
+  - first:
+      213: 7625430507569472466
+    second: BYOG 2025 Splash Screen - Dark Bg_7
+  - first:
+      213: -8720190819402088950
+    second: BYOG 2025 Splash Screen - Dark Bg_8
+  - first:
+      213: -2397487445749436579
+    second: BYOG 2025 Splash Screen - Dark Bg_9
+  - first:
+      213: -9212007937864816723
+    second: BYOG 2025 Splash Screen - Dark Bg_10
+  - first:
+      213: 4806227995530231262
+    second: BYOG 2025 Splash Screen - Dark Bg_11
+  - first:
+      213: -3749767535993446845
+    second: BYOG 2025 Splash Screen - Dark Bg_12
+  - first:
+      213: -1668674620079238665
+    second: BYOG 2025 Splash Screen - Dark Bg_13
+  - first:
+      213: 4298820439293711136
+    second: BYOG 2025 Splash Screen - Dark Bg_14
+  - first:
+      213: 5876366236838658321
+    second: BYOG 2025 Splash Screen - Dark Bg_15
+  - first:
+      213: -4661244345565744026
+    second: BYOG 2025 Splash Screen - Dark Bg_16
+  - first:
+      213: -3444556257055876633
+    second: BYOG 2025 Splash Screen - Dark Bg_17
+  - first:
+      213: -3467259787347236494
+    second: BYOG 2025 Splash Screen - Dark Bg_18
+  - first:
+      213: -881049876338770438
+    second: BYOG 2025 Splash Screen - Dark Bg_19
+  - first:
+      213: 7442396505623308065
+    second: BYOG 2025 Splash Screen - Dark Bg_20
+  - first:
+      213: -5535515381200424166
+    second: BYOG 2025 Splash Screen - Dark Bg_21
+  - first:
+      213: 4353399318814536301
+    second: BYOG 2025 Splash Screen - Dark Bg_22
+  - first:
+      213: -7588616874175988401
+    second: BYOG 2025 Splash Screen - Dark Bg_23
+  - first:
+      213: 8459524046097491451
+    second: BYOG 2025 Splash Screen - Dark Bg_24
+  - first:
+      213: -5714942646575494264
+    second: BYOG 2025 Splash Screen - Dark Bg_25
+  - first:
+      213: -691607059188701191
+    second: BYOG 2025 Splash Screen - Dark Bg_26
+  - first:
+      213: -5603249117582836432
+    second: BYOG 2025 Splash Screen - Dark Bg_27
+  - first:
+      213: 8275809050338846589
+    second: BYOG 2025 Splash Screen - Dark Bg_28
+  - first:
+      213: 3376370471389211738
+    second: BYOG 2025 Splash Screen - Dark Bg_29
+  - first:
+      213: 3622774518357322946
+    second: BYOG 2025 Splash Screen - Dark Bg_30
+  - first:
+      213: 8552665107498200407
+    second: BYOG 2025 Splash Screen - Dark Bg_31
+  - first:
+      213: -3030638254670478556
+    second: BYOG 2025 Splash Screen - Dark Bg_32
+  - first:
+      213: -6394087469836370228
+    second: BYOG 2025 Splash Screen - Dark Bg_33
+  - first:
+      213: 3112986198292253759
+    second: BYOG 2025 Splash Screen - Dark Bg_34
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_0
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 755
+        width: 39
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e61c2b7d153cce0f0800000000000000
+      internalID: -1086278653824548498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_1
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 754
+        width: 34
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d60d93ea4327edf0800000000000000
+      internalID: -151113257940351273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_2
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 755
+        width: 34
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be0a2f404efcdeab0800000000000000
+      internalID: -4977093434932027157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_3
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 755
+        width: 33
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e5817f689dc88850800000000000000
+      internalID: 6379574926758741473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_4
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 754
+        width: 34
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 717858f698c2e1cc0800000000000000
+      internalID: -3738501671877769449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_5
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 755
+        width: 32
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fa90f65bc8fb6510800000000000000
+      internalID: 1543600849525185270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_6
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 704
+        width: 33
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a10a4ac3b2583d120800000000000000
+      internalID: 2437438244085080090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_7
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 703
+        width: 34
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d3ea1735a8f2d960800000000000000
+      internalID: 7625430507569472466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_8
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 704
+        width: 40
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0e7aebb6a8abf680800000000000000
+      internalID: -8720190819402088950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_9
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 704
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5f65aaded96abed0800000000000000
+      internalID: -2397487445749436579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_10
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 704
+        width: 34
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da72d7b769f582080800000000000000
+      internalID: -9212007937864816723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_11
+      rect:
+        serializedVersion: 2
+        x: 682
+        y: 704
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eddfd1fb5e623b240800000000000000
+      internalID: 4806227995530231262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_12
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 704
+        width: 38
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34e91da0b4626fbc0800000000000000
+      internalID: -3749767535993446845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_13
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 703
+        width: 15
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f19778264da7d8e0800000000000000
+      internalID: -1668674620079238665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_14
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 704
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0235a45d96a78ab30800000000000000
+      internalID: 4298820439293711136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_15
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 704
+        width: 34
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1110ed445fb0d8150800000000000000
+      internalID: 5876366236838658321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_16
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 704
+        width: 15
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 664714bc6feef4fb0800000000000000
+      internalID: -4661244345565744026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_17
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 703
+        width: 34
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e9d551955a7230d0800000000000000
+      internalID: -3444556257055876633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_18
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 731
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 279eb2ff791d1efc0800000000000000
+      internalID: -3467259787347236494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_19
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 704
+        width: 33
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afdfc633ec1e5c3f0800000000000000
+      internalID: -881049876338770438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_20
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 398
+        width: 206
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 127294bb034b84760800000000000000
+      internalID: 7442396505623308065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_21
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 396
+        width: 209
+        height: 299
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1376d6d616ed23b0800000000000000
+      internalID: -5535515381200424166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_22
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 398
+        width: 209
+        height: 295
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d623e5b7d916a6c30800000000000000
+      internalID: 4353399318814536301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_23
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 399
+        width: 209
+        height: 295
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4d743eb821dfa690800000000000000
+      internalID: -7588616874175988401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_24
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 350
+        width: 33
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf52488ac44466570800000000000000
+      internalID: 8459524046097491451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_25
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 349
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88b032721f170b0b0800000000000000
+      internalID: -5714942646575494264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_26
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 350
+        width: 38
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f7a7e04b0be666f0800000000000000
+      internalID: -691607059188701191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_27
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 350
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03d34766d924d32b0800000000000000
+      internalID: -5603249117582836432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_28
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 350
+        width: 33
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d77e862fb7499d270800000000000000
+      internalID: 8275809050338846589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_29
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 349
+        width: 33
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5ca5411e074bde20800000000000000
+      internalID: 3376370471389211738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_30
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 350
+        width: 38
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cc660cea3ea64230800000000000000
+      internalID: 3622774518357322946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_31
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 349
+        width: 32
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75dee4fe99b21b670800000000000000
+      internalID: 8552665107498200407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_32
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 349
+        width: 33
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42308ab709201f5d0800000000000000
+      internalID: -3030638254670478556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_33
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 349
+        width: 33
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cce70a1d253a347a0800000000000000
+      internalID: -6394087469836370228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BYOG 2025 Splash Screen - Dark Bg_34
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 349
+        width: 33
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3c47eb347c833b20800000000000000
+      internalID: 3112986198292253759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      BYOG 2025 Splash Screen - Dark Bg_0: -1086278653824548498
+      BYOG 2025 Splash Screen - Dark Bg_1: -151113257940351273
+      BYOG 2025 Splash Screen - Dark Bg_10: -9212007937864816723
+      BYOG 2025 Splash Screen - Dark Bg_11: 4806227995530231262
+      BYOG 2025 Splash Screen - Dark Bg_12: -3749767535993446845
+      BYOG 2025 Splash Screen - Dark Bg_13: -1668674620079238665
+      BYOG 2025 Splash Screen - Dark Bg_14: 4298820439293711136
+      BYOG 2025 Splash Screen - Dark Bg_15: 5876366236838658321
+      BYOG 2025 Splash Screen - Dark Bg_16: -4661244345565744026
+      BYOG 2025 Splash Screen - Dark Bg_17: -3444556257055876633
+      BYOG 2025 Splash Screen - Dark Bg_18: -3467259787347236494
+      BYOG 2025 Splash Screen - Dark Bg_19: -881049876338770438
+      BYOG 2025 Splash Screen - Dark Bg_2: -4977093434932027157
+      BYOG 2025 Splash Screen - Dark Bg_20: 7442396505623308065
+      BYOG 2025 Splash Screen - Dark Bg_21: -5535515381200424166
+      BYOG 2025 Splash Screen - Dark Bg_22: 4353399318814536301
+      BYOG 2025 Splash Screen - Dark Bg_23: -7588616874175988401
+      BYOG 2025 Splash Screen - Dark Bg_24: 8459524046097491451
+      BYOG 2025 Splash Screen - Dark Bg_25: -5714942646575494264
+      BYOG 2025 Splash Screen - Dark Bg_26: -691607059188701191
+      BYOG 2025 Splash Screen - Dark Bg_27: -5603249117582836432
+      BYOG 2025 Splash Screen - Dark Bg_28: 8275809050338846589
+      BYOG 2025 Splash Screen - Dark Bg_29: 3376370471389211738
+      BYOG 2025 Splash Screen - Dark Bg_3: 6379574926758741473
+      BYOG 2025 Splash Screen - Dark Bg_30: 3622774518357322946
+      BYOG 2025 Splash Screen - Dark Bg_31: 8552665107498200407
+      BYOG 2025 Splash Screen - Dark Bg_32: -3030638254670478556
+      BYOG 2025 Splash Screen - Dark Bg_33: -6394087469836370228
+      BYOG 2025 Splash Screen - Dark Bg_34: 3112986198292253759
+      BYOG 2025 Splash Screen - Dark Bg_4: -3738501671877769449
+      BYOG 2025 Splash Screen - Dark Bg_5: 1543600849525185270
+      BYOG 2025 Splash Screen - Dark Bg_6: 2437438244085080090
+      BYOG 2025 Splash Screen - Dark Bg_7: 7625430507569472466
+      BYOG 2025 Splash Screen - Dark Bg_8: -8720190819402088950
+      BYOG 2025 Splash Screen - Dark Bg_9: -2397487445749436579
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
