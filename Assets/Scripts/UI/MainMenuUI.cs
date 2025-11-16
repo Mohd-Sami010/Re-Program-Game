@@ -5,6 +5,7 @@ public class MainMenuUI :MonoBehaviour {
 
     [SerializeField] private Button playButton;
     [SerializeField] private Button quitButton;
+    [SerializeField] private Button viewCodeButton;
     [SerializeField] private GameObject loadingUIObject;
 
     private void Start()
@@ -19,6 +20,9 @@ public class MainMenuUI :MonoBehaviour {
         quitButton.onClick.AddListener(() => {
             SoundManager.Instance.PlayUISound1();
             Application.Quit();
+        });
+        viewCodeButton.onClick.AddListener(() => {
+            Application.OpenURL("https://github.com/Mohd-Sami010/Re-Program-Game/tree/main/Assets/Scripts");
         });
     }
 
