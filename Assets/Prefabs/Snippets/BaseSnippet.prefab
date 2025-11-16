@@ -66,6 +66,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   commandType: 0
+  visualImages:
+  - {fileID: 8050407244231329161}
+  - {fileID: 7889019572555698908}
+  visualColorWhenRunning: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  visualColorWhenDone: {r: 0.20392157, g: 0.20392157, b: 0.20392157, a: 1}
   valueInput: {fileID: 4755101666492739242}
 --- !u!1 &823983447817888143
 GameObject:
@@ -279,6 +284,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4448239881395271250}
   - component: {fileID: 3674033659268888255}
+  - component: {fileID: 8081911401404667990}
   m_Layer: 5
   m_Name: DragArea
   m_TagString: Untagged
@@ -327,6 +333,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragRectTransform: {fileID: 6994398691762403988}
   canvasGroup: {fileID: 3830894252335468143}
+--- !u!225 &8081911401404667990
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833994356021504268}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1899405791771467581
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,7 +379,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -75}
+  m_AnchoredPosition: {x: 0, y: -77}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3617581286379780111
@@ -1040,7 +1058,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.9843137}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

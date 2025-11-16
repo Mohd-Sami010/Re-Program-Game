@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8050407244231329161, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
       propertyPath: m_Color.g
-      value: 0.410367
+      value: 0.41176462
       objectReference: {fileID: 0}
     - target: {fileID: 8050407244231329161, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
       propertyPath: m_Color.r
@@ -144,7 +144,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
       propertyPath: commandType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
+      propertyPath: visualColorWhenDone.b
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
+      propertyPath: visualColorWhenDone.g
+      value: 0.23529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
+      propertyPath: visualColorWhenDone.r
+      value: 0.11921568
+      objectReference: {fileID: 0}
+    - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
+      propertyPath: visualColorWhenRunning.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
+      propertyPath: visualColorWhenRunning.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
+      propertyPath: visualColorWhenRunning.g
+      value: 0.58823526
+      objectReference: {fileID: 0}
+    - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
+      propertyPath: visualColorWhenRunning.r
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 8219750870354700690, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
       propertyPath: m_EffectColor.b

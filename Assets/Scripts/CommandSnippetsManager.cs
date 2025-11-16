@@ -7,9 +7,9 @@ public class CommandSnippetsManager : MonoBehaviour {
 
     public static CommandSnippetsManager Instance { get; private set; }
 
-    [SerializeField] private List<CommandSnippet> commandSnippets;
-    private List<CommandSnippet> commandSnippetsToRun;
-    private CommandSnippet currentCommand;
+    [SerializeField] private List<SnippetUI> commandSnippets;
+    private List<SnippetUI> commandSnippetsToRun;
+    private SnippetUI currentCommand;
     int index = 0;
     private bool canGiveCommands = false;
 
@@ -58,9 +58,7 @@ public class CommandSnippetsManager : MonoBehaviour {
     {
         index = 0;
         commandSnippetsToRun = null;
-        commandSnippetsToRun = commandSnippets
-            .Select(snippet => snippet.Clone())
-            .ToList();
+        commandSnippetsToRun = commandSnippets;
 
         canGiveCommands = true;
     }
@@ -72,26 +70,30 @@ public class CommandSnippetsManager : MonoBehaviour {
         if (currentCommand.IsDone()) return;
         switch (currentCommand.GetCommandType())
         {
-            case CommandSnippet.CommandType.Move:
-                OnMoveCommand?.Invoke(this, new OnMoveCommandEventArgs { moveDuration = currentCommand.GetMoveDuration() });
+            case SnippetUI.CommandType.Move:
+                OnMoveCommand?.Invoke(this, new OnMoveCommandEventArgs { moveDuration = currentCommand.GetValue() });
                 break;
-            case CommandSnippet.CommandType.Jump:
+            case SnippetUI.CommandType.Jump:
                 OnJumpCommand?.Invoke(this, new OnJumpCommandEventArgs
                 {
-                    jumpPower = currentCommand.GetJumpPower()
+                    jumpPower = currentCommand.GetValue()
                 });
                 break;
-            case CommandSnippet.CommandType.Turn:
+            case SnippetUI.CommandType.Turn:
                 OnTurnCommand?.Invoke(this, EventArgs.Empty);
                 break;
         }
     }
-    public void ReadyForCommand(bool value = true) { canGiveCommands = value; }
+    public void ReadyForCommand(bool value = true)
+    {
+        canGiveCommands = value;
+        currentCommand.SetDone(true);
+    }
     public void CommandAccepted()
     {
         index = (index + 1) % commandSnippetsToRun.Count;
         canGiveCommands = false;
-        currentCommand.SetDone(true);
+        currentCommand.SetIsRunning(true);
     }
-    public void SetCommandSnippets(List<CommandSnippet> snippets) { commandSnippets = snippets; }
+    public void SetCommandSnippets(List<SnippetUI> snippets) { commandSnippets = snippets; }
 }

@@ -132,6 +132,22 @@ PrefabInstance:
       propertyPath: m_HorizontalAlignment
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8050407244231329161, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
+      propertyPath: visualColorWhenRunning.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
+      propertyPath: visualColorWhenRunning.g
+      value: 0.33882356
+      objectReference: {fileID: 0}
+    - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
+      propertyPath: visualColorWhenRunning.r
+      value: 0.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

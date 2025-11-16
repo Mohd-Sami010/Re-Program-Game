@@ -140,6 +140,34 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.012882674
       objectReference: {fileID: 0}
+    - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
+      propertyPath: commandType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
+      propertyPath: visualColorWhenDone.b
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
+      propertyPath: visualColorWhenDone.g
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
+      propertyPath: visualColorWhenDone.r
+      value: 0.20347829
+      objectReference: {fileID: 0}
+    - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
+      propertyPath: visualColorWhenRunning.b
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
+      propertyPath: visualColorWhenRunning.g
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
+      propertyPath: visualColorWhenRunning.r
+      value: 0.45703125
+      objectReference: {fileID: 0}
     - target: {fileID: 8219750870354700690, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
       propertyPath: m_EffectColor.g
       value: 0.7176471

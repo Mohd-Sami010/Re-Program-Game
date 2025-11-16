@@ -1,50 +1,67 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SnippetUI :MonoBehaviour {
-
-    [SerializeField] private CommandSnippet.CommandType commandType;
+    public enum CommandType {
+        Start,
+        Move,
+        Jump,
+        Turn,
+    }
+    [SerializeField] private CommandType commandType;
+    [SerializeField] private Image[] visualImages;
+    private Color visualColorDefault;
+    [SerializeField] private Color visualColorWhenRunning;
+    [SerializeField] private Color visualColorWhenDone;
     [SerializeField] private TMPro.TMP_InputField valueInput;
     private SnippetUI nextSnippetUI;
     private float value;
+    bool done = false;
+    bool isRunning = false;
 
     private void Start()
     {
-        valueInput.onValueChanged.AddListener(newValue => {
-            if (float.TryParse(newValue, out float parsedValue))
-            {
-                value = parsedValue;
-            }
-            else
-            {
-                value = 0f;
-            }
-            SnippetsManagerUI.Instance.UpdateSnippetUIsList();
-        });
-        if (commandType == CommandSnippet.CommandType.Jump)
+        visualColorDefault = visualImages[0].color;
+
+        if (commandType == CommandType.Start)
         {
-            valueInput.onSubmit.AddListener(newValue => {
-                if (float.TryParse(newValue, out float parsedValue))
-                {
-                    value = parsedValue;
-                }
-                else
-                {
-                    value = 0f;
-                }
-                SnippetsManagerUI.Instance.UpdateSnippetUIsList();
-            });
-            valueInput.onDeselect.AddListener(newValue => {
-                if (float.TryParse(newValue, out float parsedValue))
-                {
-                    value = parsedValue;
-                }
-                else
-                {
-                    value = 0f;
-                }
-                SnippetsManagerUI.Instance.UpdateSnippetUIsList();
-            });
+            GameManager.Instance.OnGameRestart += (GameManager, e) => ChangeVisualColor(visualColorWhenRunning);
         }
+        else
+        {
+            valueInput.onValueChanged.AddListener(newValue => {
+                if (float.TryParse(newValue, out float parsedValue)) value = parsedValue;
+                else value = 0f;
+
+                SnippetsManagerUI.Instance.UpdateSnippetUIsList();
+            });
+            if (commandType == CommandType.Jump)
+            {
+                valueInput.onSubmit.AddListener(newValue => {
+
+                    if (float.TryParse(newValue, out float parsedValue)) value = parsedValue;
+                    else value = 0f;
+
+                    SnippetsManagerUI.Instance.UpdateSnippetUIsList();
+                });
+                valueInput.onDeselect.AddListener(newValue => {
+
+                    if (float.TryParse(newValue, out float parsedValue)) value = parsedValue;
+                    else value = 0f;
+
+                    SnippetsManagerUI.Instance.UpdateSnippetUIsList();
+                });
+            }
+        }
+
+        GameManager.Instance.OnGameStop += ResetSnippetToDefault;
+        if (commandType != CommandType.Start) GameManager.Instance.OnGameRestart += ResetSnippetToDefault;
+    }
+    private void ResetSnippetToDefault(object sender, System.EventArgs e)
+    {
+        done = false;
+        isRunning = false;
+        ChangeVisualColor(visualColorDefault);
     }
 
     public void SetNextSnippetUI(SnippetUI snippetUI)
@@ -55,7 +72,30 @@ public class SnippetUI :MonoBehaviour {
     {
         return nextSnippetUI;
     }
-    public CommandSnippet.CommandType GetCommandType { get { return commandType; } }
-    public float GetValue { get { return value; } }
+    public CommandType GetCommandType () { return commandType;}
+    public float GetValue () { return value; }
+    public bool IsDone() { return done; }
+    public bool IsRunning() { return isRunning; }
+    public void SetIsRunning(bool val)
+    {
+        isRunning = val;
+        ChangeVisualColor(visualColorWhenRunning);
+    }
+    public void SetDone(bool val)
+    {
+        done = val;
+        ChangeVisualColor(visualColorWhenDone);
+    }
+    private void ChangeVisualColor(Color newColor)
+    {
+        foreach (Image visualImage in visualImages)
+        {
+            visualImage.color = newColor;
+            if (visualImage.GetComponent<Outline>() != null)
+            {
+                visualImage.GetComponent<Outline>().effectColor = newColor;
+            }
+        }
+    }
 
 }

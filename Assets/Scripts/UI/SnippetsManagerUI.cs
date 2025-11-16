@@ -53,52 +53,52 @@ public class SnippetsManagerUI :MonoBehaviour {
             snippetUI = snippetUI.GetNextSnippet();
         }
 
-        // Create a fresh CommandSnippet list
-        List<CommandSnippet> commandSnippets = new List<CommandSnippet>();
+        //// Create a fresh CommandSnippet list
+        //List<CommandSnippet> commandSnippets = new List<CommandSnippet>();
 
-        foreach (SnippetUI ui in snippetUIs)
-        {
-            CommandSnippet newSnippet = null;
+        //foreach (SnippetUI ui in snippetUIs)
+        //{
+        //    CommandSnippet newSnippet = null;
 
-            switch (ui.GetCommandType)
-            {
-                case CommandSnippet.CommandType.Move:
-                    newSnippet = new CommandSnippet(
-                        "Move",
-                        CommandSnippet.CommandType.Move,
-                        moveDuration: ui.GetValue,
-                        jumpPower: 0f,
-                        done: false
-                    );
-                    break;
+        //    switch (ui.GetCommandType)
+        //    {
+        //        case CommandSnippet.CommandType.Move:
+        //            newSnippet = new CommandSnippet(
+        //                "Move",
+        //                CommandSnippet.CommandType.Move,
+        //                moveDuration: ui.GetValue,
+        //                jumpPower: 0f,
+        //                done: false
+        //            );
+        //            break;
 
-                case CommandSnippet.CommandType.Jump:
-                    newSnippet = new CommandSnippet(
-                        "Jump",
-                        CommandSnippet.CommandType.Jump,
-                        moveDuration: 0f,
-                        jumpPower: ui.GetValue,
-                        done: false
-                    );
-                    break;
+        //        case CommandSnippet.CommandType.Jump:
+        //            newSnippet = new CommandSnippet(
+        //                "Jump",
+        //                CommandSnippet.CommandType.Jump,
+        //                moveDuration: 0f,
+        //                jumpPower: ui.GetValue,
+        //                done: false
+        //            );
+        //            break;
 
-                case CommandSnippet.CommandType.Turn:
-                    newSnippet = new CommandSnippet(
-                        "Turn",
-                        CommandSnippet.CommandType.Turn,
-                        moveDuration: 0f,
-                        jumpPower: 0f,
-                        done: false
-                    );
-                    break;
-            }
+        //        case CommandSnippet.CommandType.Turn:
+        //            newSnippet = new CommandSnippet(
+        //                "Turn",
+        //                CommandSnippet.CommandType.Turn,
+        //                moveDuration: 0f,
+        //                jumpPower: 0f,
+        //                done: false
+        //            );
+        //            break;
+        //    }
 
-            if (newSnippet != null)
-                commandSnippets.Add(newSnippet);
-        }
+        //    if (newSnippet != null)
+        //        commandSnippets.Add(newSnippet);
+        //}
 
-        // Send the list to the CommandSnippetsManager
-        CommandSnippetsManager.Instance.SetCommandSnippets(commandSnippets);
+        //// Send the list to the CommandSnippetsManager
+        CommandSnippetsManager.Instance.SetCommandSnippets(snippetUIs);
 
     }
     public void EnableDropArea()
