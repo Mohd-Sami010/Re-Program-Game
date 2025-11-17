@@ -6,3 +6,4 @@ Watch it execute your instruction step by step and debug when things don’t go 
 <br>
 This is a game about logic, patience, and precision.
 Every command matters. Every sequence counts.
+<br> [Play Game](https://samicode-games.itch.io/re-program)
