@@ -38,6 +38,7 @@ public class SnippetDropArea :MonoBehaviour, IDropHandler {
 
             snippetRect.SetParent(transform, false);
             snippetRect.anchoredPosition = Vector2.zero;
+            snippetRect.localScale = Vector3.one;
 
             // Force perfect LEFT alignment under parent
             Vector2 newPos = snippetRect.anchoredPosition;

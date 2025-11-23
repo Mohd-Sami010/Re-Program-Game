@@ -5,7 +5,7 @@ public class SnippetDragArea :MonoBehaviour, IDragHandler, IBeginDragHandler, IE
     
     [SerializeField] private RectTransform dragRectTransform;
     [SerializeField] private CanvasGroup canvasGroup;
-    [SerializeField] private CanvasGroup dragAreaCanvasGroup;
+    //[SerializeField] private CanvasGroup dragAreaCanvasGroup;
 
     private RectTransform parentRectTransform;
     private Canvas canvas;
@@ -16,7 +16,8 @@ public class SnippetDragArea :MonoBehaviour, IDragHandler, IBeginDragHandler, IE
     }
     private void Start()
     {
-        parentRectTransform = SnippetsManagerUI.Instance.GetComponent<RectTransform>();
+        //parentRectTransform = SnippetsManagerUI.Instance.GetComponent<RectTransform>();
+        parentRectTransform = SnippetsManagerUI.Instance.GetParentContainer().GetComponent<RectTransform>();
         canvas = FindFirstObjectByType<Canvas>();
 
         GameManager.Instance.OnGameRestart += GameManager_OnGameRestart; ;
@@ -47,6 +48,7 @@ public class SnippetDragArea :MonoBehaviour, IDragHandler, IBeginDragHandler, IE
         {
             dragRectTransform.transform.parent.GetComponent<SnippetDropArea>().RemoveSnippet();
             dragRectTransform.SetParent(parentRectTransform);
+            dragRectTransform.localScale = Vector3.one;
         }
         ClampToParent();
     }

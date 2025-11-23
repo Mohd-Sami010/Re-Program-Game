@@ -8,6 +8,8 @@ public class SnippetsManagerUI :MonoBehaviour {
 
     private List<SnippetUI> snippetUIs = new();
 
+    [SerializeField] private Transform snippetsContainerTransform;
+    [SerializeField] private GameObject inputBlockerObject;
     [SerializeField] private Button addMoveSnippetButton;
     [SerializeField] private Button addJumpSnippetButton;
     [SerializeField] private Button addTurnSnippetButton;
@@ -26,15 +28,15 @@ public class SnippetsManagerUI :MonoBehaviour {
     private void Start()
     {
         addMoveSnippetButton.onClick.AddListener(() => {
-            Instantiate(moveSnippetPrefab, transform);
+            Instantiate(moveSnippetPrefab, snippetsContainerTransform);
             SoundManager.Instance.PlaySnippetSpawnSound();
         });
         addJumpSnippetButton.onClick.AddListener(() => {
-            Instantiate(jumpSnippetPrefab, transform);
+            Instantiate(jumpSnippetPrefab, snippetsContainerTransform);
             SoundManager.Instance.PlaySnippetSpawnSound();
         });
         addTurnSnippetButton.onClick.AddListener(() => {
-            Instantiate(turnSnippetPrefab, transform);
+            Instantiate(turnSnippetPrefab, snippetsContainerTransform);
             SoundManager.Instance.PlaySnippetSpawnSound();
         });
         closeUIButton.onClick.AddListener(() => {
@@ -42,6 +44,17 @@ public class SnippetsManagerUI :MonoBehaviour {
             SoundManager.Instance.PlayUISound1();
             gameObject.SetActive(false);
         });
+        GameManager.Instance.OnGameRestart += GameManager_OnGameRestart;
+        GameManager.Instance.OnGameStop += GameManager_OnGameStop;
+        inputBlockerObject.SetActive(false);
+    }
+    private void GameManager_OnGameRestart(object sender, System.EventArgs e)
+    {
+        inputBlockerObject.SetActive(true);
+    }
+    private void GameManager_OnGameStop(object sender, System.EventArgs e)
+    {
+        inputBlockerObject.SetActive(false);
     }
     public void UpdateSnippetUIsList()
     {
@@ -52,51 +65,6 @@ public class SnippetsManagerUI :MonoBehaviour {
             snippetUIs.Add(snippetUI);
             snippetUI = snippetUI.GetNextSnippet();
         }
-
-        //// Create a fresh CommandSnippet list
-        //List<CommandSnippet> commandSnippets = new List<CommandSnippet>();
-
-        //foreach (SnippetUI ui in snippetUIs)
-        //{
-        //    CommandSnippet newSnippet = null;
-
-        //    switch (ui.GetCommandType)
-        //    {
-        //        case CommandSnippet.CommandType.Move:
-        //            newSnippet = new CommandSnippet(
-        //                "Move",
-        //                CommandSnippet.CommandType.Move,
-        //                moveDuration: ui.GetValue,
-        //                jumpPower: 0f,
-        //                done: false
-        //            );
-        //            break;
-
-        //        case CommandSnippet.CommandType.Jump:
-        //            newSnippet = new CommandSnippet(
-        //                "Jump",
-        //                CommandSnippet.CommandType.Jump,
-        //                moveDuration: 0f,
-        //                jumpPower: ui.GetValue,
-        //                done: false
-        //            );
-        //            break;
-
-        //        case CommandSnippet.CommandType.Turn:
-        //            newSnippet = new CommandSnippet(
-        //                "Turn",
-        //                CommandSnippet.CommandType.Turn,
-        //                moveDuration: 0f,
-        //                jumpPower: 0f,
-        //                done: false
-        //            );
-        //            break;
-        //    }
-
-        //    if (newSnippet != null)
-        //        commandSnippets.Add(newSnippet);
-        //}
-
         //// Send the list to the CommandSnippetsManager
         CommandSnippetsManager.Instance.SetCommandSnippets(snippetUIs);
 
@@ -108,5 +76,9 @@ public class SnippetsManagerUI :MonoBehaviour {
     public void DisableDropArea()
     {
         OnDisableDropArea?.Invoke();
+    }
+    public Transform GetParentContainer()
+    {
+        return snippetsContainerTransform;
     }
 }
