@@ -80,4 +80,11 @@ public class PanZoomUI :MonoBehaviour, IDragHandler, IScrollHandler {
         s = Mathf.Clamp(s, minScale, maxScale);
         target.localScale = Vector3.one * s;
     }
+    public void Zoom(float zoomAmount)
+    {
+        float s = target.localScale.x;
+        s += zoomAmount;
+        s = Mathf.Clamp(s, minScale, maxScale);
+        target.localScale = Vector3.one * s;
+    }
 }

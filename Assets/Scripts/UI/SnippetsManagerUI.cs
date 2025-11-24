@@ -9,7 +9,8 @@ public class SnippetsManagerUI :MonoBehaviour {
     private List<SnippetUI> snippetUIs = new();
 
     [SerializeField] private Transform snippetsContainerTransform;
-    [SerializeField] private GameObject inputBlockerObject;
+    [SerializeField] private GameObject inputBlockerObject1;
+    [SerializeField] private GameObject inputBlockerObject2;
     [SerializeField] private Button addMoveSnippetButton;
     [SerializeField] private Button addJumpSnippetButton;
     [SerializeField] private Button addTurnSnippetButton;
@@ -18,6 +19,7 @@ public class SnippetsManagerUI :MonoBehaviour {
     [SerializeField] private GameObject moveSnippetPrefab;
     [SerializeField] private GameObject jumpSnippetPrefab;
     [SerializeField] private GameObject turnSnippetPrefab;
+
 
     public event System.Action OnEnableDropArea;
     public event System.Action OnDisableDropArea;
@@ -46,15 +48,20 @@ public class SnippetsManagerUI :MonoBehaviour {
         });
         GameManager.Instance.OnGameRestart += GameManager_OnGameRestart;
         GameManager.Instance.OnGameStop += GameManager_OnGameStop;
-        inputBlockerObject.SetActive(false);
+
+        inputBlockerObject1.SetActive(false);
+        inputBlockerObject2.SetActive(false);
     }
     private void GameManager_OnGameRestart(object sender, System.EventArgs e)
     {
-        inputBlockerObject.SetActive(true);
+        inputBlockerObject1.SetActive(true);
+        inputBlockerObject1.GetComponent<RectTransform>().SetAsLastSibling();
+        inputBlockerObject2.SetActive(true);
     }
     private void GameManager_OnGameStop(object sender, System.EventArgs e)
     {
-        inputBlockerObject.SetActive(false);
+        inputBlockerObject1.SetActive(false);
+        inputBlockerObject2.SetActive(false);
     }
     public void UpdateSnippetUIsList()
     {

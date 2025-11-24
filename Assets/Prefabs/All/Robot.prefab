@@ -1780,7 +1780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb7056fcec61624db0942720b0df7cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundCheckRadius: 0.15
+  groundCheckRadius: 0.25
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 8

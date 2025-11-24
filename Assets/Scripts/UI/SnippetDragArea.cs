@@ -16,7 +16,6 @@ public class SnippetDragArea :MonoBehaviour, IDragHandler, IBeginDragHandler, IE
     }
     private void Start()
     {
-        //parentRectTransform = SnippetsManagerUI.Instance.GetComponent<RectTransform>();
         parentRectTransform = SnippetsManagerUI.Instance.GetParentContainer().GetComponent<RectTransform>();
         canvas = FindFirstObjectByType<Canvas>();
 
@@ -43,7 +42,9 @@ public class SnippetDragArea :MonoBehaviour, IDragHandler, IBeginDragHandler, IE
 
     public void OnDrag(PointerEventData eventData)
     {
-        dragRectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+        float wrapperScale = parentRectTransform.localScale.x;
+        dragRectTransform.anchoredPosition += eventData.delta / (canvas.scaleFactor * wrapperScale);
+
         if (dragRectTransform.parent != parentRectTransform && dragRectTransform.parent.GetComponent<SnippetDropArea>() != null)
         {
             dragRectTransform.transform.parent.GetComponent<SnippetDropArea>().RemoveSnippet();
