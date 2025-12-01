@@ -12,6 +12,10 @@ public class HUD :MonoBehaviour {
     [SerializeField] private Button editSnippetsButton;
 
     [SerializeField] private GameObject snippetsUI;
+
+    [Header("Health and Energy")]
+    [SerializeField] private Image healthBarImage;
+    [SerializeField] private Image energyBarImage;
     private void Awake()
     {
         Instance = this;
@@ -36,6 +40,13 @@ public class HUD :MonoBehaviour {
 
         stopButton.gameObject.SetActive(false);
         GameManager.Instance.OnGameStop += GameManager_OnGameStop;
+        RobotHealthAndEnergy.Instance.OnHealthOrEnergyChanged += RobotHealthAndEnergy_OnHealthOrEnergyChanged;
+    }
+
+    private void RobotHealthAndEnergy_OnHealthOrEnergyChanged(object sender, RobotHealthAndEnergy.OnHealthOrEnergyChangedEventArgs e)
+    {
+        healthBarImage.fillAmount = e.robotHealth / 100;
+        energyBarImage.fillAmount = e.robotEnergy / 100;
     }
 
     private void GameManager_OnGameStop(object sender, System.EventArgs e)
@@ -48,5 +59,9 @@ public class HUD :MonoBehaviour {
     {
         editSnippetsButton.gameObject.SetActive(true);
     }
-
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnGameStop -= GameManager_OnGameStop;
+        RobotHealthAndEnergy.Instance.OnHealthOrEnergyChanged -= RobotHealthAndEnergy_OnHealthOrEnergyChanged;
+    }
 }

@@ -6,6 +6,11 @@ public class RobotController :MonoBehaviour {
     private Rigidbody2D robotRigidbody;
 
     private Vector3 initialPosition;
+
+    [Header("Energy Usage")]
+    [SerializeField] private float energyDrainInMoving = 2f;
+    [SerializeField] private float energyDrainInJump = 5f;
+    [SerializeField] private float energyDrainInTurn = 6f;
     private enum RobotState
     {
         None,
@@ -37,19 +42,23 @@ public class RobotController :MonoBehaviour {
 
         GameManager.Instance.OnGameRestart += GameManager_OnGameRestart;
         GameManager.Instance.OnGameStop += GameManager_OnGameStop;
-        GameManager.Instance.OnGameOver += GameManager_OnGameOver; ;
+        GameManager.Instance.OnGameOver += GameManager_OnGameOver;
     }
 
     private void GameManager_OnGameOver(object sender, GameManager.OnGameOverEventArgs e)
     {
         StopAllCoroutines();
         robotRigidbody.velocity = Vector2.zero;
-        transform.localScale = new Vector3(1, 1, 1);
-        transform.position = initialPosition;
+        //transform.localScale = new Vector3(1, 1, 1);
+        //transform.position = initialPosition;
         robotState = RobotState.None;
 
-        SoundManager.Instance.StopRobotMoveSound();
-        SoundManager.Instance.StopRobotJumpSound();
+        SoundManager soundManager = SoundManager.Instance;
+        if (soundManager != null)
+        {
+            soundManager.StopRobotMoveSound();
+            soundManager.StopRobotJumpSound();
+        }
     }
 
     private void GameManager_OnGameStop(object sender, System.EventArgs e)
@@ -111,6 +120,7 @@ public class RobotController :MonoBehaviour {
             float minJumpPower = 8f;
             float jumpPower = e.jumpPower + minJumpPower;
             robotRigidbody.velocity = new Vector2(transform.localScale.x * jumpPower /2, jumpPower);
+            RobotHealthAndEnergy.Instance.DrainEnergy(energyDrainInJump + e.jumpPower/10);
             SoundManager.Instance.PlayRobotJumpSound();
             OnRobotJump?.Invoke(this, System.EventArgs.Empty);
         }
@@ -122,6 +132,7 @@ public class RobotController :MonoBehaviour {
             CommandSnippetsManager.Instance.CommandAccepted();
 
             robotState = RobotState.Turning;
+            RobotHealthAndEnergy.Instance.DrainEnergy(energyDrainInTurn);
             SoundManager.Instance.PlayRobotTurnSound();
             StartCoroutine(TurnRobot());
         }
@@ -134,6 +145,7 @@ public class RobotController :MonoBehaviour {
             float moveSpeed = 3f;
             float rotation = transform.localScale.x;
             robotRigidbody.velocity = new Vector2(moveSpeed * rotation, robotRigidbody.velocity.y);
+            RobotHealthAndEnergy.Instance.DrainEnergy(energyDrainInMoving * Time.deltaTime);
             timer += Time.deltaTime;
             yield return null;
         }
@@ -160,13 +172,21 @@ public class RobotController :MonoBehaviour {
     }
     private void Update()
     {
-        if (transform.position.y < -10f)
-        {
-            RobotHealth.Instance.TakeDamage(100);
-        }
         if (robotState == RobotState.None && robotRigidbody.velocity.magnitude > 0f)
         {
             robotRigidbody.velocity = new Vector2(0, robotRigidbody.velocity.y);
         }
+    }
+    private void OnDestroy()
+    {
+        CommandSnippetsManager.Instance.OnMoveCommand -= CommandSnippetsManager_OnMoveCommand;
+        CommandSnippetsManager.Instance.OnJumpCommand -= CommandSnippetsManager_OnJumpCommand;
+        CommandSnippetsManager.Instance.OnTurnCommand -= CommandSnippetsManager_OnTurnCommand;
+
+        GroundCheck.Instance.OnGrounded -= GroundCheck_OnGrounded;
+
+        GameManager.Instance.OnGameRestart -= GameManager_OnGameRestart;
+        GameManager.Instance.OnGameStop -= GameManager_OnGameStop;
+        GameManager.Instance.OnGameOver -= GameManager_OnGameOver;
     }
 }

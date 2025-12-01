@@ -5,43 +5,89 @@ using UnityEngine.UI;
 public class GameOverUI :MonoBehaviour {
 
     [SerializeField] private TextMeshProUGUI titleText;
-    [SerializeField] private Button retryButton;
     [SerializeField] private Button nextLevelButton;
+
+    [Header("Buy Health")]
+    [SerializeField] private GameObject buyHealthUi;
+    [SerializeField] private Button adForHealthButton;
+    [SerializeField] private Button buyHealthButton;
+
+    [Header("Buy Energy")]
+    [SerializeField] private GameObject buyEnergyUi;
+    [SerializeField] private Button adForEnergyButton;
+    [SerializeField] private Button buyEnergyButton;
 
     private void Start()
     {
         GameManager.Instance.OnGameOver += GameOver_OnGameOver;
 
-        retryButton.onClick.AddListener(() =>
-        {
-            SoundManager.Instance.PlayUISound1();
-            GameManager.Instance.StopGame();
-            gameObject.SetActive(false);
-            
-        });
         nextLevelButton.onClick.AddListener(() =>
         {
             SoundManager.Instance.PlayUISound1();
             GameManager.Instance.LoadNextLevel();
             
         });
+        // Health
+        adForHealthButton.onClick.AddListener(() => {
+            SoundManager.Instance.PlayUISound1();
+            GameManager.Instance.StopGame();
+            RobotHealthAndEnergy.Instance.AddHealth(40);
+            gameObject.SetActive(false);
+        });
+        buyHealthButton.onClick.AddListener(() => {
+            SoundManager.Instance.PlayUISound1();
+            GameManager.Instance.StopGame();
+            RobotHealthAndEnergy.Instance.AddHealth(70);
+            gameObject.SetActive(false);
+        });
+
+        // Energy
+        adForEnergyButton.onClick.AddListener(() => {
+            SoundManager.Instance.PlayUISound1();
+            GameManager.Instance.StopGame();
+            RobotHealthAndEnergy.Instance.AddEnergy(60);
+            gameObject.SetActive(false);
+        });
+        buyEnergyButton.onClick.AddListener(() => {
+            SoundManager.Instance.PlayUISound1();
+            GameManager.Instance.StopGame();
+            RobotHealthAndEnergy.Instance.AddEnergy(100);
+            gameObject.SetActive(false);
+        });
+
         gameObject.SetActive(false);
+        buyHealthUi.SetActive(false);
+        buyEnergyUi.SetActive(false);
+        nextLevelButton.gameObject.SetActive(false);
     }
 
     private void GameOver_OnGameOver(object sender, GameManager.OnGameOverEventArgs e)
     {
         gameObject.SetActive(true);
+        buyHealthUi.SetActive(false);
+        buyEnergyUi.SetActive(false);
+        nextLevelButton.gameObject.SetActive(false);
+
         if (e.gameOverType == GameManager.GameOverType.win)
         {
             titleText.text = "Level Completed!";
-            retryButton.gameObject.SetActive(false);
             nextLevelButton.gameObject.SetActive(true);
         }
-        else
+        else if (e.gameOverType == GameManager.GameOverType.robotDied)
         {
-            titleText.text = "Game Over";
-            retryButton.gameObject.SetActive(true);
-            nextLevelButton.gameObject.SetActive(false);
+            titleText.text = "Robot Died";
+            buyHealthUi.SetActive(true);
+            //nextLevelButton.gameObject.SetActive(false);
         }
+        else if (e.gameOverType == GameManager.GameOverType.robotOutOfEnergy)
+        {
+            titleText.text = "No Energy";
+            buyEnergyUi.SetActive(true);
+            //nextLevelButton.gameObject.SetActive(false);
+        }
+    }
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnGameOver -= GameOver_OnGameOver;
     }
 }

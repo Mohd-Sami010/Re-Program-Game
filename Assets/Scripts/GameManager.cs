@@ -6,7 +6,8 @@ public class GameManager :MonoBehaviour {
 
     public enum GameOverType{
         win,
-        lose,
+        robotDied,
+        robotOutOfEnergy
     }
     public event EventHandler OnGameRestart;
     public event EventHandler OnGameStop;
@@ -30,7 +31,7 @@ public class GameManager :MonoBehaviour {
     {
         OnGameOver?.Invoke(this, new OnGameOverEventArgs { gameOverType = gameOverType });
         if (gameOverType == GameOverType.win) SoundManager.Instance.PlayRobotWinSound();
-        else if (gameOverType == GameOverType.lose) SoundManager.Instance.PlayRobotLoseSound();
+        else if (gameOverType == GameOverType.robotDied) SoundManager.Instance.PlayRobotLoseSound();
     }
     public void LoadNextLevel()
     {

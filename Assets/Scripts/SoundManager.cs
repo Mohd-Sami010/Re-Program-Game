@@ -37,6 +37,7 @@ public class SoundManager :MonoBehaviour {
     }
     public void StopRobotMoveSound()
     {
+        if (robotMoveAudioSource == null) return;
         robotMoveAudioSource.Stop();
     }
     public void PlayRobotJumpSound()
@@ -45,6 +46,7 @@ public class SoundManager :MonoBehaviour {
     }
     public void StopRobotJumpSound()
     {
+        if (robotJumpAudioSource == null) return;
         robotJumpAudioSource.Stop();
     }
     public void PlayRobotTurnSound()
@@ -100,6 +102,7 @@ public class SoundManager :MonoBehaviour {
 
     private void PlaySound(AudioSource audioSource)
     {
+        if (audioSource == null) return;
         audioSource.pitch = Random.Range(0.9f, 1.1f);
         audioSource.PlayOneShot(audioSource.clip);
     }
