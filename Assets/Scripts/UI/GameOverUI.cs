@@ -37,6 +37,16 @@ public class GameOverUI :MonoBehaviour {
         buyHealthButton.onClick.AddListener(() => {
             SoundManager.Instance.PlayUISound1();
             GameManager.Instance.StopGame();
+            if (EconomyManager.Instance.TrySpendCurrency(EconomyManager.Instance.GetHealthPrice_70percent()))
+            {
+                RobotHealthAndEnergy.Instance.AddHealth(100);
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                // Not enough currency
+                //SoundManager.Instance.PlayErrorSound();
+            }
             RobotHealthAndEnergy.Instance.AddHealth(70);
             gameObject.SetActive(false);
         });
@@ -51,8 +61,17 @@ public class GameOverUI :MonoBehaviour {
         buyEnergyButton.onClick.AddListener(() => {
             SoundManager.Instance.PlayUISound1();
             GameManager.Instance.StopGame();
-            RobotHealthAndEnergy.Instance.AddEnergy(100);
-            gameObject.SetActive(false);
+
+            if (EconomyManager.Instance.TrySpendCurrency(EconomyManager.Instance.GetEnergyPrice_100percent()))
+            {
+                RobotHealthAndEnergy.Instance.AddEnergy(100);
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                // Not enough currency
+                //SoundManager.Instance.PlayErrorSound();
+            }
         });
 
         gameObject.SetActive(false);
@@ -77,13 +96,11 @@ public class GameOverUI :MonoBehaviour {
         {
             titleText.text = "Robot Died";
             buyHealthUi.SetActive(true);
-            //nextLevelButton.gameObject.SetActive(false);
         }
         else if (e.gameOverType == GameManager.GameOverType.robotOutOfEnergy)
         {
             titleText.text = "No Energy";
             buyEnergyUi.SetActive(true);
-            //nextLevelButton.gameObject.SetActive(false);
         }
     }
     private void OnDestroy()

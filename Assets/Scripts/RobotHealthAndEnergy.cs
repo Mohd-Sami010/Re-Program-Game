@@ -16,16 +16,26 @@ public class RobotHealthAndEnergy :MonoBehaviour {
     private void Awake()
     {
         Instance = this;
+        health = PlayerPrefs.GetFloat("RobotHealth", 100f);
+        energy = PlayerPrefs.GetFloat("RobotEnergy", 100f);
     }
     private void Start()
     {
         GameManager.Instance.OnGameRestart += GameManager_OnGameRestart;
     }
-
+    private bool updateUiAtStart = false;
+    private void Update()
+    {
+        if (!updateUiAtStart)
+        {
+            UpdateUi();
+            updateUiAtStart = true;
+        }
+    }
     private void GameManager_OnGameRestart(object sender, System.EventArgs e)
     {
         DrainEnergy(0);
-
+        TakeDamage(0);
     }
 
     public void TakeDamage(float damage)
@@ -33,6 +43,7 @@ public class RobotHealthAndEnergy :MonoBehaviour {
         health -= damage;
 
         UpdateUi();
+        SaveHealthAndEnergy();
 
         if (health <= 0)
         {
@@ -50,20 +61,25 @@ public class RobotHealthAndEnergy :MonoBehaviour {
         energy -= drainAmount;
 
         UpdateUi();
+        SaveHealthAndEnergy();
     }
     public void AddHealth(float healthToAdd)
     {
         health += healthToAdd;
         if (health > 100) health = 100;
+
         UpdateUi();
+        SaveHealthAndEnergy();
     }
     public void AddEnergy(float energyToAdd)
     {
         energy += energyToAdd;
         if (energy > 100) energy = 100;
+
         UpdateUi();
+        SaveHealthAndEnergy();
     }
-    void Die()
+    private void Die()
     {
         GameManager.Instance.GameOver(GameManager.GameOverType.robotDied);
     }
@@ -74,5 +90,10 @@ public class RobotHealthAndEnergy :MonoBehaviour {
             robotEnergy = energy,
             robotHealth = health
         });
+    }
+    private void SaveHealthAndEnergy()
+    {
+        PlayerPrefs.SetFloat("RobotHealth", health);
+        PlayerPrefs.SetFloat("RobotEnergy", energy);
     }
 }
