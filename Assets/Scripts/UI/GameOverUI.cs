@@ -39,7 +39,7 @@ public class GameOverUI :MonoBehaviour {
             GameManager.Instance.StopGame();
             if (EconomyManager.Instance.TrySpendCurrency(EconomyManager.Instance.GetHealthPrice_70percent()))
             {
-                RobotHealthAndEnergy.Instance.AddHealth(100);
+                RobotHealthAndEnergy.Instance.AddHealth(70);
                 gameObject.SetActive(false);
             }
             else
@@ -47,8 +47,6 @@ public class GameOverUI :MonoBehaviour {
                 // Not enough currency
                 //SoundManager.Instance.PlayErrorSound();
             }
-            RobotHealthAndEnergy.Instance.AddHealth(70);
-            gameObject.SetActive(false);
         });
 
         // Energy

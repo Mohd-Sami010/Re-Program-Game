@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PanZoomUI :MonoBehaviour, IDragHandler, IScrollHandler {
 
@@ -20,6 +21,20 @@ public class PanZoomUI :MonoBehaviour, IDragHandler, IScrollHandler {
         target = GetComponent<RectTransform>();
         contentWrapperRectTransform = GetComponent<RectTransform>();
     }
+    private void Start()
+    {
+        SnippetsManagerUI.Instance.OnEnableDropArea += SnippetsManagerUI_OnEnableDropArea;
+        SnippetsManagerUI.Instance.OnDisableDropArea += SnippetsManagerUI_OnDisableDropArea;
+    }
+    private void SnippetsManagerUI_OnEnableDropArea()
+    {
+        GetComponent<Image>().enabled = false;
+    }
+    private void SnippetsManagerUI_OnDisableDropArea()
+    {
+        GetComponent<Image>().enabled = true;
+    }
+
     public void OnDrag(PointerEventData eventData)
     {
         target.anchoredPosition += eventData.delta * dragSpeed;
@@ -86,5 +101,10 @@ public class PanZoomUI :MonoBehaviour, IDragHandler, IScrollHandler {
         s += zoomAmount;
         s = Mathf.Clamp(s, minScale, maxScale);
         target.localScale = Vector3.one * s;
+    }
+    private void OnDestroy()
+    {
+        SnippetsManagerUI.Instance.OnEnableDropArea -= SnippetsManagerUI_OnEnableDropArea;
+        SnippetsManagerUI.Instance.OnDisableDropArea -= SnippetsManagerUI_OnDisableDropArea;
     }
 }

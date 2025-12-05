@@ -21,15 +21,32 @@ public class SoundManager :MonoBehaviour {
     [SerializeField] private AudioSource snippetSpawnAudioSource;
     [SerializeField] private AudioSource snippetDeleteAudioSource;
 
-    [Header("Other Sounds")]
+    [Header("UI Sounds")]
     [SerializeField] private AudioSource uISound1AudioSource;
     [SerializeField] private AudioSource uISound2AudioSource;
+
+    [Header("Money Sound")]
+    [SerializeField] private AudioSource transactionSucessAudioSource;
+    [SerializeField] private AudioSource transactionFailAudioSource;
 
     private void Awake()
     {
         Instance = this;
     }
+    private void Start()
+    {
+        EconomyManager.Instance.OnTransactionSucess += EconomyManager_OnTransactionSucess;
+        EconomyManager.Instance.OnTransactionFail += EconomyManager_OnTransactionFail;
+    }
 
+    private void EconomyManager_OnTransactionSucess()
+    {
+        PlaySound(transactionSucessAudioSource);
+    }
+    private void EconomyManager_OnTransactionFail()
+    {
+        PlaySound(transactionFailAudioSource);
+    }
     // Robot Sounds
     public void PlayRobotMoveSound()
     {

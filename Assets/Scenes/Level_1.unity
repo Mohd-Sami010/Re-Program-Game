@@ -627,7 +627,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currencyName: grears
-  currentBalance: 0
+  currentBalance: 60
+  setInspectorBalance: 0
+  healthPrice_70percent: 27
+  energyPrice_100percent: 15
 --- !u!4 &1229675613
 Transform:
   m_ObjectHideFlags: 0
@@ -1526,6 +1529,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 7898604753991301045}
   - {fileID: 7952050373346092545}
+  - {fileID: 1229675613}
   - {fileID: 1665774133915196522}
   - {fileID: 619394802}
   - {fileID: 4613746941637046647}
@@ -1535,4 +1539,3 @@ SceneRoots:
   - {fileID: 1231356585}
   - {fileID: 4193551256723453575}
   - {fileID: 37376331}
-  - {fileID: 1229675613}
