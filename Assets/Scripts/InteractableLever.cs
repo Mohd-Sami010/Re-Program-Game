@@ -4,6 +4,7 @@ public class InteractableLever :MonoBehaviour {
 
     private Animator leverAnimator;
     [SerializeField] private GameObject greenLightsObject;
+    [SerializeField] private MovableObstacle obstacleToMove;
 
     private void Awake()
     {
@@ -25,6 +26,7 @@ public class InteractableLever :MonoBehaviour {
     {
         leverAnimator.SetBool("Activated", true);
         greenLightsObject.SetActive(true);
+        obstacleToMove.RemoveObstacle();
     }
 
 }

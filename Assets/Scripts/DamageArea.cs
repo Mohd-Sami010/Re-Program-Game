@@ -8,8 +8,10 @@ public class DamageArea :MonoBehaviour {
     [SerializeField] private bool damageOnExit = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (RobotController.Instance == null || RobotHealthAndEnergy.Instance == null) return;
         if (GameManager.Instance == null || GameManager.Instance.GetCurrentGameState() != GameManager.GameState.Running) return;
         if (damageOnExit) return;
+
         if (collision.TryGetComponent(out RobotHealthAndEnergy robotHealth))
         {
             robotHealth.TakeDamage(damage);
@@ -17,8 +19,10 @@ public class DamageArea :MonoBehaviour {
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (RobotController.Instance == null || RobotHealthAndEnergy.Instance == null) return;
         if (GameManager.Instance == null || GameManager.Instance.GetCurrentGameState() != GameManager.GameState.Running) return;
         if (!damageOnExit) return;
+
         if (collision.TryGetComponent(out RobotHealthAndEnergy robotHealth))
         {
             robotHealth.TakeDamage(damage);

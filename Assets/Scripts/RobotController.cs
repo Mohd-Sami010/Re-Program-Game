@@ -7,8 +7,7 @@ public class RobotController :MonoBehaviour {
 
     private Vector3 initialPosition;
 
-    [SerializeField] private Transform interactArea;
-    [SerializeField] private float interactRadius;
+    [SerializeField] private InteractionHandler interactionHandler;
 
     [Header("Energy Usage")]
     [SerializeField] private float energyDrainInMoving = 2f;
@@ -191,15 +190,7 @@ public class RobotController :MonoBehaviour {
     {
 
         yield return new WaitForSeconds(0.56f);
-        // Check Interaction
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(interactArea.position, interactRadius);
-        foreach (Collider2D collider in colliders)
-        {
-            if (collider.TryGetComponent(out InteractableLever lever))
-            {
-                lever.Interact();
-            }
-        }
+        interactionHandler.Interact();
         yield return new WaitForSeconds(0.45f);
         CommandSnippetsManager.Instance.ReadyForCommand();
         robotState = RobotState.None;
@@ -210,10 +201,6 @@ public class RobotController :MonoBehaviour {
         {
             robotRigidbody.velocity = new Vector2(0, robotRigidbody.velocity.y);
         }
-    }
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(interactArea.position, interactRadius);
     }
     private void OnDestroy()
     {
