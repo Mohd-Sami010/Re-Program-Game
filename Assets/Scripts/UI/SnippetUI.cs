@@ -7,6 +7,7 @@ public class SnippetUI :MonoBehaviour {
         Move,
         Jump,
         Turn,
+        Interact,
     }
     [SerializeField] private CommandType commandType;
     [SerializeField] private Image[] visualImages;

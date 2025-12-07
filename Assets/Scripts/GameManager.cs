@@ -4,8 +4,13 @@ using UnityEngine;
 public class GameManager :MonoBehaviour {
     public static GameManager Instance { get; private set; }
 
-    public bool isGameplayRunning { get; private set; }
-
+    public enum GameState
+    {
+        NotRunning,
+        Running,
+        GameOver
+    }
+    private GameState currentGameState = GameState.NotRunning;
     public enum GameOverType{
         win,
         robotDied,
@@ -23,20 +28,20 @@ public class GameManager :MonoBehaviour {
     }
     public void RestartGame()
     {
+        currentGameState = GameState.Running;
         OnGameRestart?.Invoke(this, EventArgs.Empty);
-        isGameplayRunning = true;
     }
     public void StopGame()
     {
+        currentGameState= GameState.NotRunning;
         OnGameStop?.Invoke(this, EventArgs.Empty);
-        isGameplayRunning = false;
     }
     public void GameOver(GameOverType gameOverType)
     {
+        currentGameState = GameState.GameOver;
         OnGameOver?.Invoke(this, new OnGameOverEventArgs { gameOverType = gameOverType });
         if (gameOverType == GameOverType.win) SoundManager.Instance.PlayRobotWinSound();
-        else if (gameOverType == GameOverType.robotDied) SoundManager.Instance.PlayRobotLoseSound();
-        isGameplayRunning = false;
+        else SoundManager.Instance.PlayRobotLoseSound();
     }
     public void LoadNextLevel()
     {
@@ -51,5 +56,13 @@ public class GameManager :MonoBehaviour {
             // No more levels, restart the first level or show a message
             UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
+    }
+    private void OnDestroy()
+    {
+        currentGameState = GameState.NotRunning;
+    }
+    public GameState GetCurrentGameState()
+    {
+        return currentGameState;
     }
 }

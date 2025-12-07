@@ -40,11 +40,11 @@ public class RobotHealthAndEnergy :MonoBehaviour {
 
     public void TakeDamage(float damage)
     {
+        if (GameManager.Instance.GetCurrentGameState() == GameManager.GameState.GameOver) return;
         health -= damage;
 
         UpdateUi();
         SaveHealthAndEnergy();
-
         if (health <= 0)
         {
             health = 0;
@@ -53,6 +53,7 @@ public class RobotHealthAndEnergy :MonoBehaviour {
     }
     public void DrainEnergy(float drainAmount)
     {
+        if (GameManager.Instance.GetCurrentGameState() == GameManager.GameState.GameOver) return;
         if (energy <= 0)
         {
             energy = 0;
@@ -82,6 +83,7 @@ public class RobotHealthAndEnergy :MonoBehaviour {
     private void Die()
     {
         GameManager.Instance.GameOver(GameManager.GameOverType.robotDied);
+        Debug.Log("Robot Died");
     }
     private void UpdateUi()
     {
@@ -95,5 +97,9 @@ public class RobotHealthAndEnergy :MonoBehaviour {
     {
         PlayerPrefs.SetFloat("RobotHealth", health);
         PlayerPrefs.SetFloat("RobotEnergy", energy);
+    }
+    private void OnDestroy()
+    {
+        SaveHealthAndEnergy();
     }
 }

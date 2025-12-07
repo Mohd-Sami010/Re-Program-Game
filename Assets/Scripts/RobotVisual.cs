@@ -14,11 +14,13 @@ public class RobotVisual :MonoBehaviour {
         RobotController.Instance.OnRobotStopMoving += RobotController_OnRobotStopMoving;
         RobotController.Instance.OnRobotJump += RobotController_OnRobotJump;
         RobotController.Instance.OnRobotLand += RobotController_OnRobotLand;
+        RobotController.Instance.OnRobotInteract += RobotController_OnRobotInteract;
 
         GameManager.Instance.OnGameOver += GameManager_OnGameOver;
         GameManager.Instance.OnGameRestart += GameManager_OnGameRestart;
         GameManager.Instance.OnGameStop += GameManager_OnGameStop; ;
     }
+
 
     private void GameManager_OnGameStop(object sender, System.EventArgs e)
     {
@@ -51,5 +53,9 @@ public class RobotVisual :MonoBehaviour {
     private void RobotController_OnRobotLand(object sender, System.EventArgs e)
     {
         robotAnimator.SetTrigger("Land");
+    }
+    private void RobotController_OnRobotInteract(object sender, System.EventArgs e)
+    {
+        robotAnimator.SetTrigger("Interact");
     }
 }

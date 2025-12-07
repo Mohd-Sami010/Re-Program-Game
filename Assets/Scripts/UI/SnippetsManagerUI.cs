@@ -14,11 +14,13 @@ public class SnippetsManagerUI :MonoBehaviour {
     [SerializeField] private Button addMoveSnippetButton;
     [SerializeField] private Button addJumpSnippetButton;
     [SerializeField] private Button addTurnSnippetButton;
+    [SerializeField] private Button addInteractSnippetButton;
     [SerializeField] private Button closeUIButton;
     [Space]
     [SerializeField] private GameObject moveSnippetPrefab;
     [SerializeField] private GameObject jumpSnippetPrefab;
     [SerializeField] private GameObject turnSnippetPrefab;
+    [SerializeField] private GameObject interactSnippetPrefab;
 
 
     public event System.Action OnEnableDropArea;
@@ -39,6 +41,10 @@ public class SnippetsManagerUI :MonoBehaviour {
         });
         addTurnSnippetButton.onClick.AddListener(() => {
             Instantiate(turnSnippetPrefab, snippetsContainerTransform);
+            SoundManager.Instance.PlaySnippetSpawnSound();
+        });
+        addInteractSnippetButton.onClick.AddListener(() => {
+            Instantiate(interactSnippetPrefab, snippetsContainerTransform);
             SoundManager.Instance.PlaySnippetSpawnSound();
         });
         closeUIButton.onClick.AddListener(() => {

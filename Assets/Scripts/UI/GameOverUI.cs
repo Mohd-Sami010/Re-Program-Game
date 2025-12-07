@@ -5,17 +5,23 @@ using UnityEngine.UI;
 public class GameOverUI :MonoBehaviour {
 
     [SerializeField] private TextMeshProUGUI titleText;
+
+    [Header("Next Level")]
     [SerializeField] private Button nextLevelButton;
+    [SerializeField] private TextMeshProUGUI rewardTextMesh;
+    [SerializeField] private TextMeshProUGUI currentBalanceTextMesh;
 
     [Header("Buy Health")]
     [SerializeField] private GameObject buyHealthUi;
     [SerializeField] private Button adForHealthButton;
     [SerializeField] private Button buyHealthButton;
+    [SerializeField] private TextMeshProUGUI buyHealthTextMesh;
 
     [Header("Buy Energy")]
     [SerializeField] private GameObject buyEnergyUi;
     [SerializeField] private Button adForEnergyButton;
     [SerializeField] private Button buyEnergyButton;
+    [SerializeField] private TextMeshProUGUI buyEnergyTextMesh;
 
     private void Start()
     {
@@ -36,10 +42,10 @@ public class GameOverUI :MonoBehaviour {
         });
         buyHealthButton.onClick.AddListener(() => {
             SoundManager.Instance.PlayUISound1();
-            GameManager.Instance.StopGame();
             if (EconomyManager.Instance.TrySpendCurrency(EconomyManager.Instance.GetHealthPrice_70percent()))
             {
                 RobotHealthAndEnergy.Instance.AddHealth(70);
+                GameManager.Instance.StopGame();
                 gameObject.SetActive(false);
             }
             else
@@ -48,6 +54,7 @@ public class GameOverUI :MonoBehaviour {
                 //SoundManager.Instance.PlayErrorSound();
             }
         });
+        buyHealthTextMesh.text = $"70% health ({EconomyManager.Instance.GetHealthPrice_70percent()} {EconomyManager.Instance.GetCurrencyName()})";
 
         // Energy
         adForEnergyButton.onClick.AddListener(() => {
@@ -58,11 +65,11 @@ public class GameOverUI :MonoBehaviour {
         });
         buyEnergyButton.onClick.AddListener(() => {
             SoundManager.Instance.PlayUISound1();
-            GameManager.Instance.StopGame();
 
             if (EconomyManager.Instance.TrySpendCurrency(EconomyManager.Instance.GetEnergyPrice_100percent()))
             {
                 RobotHealthAndEnergy.Instance.AddEnergy(100);
+                GameManager.Instance.StopGame();
                 gameObject.SetActive(false);
             }
             else
@@ -71,6 +78,7 @@ public class GameOverUI :MonoBehaviour {
                 //SoundManager.Instance.PlayErrorSound();
             }
         });
+        buyEnergyTextMesh.text = $"100% energy ({EconomyManager.Instance.GetEnergyPrice_100percent()} {EconomyManager.Instance.GetCurrencyName()})";
 
         gameObject.SetActive(false);
         buyHealthUi.SetActive(false);
@@ -89,6 +97,7 @@ public class GameOverUI :MonoBehaviour {
         {
             titleText.text = "Level Completed!";
             nextLevelButton.gameObject.SetActive(true);
+            rewardTextMesh.text = $"{EconomyManager.Instance.GetLevelCompleteReward()} {EconomyManager.Instance.GetCurrencyName()}";
         }
         else if (e.gameOverType == GameManager.GameOverType.robotDied)
         {
@@ -100,6 +109,8 @@ public class GameOverUI :MonoBehaviour {
             titleText.text = "No Energy";
             buyEnergyUi.SetActive(true);
         }
+        
+        currentBalanceTextMesh.text = $"{EconomyManager.Instance.GetCurrentBalance()} {EconomyManager.Instance.GetCurrencyName()}";
     }
     private void OnDestroy()
     {

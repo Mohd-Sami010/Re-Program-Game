@@ -28,6 +28,7 @@ public class CommandSnippetsManager : MonoBehaviour {
 
     // Event for Turn Command
     public event EventHandler OnTurnCommand;
+    public event EventHandler OnInteractCommand;
 
     private void Awake()
     {
@@ -73,14 +74,20 @@ public class CommandSnippetsManager : MonoBehaviour {
             case SnippetUI.CommandType.Move:
                 OnMoveCommand?.Invoke(this, new OnMoveCommandEventArgs { moveDuration = currentCommand.GetValue() });
                 break;
+
             case SnippetUI.CommandType.Jump:
                 OnJumpCommand?.Invoke(this, new OnJumpCommandEventArgs
                 {
                     jumpPower = currentCommand.GetValue()
                 });
                 break;
+
             case SnippetUI.CommandType.Turn:
                 OnTurnCommand?.Invoke(this, EventArgs.Empty);
+                break;
+
+            case SnippetUI.CommandType.Interact:
+                OnInteractCommand?.Invoke(this, EventArgs.Empty);
                 break;
         }
     }

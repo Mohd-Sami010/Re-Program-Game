@@ -7,6 +7,9 @@ public class RobotController :MonoBehaviour {
 
     private Vector3 initialPosition;
 
+    [SerializeField] private Transform interactArea;
+    [SerializeField] private float interactRadius;
+
     [Header("Energy Usage")]
     [SerializeField] private float energyDrainInMoving = 2f;
     [SerializeField] private float energyDrainInJump = 5f;
@@ -17,6 +20,7 @@ public class RobotController :MonoBehaviour {
         Moving,
         Jumping,
         Turning,
+        Interacting,
     }
     private RobotState robotState = RobotState.None;
 
@@ -24,6 +28,7 @@ public class RobotController :MonoBehaviour {
     public event System.EventHandler OnRobotStopMoving;
     public event System.EventHandler OnRobotJump;
     public event System.EventHandler OnRobotLand;
+    public event System.EventHandler OnRobotInteract;
 
     private void Awake()
     {
@@ -37,6 +42,7 @@ public class RobotController :MonoBehaviour {
         CommandSnippetsManager.Instance.OnMoveCommand += CommandSnippetsManager_OnMoveCommand;
         CommandSnippetsManager.Instance.OnJumpCommand += CommandSnippetsManager_OnJumpCommand;
         CommandSnippetsManager.Instance.OnTurnCommand += CommandSnippetsManager_OnTurnCommand;
+        CommandSnippetsManager.Instance.OnInteractCommand += CommandSnippetsManager_OnInteractCommand;
 
         GroundCheck.Instance.OnGrounded += GroundCheck_OnGrounded;
 
@@ -44,13 +50,10 @@ public class RobotController :MonoBehaviour {
         GameManager.Instance.OnGameStop += GameManager_OnGameStop;
         GameManager.Instance.OnGameOver += GameManager_OnGameOver;
     }
-
     private void GameManager_OnGameOver(object sender, GameManager.OnGameOverEventArgs e)
     {
         StopAllCoroutines();
         robotRigidbody.velocity = Vector2.zero;
-        //transform.localScale = new Vector3(1, 1, 1);
-        //transform.position = initialPosition;
         robotState = RobotState.None;
 
         SoundManager soundManager = SoundManager.Instance;
@@ -137,6 +140,20 @@ public class RobotController :MonoBehaviour {
             StartCoroutine(TurnRobot());
         }
     }
+    private void CommandSnippetsManager_OnInteractCommand(object sender, System.EventArgs e)
+    {
+        if (robotState == RobotState.None && GroundCheck.Instance.IsGrounded())
+        {
+            CommandSnippetsManager.Instance.CommandAccepted();
+
+            robotState = RobotState.Interacting;
+            RobotHealthAndEnergy.Instance.DrainEnergy(energyDrainInTurn);
+            SoundManager.Instance.PlayRobotTurnSound();
+            StartCoroutine(Interact());
+            OnRobotInteract?.Invoke(this, System.EventArgs.Empty);
+        }
+    }
+
     private IEnumerator MoveCoroutine(float moveDuration)
     {
         float timer = 0f;
@@ -170,12 +187,33 @@ public class RobotController :MonoBehaviour {
         CommandSnippetsManager.Instance.ReadyForCommand();
         robotState = RobotState.None;
     }
+    private IEnumerator Interact()
+    {
+
+        yield return new WaitForSeconds(0.56f);
+        // Check Interaction
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(interactArea.position, interactRadius);
+        foreach (Collider2D collider in colliders)
+        {
+            if (collider.TryGetComponent(out InteractableLever lever))
+            {
+                lever.Interact();
+            }
+        }
+        yield return new WaitForSeconds(0.45f);
+        CommandSnippetsManager.Instance.ReadyForCommand();
+        robotState = RobotState.None;
+    }
     private void Update()
     {
         if (robotState == RobotState.None && robotRigidbody.velocity.magnitude > 0f)
         {
             robotRigidbody.velocity = new Vector2(0, robotRigidbody.velocity.y);
         }
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(interactArea.position, interactRadius);
     }
     private void OnDestroy()
     {
