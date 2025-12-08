@@ -16,23 +16,32 @@ public class RobotVisual :MonoBehaviour {
         RobotController.Instance.OnRobotLand += RobotController_OnRobotLand;
         RobotController.Instance.OnRobotInteract += RobotController_OnRobotInteract;
 
+        RobotController.Instance.OnRobotPickItem += RobotController_OnRobotPickItem;
+        RobotController.Instance.OnRobotDropItem += RobotController_OnRobotDropItem;
+
         GameManager.Instance.OnGameOver += GameManager_OnGameOver;
         GameManager.Instance.OnGameRestart += GameManager_OnGameRestart;
         GameManager.Instance.OnGameStop += GameManager_OnGameStop; ;
     }
 
-
+    private void RobotController_OnRobotPickItem(object sender, System.EventArgs e)
+    {
+        robotAnimator.SetBool("HoldingItem", true);
+    }
+    private void RobotController_OnRobotDropItem(object sender, System.EventArgs e)
+    {
+        robotAnimator.SetBool("HoldingItem", false);
+    }
     private void GameManager_OnGameStop(object sender, System.EventArgs e)
     {
         robotAnimator.SetBool("Moving", false);
+        robotAnimator.SetBool("HoldingItem", false);
     }
-
     private void GameManager_OnGameRestart(object sender, System.EventArgs e)
     {
         robotAnimator.SetBool("Moving", false);
-
+        robotAnimator.SetBool("HoldingItem", false);
     }
-
     private void GameManager_OnGameOver(object sender, GameManager.OnGameOverEventArgs e)
     {
         robotAnimator.SetBool("Moving", false);

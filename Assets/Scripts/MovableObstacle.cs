@@ -27,14 +27,18 @@ public class MovableObstacle :MonoBehaviour {
 
     public void RemoveObstacle()
     {
-        StartCoroutine(MoveObstacle());
+        StartCoroutine(MoveObstacle(destinedPosition, destinedRotation));
+    }
+    public void MoveObstacleToInitialPosition()
+    {
+        StartCoroutine(MoveObstacle(initialPosition, initialRotation));
     }
     private void ResetObstacle()
     {
         transform.SetPositionAndRotation(initialPosition, initialRotation);
         lightsObject.SetActive(false);
     }
-    private IEnumerator MoveObstacle()
+    private IEnumerator MoveObstacle(Vector3 destinedPosition, Quaternion destinedRotation)
     {
         float duration = 1f;
         float timer = 0;
@@ -47,5 +51,11 @@ public class MovableObstacle :MonoBehaviour {
             yield return null;
         }
         transform.position = destinedPosition;
+    }
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnGameRestart -= GameManager_OnGameRestart;
+        GameManager.Instance.OnGameStop -= GameManager_OnGameRestart;
+        StopAllCoroutines();
     }
 }

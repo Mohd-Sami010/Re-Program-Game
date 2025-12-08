@@ -8,12 +8,14 @@ public class RobotController :MonoBehaviour {
     private Vector3 initialPosition;
 
     [SerializeField] private InteractionHandler interactionHandler;
+    [SerializeField] private bool isHoldingItem = false;
 
     [Header("Energy Usage")]
     [SerializeField] private float energyDrainInMoving = 2f;
     [SerializeField] private float energyDrainInJump = 5f;
     [SerializeField] private float energyDrainInTurn = 6f;
     [SerializeField] private float energyDrainInInteraction = 6f;
+    [SerializeField] private float energyDrainMultiplierWhileHoldingItem = 1.1f;
     private enum RobotState
     {
         None,
@@ -29,6 +31,8 @@ public class RobotController :MonoBehaviour {
     public event System.EventHandler OnRobotJump;
     public event System.EventHandler OnRobotLand;
     public event System.EventHandler OnRobotInteract;
+    public event System.EventHandler OnRobotPickItem;
+    public event System.EventHandler OnRobotDropItem;
 
     private void Awake()
     {
@@ -123,7 +127,7 @@ public class RobotController :MonoBehaviour {
             float minJumpPower = 8f;
             float jumpPower = e.jumpPower + minJumpPower;
             robotRigidbody.velocity = new Vector2(transform.localScale.x * jumpPower /2, jumpPower);
-            RobotHealthAndEnergy.Instance.DrainEnergy(energyDrainInJump + e.jumpPower/10);
+            DrainEnergy(energyDrainInJump + e.jumpPower/10);
             SoundManager.Instance.PlayRobotJumpSound();
             OnRobotJump?.Invoke(this, System.EventArgs.Empty);
         }
@@ -135,7 +139,7 @@ public class RobotController :MonoBehaviour {
             CommandSnippetsManager.Instance.CommandAccepted();
 
             robotState = RobotState.Turning;
-            RobotHealthAndEnergy.Instance.DrainEnergy(energyDrainInTurn);
+            DrainEnergy(energyDrainInTurn);
             SoundManager.Instance.PlayRobotTurnSound();
             StartCoroutine(TurnRobot());
         }
@@ -147,10 +151,23 @@ public class RobotController :MonoBehaviour {
             CommandSnippetsManager.Instance.CommandAccepted();
 
             robotState = RobotState.Interacting;
-            RobotHealthAndEnergy.Instance.DrainEnergy(energyDrainInInteraction);
+            DrainEnergy(energyDrainInInteraction);
             SoundManager.Instance.PlayRobotTurnSound();
             StartCoroutine(Interact());
-            OnRobotInteract?.Invoke(this, System.EventArgs.Empty);
+            
+            InteractionHandler.InteractionType interactionType = interactionHandler.CheckInteractionType();
+            if (interactionType == InteractionHandler.InteractionType.PickItem)
+            {
+                OnRobotPickItem?.Invoke(this, System.EventArgs.Empty);
+            }
+            else if (interactionType == InteractionHandler.InteractionType.DropItem)
+            {
+                OnRobotDropItem?.Invoke(this, System.EventArgs.Empty);
+            }
+            else
+            {
+                OnRobotInteract?.Invoke(this, System.EventArgs.Empty);
+            }
         }
     }
 
@@ -162,7 +179,7 @@ public class RobotController :MonoBehaviour {
             float moveSpeed = 3f;
             float rotation = transform.localScale.x;
             robotRigidbody.velocity = new Vector2(moveSpeed * rotation, robotRigidbody.velocity.y);
-            RobotHealthAndEnergy.Instance.DrainEnergy(energyDrainInMoving * Time.deltaTime);
+            DrainEnergy(energyDrainInMoving * Time.deltaTime);
             timer += Time.deltaTime;
             yield return null;
         }
@@ -203,6 +220,14 @@ public class RobotController :MonoBehaviour {
             robotRigidbody.velocity = new Vector2(0, robotRigidbody.velocity.y);
         }
     }
+    private void DrainEnergy(float drainAmount)
+    {
+        if (isHoldingItem)
+        {
+            drainAmount *= energyDrainMultiplierWhileHoldingItem;
+        }
+        RobotHealthAndEnergy.Instance.DrainEnergy(drainAmount);
+    }
     private void OnDestroy()
     {
         CommandSnippetsManager.Instance.OnMoveCommand -= CommandSnippetsManager_OnMoveCommand;
@@ -214,5 +239,13 @@ public class RobotController :MonoBehaviour {
         GameManager.Instance.OnGameRestart -= GameManager_OnGameRestart;
         GameManager.Instance.OnGameStop -= GameManager_OnGameStop;
         GameManager.Instance.OnGameOver -= GameManager_OnGameOver;
+    }
+    public bool IsHoldingItem()
+    {
+        return isHoldingItem;
+    }
+    public void SetIsHoldingItem(bool holding)
+    {
+        isHoldingItem = holding;
     }
 }
