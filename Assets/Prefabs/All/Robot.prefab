@@ -219,6 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactRange: 1
+  itemHoldingPointTransform: {fileID: 3755747750156704792}
 --- !u!1 &1190346538875466915
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,6 +410,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1623241202477022905
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3755747750156704792}
+  m_Layer: 0
+  m_Name: HoldingPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3755747750156704792
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623241202477022905}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2146405577370260423}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1729221450497847042
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,6 +1091,7 @@ Transform:
   - {fileID: 3656163607140787022}
   - {fileID: 8324358986713178410}
   - {fileID: 1706303989418549929}
+  - {fileID: 3755747750156704792}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &8879945234898970201
@@ -1141,6 +1174,7 @@ MonoBehaviour:
   energyDrainInMoving: 0.5
   energyDrainInJump: 1.25
   energyDrainInTurn: 1.5
+  energyDrainInInteraction: 6
 --- !u!114 &7551429834539094613
 MonoBehaviour:
   m_ObjectHideFlags: 0

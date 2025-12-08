@@ -13,6 +13,7 @@ public class RobotController :MonoBehaviour {
     [SerializeField] private float energyDrainInMoving = 2f;
     [SerializeField] private float energyDrainInJump = 5f;
     [SerializeField] private float energyDrainInTurn = 6f;
+    [SerializeField] private float energyDrainInInteraction = 6f;
     private enum RobotState
     {
         None,
@@ -146,7 +147,7 @@ public class RobotController :MonoBehaviour {
             CommandSnippetsManager.Instance.CommandAccepted();
 
             robotState = RobotState.Interacting;
-            RobotHealthAndEnergy.Instance.DrainEnergy(energyDrainInTurn);
+            RobotHealthAndEnergy.Instance.DrainEnergy(energyDrainInInteraction);
             SoundManager.Instance.PlayRobotTurnSound();
             StartCoroutine(Interact());
             OnRobotInteract?.Invoke(this, System.EventArgs.Empty);
