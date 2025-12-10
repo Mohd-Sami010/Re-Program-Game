@@ -7,7 +7,7 @@ public class HUD :MonoBehaviour {
     public static HUD Instance { get; private set; }
 
     [SerializeField] private Button playButton;
-    [SerializeField] private TextMeshProUGUI playButtonText;
+    [SerializeField] private Button restartButton;
     [SerializeField] private Button stopButton;
     [SerializeField] private Button editSnippetsButton;
 
@@ -24,13 +24,23 @@ public class HUD :MonoBehaviour {
     {
         playButton.onClick.AddListener(() => {
             GameManager.Instance.RestartGame();
-            playButtonText.text = "Restart";
             SoundManager.Instance.PlayPlayButtonSound();
+
+            playButton.gameObject.SetActive(false);
+            restartButton.gameObject.SetActive(true);
             stopButton.gameObject.SetActive(true);
+        });
+        restartButton.onClick.AddListener(() => {
+            GameManager.Instance.RestartGame();
+            SoundManager.Instance.PlayPlayButtonSound();
         });
         stopButton.onClick.AddListener(() => {
             GameManager.Instance.StopGame();
             SoundManager.Instance.PlayStopButtonSound();
+
+            playButton.gameObject.SetActive(true);
+            restartButton.gameObject.SetActive(false);
+            stopButton.gameObject.SetActive(false);
         });
         editSnippetsButton.onClick.AddListener(() => {
             snippetsUI.SetActive(true);
@@ -38,7 +48,10 @@ public class HUD :MonoBehaviour {
             SoundManager.Instance.PlayUISound1();
         });
 
+        playButton.gameObject.SetActive(true);
+        restartButton.gameObject.SetActive(false);
         stopButton.gameObject.SetActive(false);
+
         GameManager.Instance.OnGameStop += GameManager_OnGameStop;
         RobotHealthAndEnergy.Instance.OnHealthOrEnergyChanged += RobotHealthAndEnergy_OnHealthOrEnergyChanged;
     }
@@ -51,7 +64,8 @@ public class HUD :MonoBehaviour {
 
     private void GameManager_OnGameStop(object sender, System.EventArgs e)
     {
-        playButtonText.text = "Run";
+        playButton.gameObject.SetActive(true);
+        restartButton.gameObject.SetActive(false);
         stopButton.gameObject.SetActive(false);
     }
 

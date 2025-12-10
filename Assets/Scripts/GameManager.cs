@@ -31,6 +31,17 @@ public class GameManager :MonoBehaviour {
         currentGameState = GameState.Running;
         OnGameRestart?.Invoke(this, EventArgs.Empty);
     }
+    public void PauseOrResumeExecution()
+    {
+        if (Time.timeScale == 1f)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
+    }
     public void StopGame()
     {
         currentGameState= GameState.NotRunning;
