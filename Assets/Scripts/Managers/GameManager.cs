@@ -18,10 +18,13 @@ public class GameManager :MonoBehaviour {
     }
     public event EventHandler OnGameRestart;
     public event EventHandler OnGameStop;
+    public event EventHandler OnGamePause;
+    public event EventHandler OnGameResume;
     public event EventHandler<OnGameOverEventArgs> OnGameOver;
     public class OnGameOverEventArgs : EventArgs {
         public GameOverType gameOverType;
     }
+    public event EventHandler OnContinueGame;
     private void Awake()
     {
         Instance = this;
@@ -31,17 +34,26 @@ public class GameManager :MonoBehaviour {
         currentGameState = GameState.Running;
         OnGameRestart?.Invoke(this, EventArgs.Empty);
     }
-    public void PauseOrResumeExecution()
+    public void TogglePauseGame()
     {
         if (Time.timeScale == 1f)
         {
             Time.timeScale = 0f;
+            currentGameState = GameState.NotRunning;
+            OnGamePause?.Invoke(this, EventArgs.Empty);
         }
         else
         {
             Time.timeScale = 1f;
+            currentGameState = GameState.Running;
+            OnGameResume?.Invoke(this, EventArgs.Empty);
         }
     }
+    //public void ContinueGame()
+    //{
+    //    OnContinueGame?.Invoke(this, EventArgs.Empty);
+    //    StopGame();
+    //}
     public void StopGame()
     {
         currentGameState= GameState.NotRunning;
@@ -67,6 +79,11 @@ public class GameManager :MonoBehaviour {
             // No more levels, restart the first level or show a message
             UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
+    }
+    public void LoadMainMenu()
+    {
+        Time.timeScale = 1f;
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
     private void OnDestroy()
     {

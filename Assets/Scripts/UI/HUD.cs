@@ -9,6 +9,7 @@ public class HUD :MonoBehaviour {
     [SerializeField] private Button playButton;
     [SerializeField] private Button restartButton;
     [SerializeField] private Button stopButton;
+    [SerializeField] private Button pauseButton;
     [SerializeField] private Button editSnippetsButton;
 
     [SerializeField] private GameObject snippetsUI;
@@ -26,9 +27,7 @@ public class HUD :MonoBehaviour {
             GameManager.Instance.RestartGame();
             SoundManager.Instance.PlayPlayButtonSound();
 
-            playButton.gameObject.SetActive(false);
-            restartButton.gameObject.SetActive(true);
-            stopButton.gameObject.SetActive(true);
+            DisableRunButton();
         });
         restartButton.onClick.AddListener(() => {
             GameManager.Instance.RestartGame();
@@ -38,22 +37,39 @@ public class HUD :MonoBehaviour {
             GameManager.Instance.StopGame();
             SoundManager.Instance.PlayStopButtonSound();
 
-            playButton.gameObject.SetActive(true);
-            restartButton.gameObject.SetActive(false);
-            stopButton.gameObject.SetActive(false);
+            EnableRunButton();
+        });
+        pauseButton.onClick.AddListener(() => {
+            GameManager.Instance.TogglePauseGame();
+            SoundManager.Instance.PlayUISound1();
         });
         editSnippetsButton.onClick.AddListener(() => {
             snippetsUI.SetActive(true);
-            editSnippetsButton.gameObject.SetActive(false);
+            HideEditButton();
             SoundManager.Instance.PlayUISound1();
         });
 
-        playButton.gameObject.SetActive(true);
-        restartButton.gameObject.SetActive(false);
-        stopButton.gameObject.SetActive(false);
+        EnableRunButton();
 
         GameManager.Instance.OnGameStop += GameManager_OnGameStop;
+        GameManager.Instance.OnGameOver += GameManager_OnGameOver;
+        GameManager.Instance.OnGamePause += GameManager_OnGamePause;
+        GameManager.Instance.OnGameResume += GameManager_OnGameResume;
         RobotHealthAndEnergy.Instance.OnHealthOrEnergyChanged += RobotHealthAndEnergy_OnHealthOrEnergyChanged;
+    }
+
+    private void GameManager_OnGamePause(object sender, System.EventArgs e)
+    {
+        gameObject.SetActive(false);
+    }
+    private void GameManager_OnGameResume(object sender, System.EventArgs e)
+    {
+        gameObject.SetActive(true);
+        ShowEditButton();
+    }
+    private void GameManager_OnGameOver(object sender, GameManager.OnGameOverEventArgs e)
+    {
+        gameObject.SetActive(false);
     }
 
     private void RobotHealthAndEnergy_OnHealthOrEnergyChanged(object sender, RobotHealthAndEnergy.OnHealthOrEnergyChangedEventArgs e)
@@ -64,18 +80,39 @@ public class HUD :MonoBehaviour {
 
     private void GameManager_OnGameStop(object sender, System.EventArgs e)
     {
-        playButton.gameObject.SetActive(true);
-        restartButton.gameObject.SetActive(false);
-        stopButton.gameObject.SetActive(false);
+        gameObject.SetActive(true);
+        EnableRunButton();
+        ShowEditButton();
     }
 
     public void ShowEditButton()
     {
         editSnippetsButton.gameObject.SetActive(true);
+        pauseButton.gameObject.SetActive(true);
+    }
+    private void HideEditButton()
+    {
+        editSnippetsButton.gameObject.SetActive(false);
+        pauseButton.gameObject.SetActive(false);
     }
     private void OnDestroy()
     {
         GameManager.Instance.OnGameStop -= GameManager_OnGameStop;
+        GameManager.Instance.OnGameOver -= GameManager_OnGameOver;
+        GameManager.Instance.OnGamePause -= GameManager_OnGamePause;
+        GameManager.Instance.OnGameResume -= GameManager_OnGameResume;
         RobotHealthAndEnergy.Instance.OnHealthOrEnergyChanged -= RobotHealthAndEnergy_OnHealthOrEnergyChanged;
+    }
+    private void EnableRunButton()
+    {
+        playButton.gameObject.SetActive(true);
+        restartButton.gameObject.SetActive(false);
+        stopButton.gameObject.SetActive(false);
+    }
+    private void DisableRunButton()
+    {
+        playButton.gameObject.SetActive(false);
+        restartButton.gameObject.SetActive(true);
+        stopButton.gameObject.SetActive(true);
     }
 }

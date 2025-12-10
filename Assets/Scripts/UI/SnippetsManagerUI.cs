@@ -54,10 +54,19 @@ public class SnippetsManagerUI :MonoBehaviour {
         });
         GameManager.Instance.OnGameRestart += GameManager_OnGameRestart;
         GameManager.Instance.OnGameStop += GameManager_OnGameStop;
+        GameManager.Instance.OnGameOver += GameManager_OnGameOver;
+        GameManager.Instance.OnGamePause += GameManager_OnGameStop;
+        //GameManager.Instance.OnContinueGame += GameManager_OnContinueGame;
 
         inputBlockerObject1.SetActive(false);
         inputBlockerObject2.SetActive(false);
     }
+
+    private void GameManager_OnGameOver(object sender, GameManager.OnGameOverEventArgs e)
+    {
+        gameObject.SetActive(false);
+    }
+
     private void GameManager_OnGameRestart(object sender, System.EventArgs e)
     {
         inputBlockerObject1.SetActive(true);
