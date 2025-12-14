@@ -3,7 +3,7 @@ using UnityEngine;
 public class InteractableLever :MonoBehaviour {
 
     private Animator leverAnimator;
-    [SerializeField] private GameObject greenLightsObject;
+    [SerializeField] private GameObject[] greenLightsObjects;
     [SerializeField] private MovableObstacle obstacleToMove;
 
     private void Awake()
@@ -19,14 +19,27 @@ public class InteractableLever :MonoBehaviour {
     private void GameManager_OnGameStop(object sender, System.EventArgs e)
     {
         leverAnimator.SetBool("Activated", false);
-        greenLightsObject.SetActive(false);
+        TurnOffLights();
     }
 
     public void Interact()
     {
         leverAnimator.SetBool("Activated", true);
-        greenLightsObject.SetActive(true);
+        TurnOnLights();
         obstacleToMove.RemoveObstacle();
     }
-
+    private void TurnOnLights()
+    {
+        foreach (GameObject lightObject in greenLightsObjects)
+        {
+            lightObject.SetActive(true);
+        }
+    }
+    private void TurnOffLights()
+    {
+        foreach (GameObject lightObject in greenLightsObjects)
+        {
+            lightObject.SetActive(false);
+        }
+    }
 }

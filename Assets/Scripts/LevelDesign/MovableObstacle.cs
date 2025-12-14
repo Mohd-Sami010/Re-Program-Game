@@ -27,14 +27,17 @@ public class MovableObstacle :MonoBehaviour {
 
     public void RemoveObstacle()
     {
+        StopAllCoroutines();
         StartCoroutine(MoveObstacle(destinedPosition, destinedRotation));
     }
     public void MoveObstacleToInitialPosition()
     {
+        StopAllCoroutines();
         StartCoroutine(MoveObstacle(initialPosition, initialRotation));
     }
     private void ResetObstacle()
     {
+        StopAllCoroutines();
         transform.SetPositionAndRotation(initialPosition, initialRotation);
         lightsObject.SetActive(false);
     }
