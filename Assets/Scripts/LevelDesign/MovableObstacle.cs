@@ -61,4 +61,40 @@ public class MovableObstacle :MonoBehaviour {
         GameManager.Instance.OnGameStop -= GameManager_OnGameRestart;
         StopAllCoroutines();
     }
+    private void OnDrawGizmos()
+    {
+        // --- Resolve start values in Edit Mode ---
+        Vector3 startPos = Application.isPlaying ? initialPosition : transform.position;
+        Quaternion startRot = Application.isPlaying ? initialRotation : transform.rotation;
+
+        // --- Get visual size ---
+        float rotationLineLength = 0.5f;
+
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            Bounds b = sr.bounds;
+            rotationLineLength = Mathf.Max(b.size.x, b.size.y) * 0.5f;
+        }
+
+        // --- 1. Movement path ---
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawLine(startPos, destinedPosition);
+
+        // --- 2. Initial rotation (Red) ---
+        Gizmos.color = Color.red;
+        Vector3 initialDir = startRot * Vector3.right;
+        Gizmos.DrawLine(
+            startPos - initialDir * rotationLineLength,
+            startPos + initialDir * rotationLineLength
+        );
+
+        // --- 3. Final rotation (Green) ---
+        Gizmos.color = Color.green;
+        Vector3 finalDir = destinedRotation * Vector3.right;
+        Gizmos.DrawLine(
+            destinedPosition - finalDir * rotationLineLength,
+            destinedPosition + finalDir * rotationLineLength
+        );
+    }
 }

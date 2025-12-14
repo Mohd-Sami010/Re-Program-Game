@@ -165,6 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 100
+  damageOnStay: 0
 --- !u!61 &30783337
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -703,6 +704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 100
+  damageOnStay: 0
 --- !u!61 &814708635
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -851,6 +853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 100
+  damageOnStay: 0
 --- !u!61 &969439674
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1254,6 +1257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 100
+  damageOnStay: 0
 --- !u!61 &1352928789
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1402,6 +1406,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1719658560530242940, guid: f2045f931cb74684ea8bda4c9b060c61, type: 3}
   m_PrefabInstance: {fileID: 3346768965630109553}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1751752204
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2984696280170238031, guid: c9321d17b4e2e284e98875d2a3cd930b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -13.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 2984696280170238031, guid: c9321d17b4e2e284e98875d2a3cd930b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2984696280170238031, guid: c9321d17b4e2e284e98875d2a3cd930b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2984696280170238031, guid: c9321d17b4e2e284e98875d2a3cd930b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2984696280170238031, guid: c9321d17b4e2e284e98875d2a3cd930b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2984696280170238031, guid: c9321d17b4e2e284e98875d2a3cd930b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2984696280170238031, guid: c9321d17b4e2e284e98875d2a3cd930b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2984696280170238031, guid: c9321d17b4e2e284e98875d2a3cd930b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2984696280170238031, guid: c9321d17b4e2e284e98875d2a3cd930b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2984696280170238031, guid: c9321d17b4e2e284e98875d2a3cd930b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073521376353362472, guid: c9321d17b4e2e284e98875d2a3cd930b, type: 3}
+      propertyPath: m_Name
+      value: SawBlade
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c9321d17b4e2e284e98875d2a3cd930b, type: 3}
 --- !u!114 &1752240344 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1332378865825378951, guid: f2045f931cb74684ea8bda4c9b060c61, type: 3}
@@ -1949,6 +2010,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2277768249366410487, guid: 18a4ac2036f31de4ca87f6ad0f03d309, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2509086382210106596, guid: 18a4ac2036f31de4ca87f6ad0f03d309, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2168,3 +2233,4 @@ SceneRoots:
   - {fileID: 3333618528594944963}
   - {fileID: 5410696819733551970}
   - {fileID: 3836511882159080711}
+  - {fileID: 1751752204}
