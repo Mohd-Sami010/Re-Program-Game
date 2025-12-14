@@ -153,8 +153,7 @@ public class RobotController :MonoBehaviour {
             robotState = RobotState.Interacting;
             DrainEnergy(energyDrainInInteraction);
             SoundManager.Instance.PlayRobotTurnSound();
-            StartCoroutine(Interact());
-            
+            float interactionDelay = 0.56f;
             InteractionHandler.InteractionType interactionType = interactionHandler.CheckInteractionType();
             if (interactionType == InteractionHandler.InteractionType.PickItem)
             {
@@ -162,12 +161,14 @@ public class RobotController :MonoBehaviour {
             }
             else if (interactionType == InteractionHandler.InteractionType.DropItem)
             {
+                interactionDelay = 0.2f;
                 OnRobotDropItem?.Invoke(this, System.EventArgs.Empty);
             }
             else
             {
                 OnRobotInteract?.Invoke(this, System.EventArgs.Empty);
             }
+            StartCoroutine(Interact(interactionDelay));
         }
     }
 
@@ -204,10 +205,10 @@ public class RobotController :MonoBehaviour {
         CommandSnippetsManager.Instance.ReadyForCommand();
         robotState = RobotState.None;
     }
-    private IEnumerator Interact()
+    private IEnumerator Interact(float interactionDelay)
     {
 
-        yield return new WaitForSeconds(0.56f);
+        yield return new WaitForSeconds(interactionDelay);
         interactionHandler.Interact();
         yield return new WaitForSeconds(0.45f);
         CommandSnippetsManager.Instance.ReadyForCommand();
