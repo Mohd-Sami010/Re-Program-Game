@@ -807,7 +807,7 @@ GameObject:
   - component: {fileID: 1306116510}
   - component: {fileID: 1306116512}
   m_Layer: 3
-  m_Name: Platform 1
+  m_Name: Platform (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1202,7 +1202,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 345141254264978030, guid: 8a382887d0c72f44fbb4152beb2357cb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.77
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 345141254264978030, guid: 8a382887d0c72f44fbb4152beb2357cb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1262,7 +1262,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2146405577370260423, guid: 9c04848c1f6c0fd48a295013b21e33ad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.03
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2146405577370260423, guid: 9c04848c1f6c0fd48a295013b21e33ad, type: 3}
       propertyPath: m_LocalPosition.y

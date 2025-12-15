@@ -9,6 +9,7 @@ public class MovableObstacle :MonoBehaviour {
     [SerializeField] private Quaternion destinedRotation;
 
     [SerializeField] private GameObject lightsObject;
+    [SerializeField] private SpriteRenderer colourSprite;
 
     private void Awake()
     {
@@ -33,7 +34,7 @@ public class MovableObstacle :MonoBehaviour {
     public void MoveObstacleToInitialPosition()
     {
         StopAllCoroutines();
-        StartCoroutine(MoveObstacle(initialPosition, initialRotation));
+        StartCoroutine(MoveObstacle(initialPosition, initialRotation, false));
     }
     private void ResetObstacle()
     {
@@ -41,11 +42,14 @@ public class MovableObstacle :MonoBehaviour {
         transform.SetPositionAndRotation(initialPosition, initialRotation);
         lightsObject.SetActive(false);
     }
-    private IEnumerator MoveObstacle(Vector3 destinedPosition, Quaternion destinedRotation)
+    private IEnumerator MoveObstacle(Vector3 destinedPosition, Quaternion destinedRotation, bool lightsOn = true)
     {
         float duration = 1f;
         float timer = 0;
-        lightsObject.SetActive(true);
+
+        if (lightsOn) lightsObject.SetActive(true);
+        else lightsObject.SetActive(false);
+
         while (timer <  duration)
         {
             transform.position = Vector3.Lerp(transform.position, destinedPosition, timer / duration);
@@ -96,5 +100,12 @@ public class MovableObstacle :MonoBehaviour {
             destinedPosition - finalDir * rotationLineLength,
             destinedPosition + finalDir * rotationLineLength
         );
+    }
+    public void SetColour(Color colour)
+    {
+        if (colourSprite != null)
+        {
+            colourSprite.color = colour;
+        }
     }
 }
