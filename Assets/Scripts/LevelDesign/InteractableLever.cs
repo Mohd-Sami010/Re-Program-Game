@@ -54,6 +54,7 @@ public class InteractableLever :MonoBehaviour {
     }
     private void OnDrawGizmos()
     {
+        if (obstacleToMove == null) return;
         Gizmos.color = leverColourIndicatorSprite.color;
         Gizmos.DrawLine(transform.position, obstacleToMove.transform.position);
     }
