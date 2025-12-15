@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 469213722137530329}
   - component: {fileID: 764825485899908564}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Chest (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5893170417652935746}
   - component: {fileID: 8084692399224134466}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Chest (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1706303989418549929}
   - component: {fileID: 8638846435880156839}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: InteractHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 2723334186382023309}
   - component: {fileID: 5253302360185713594}
   - component: {fileID: 2949875386859854248}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Head (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,7 +333,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1894115446990877386}
   - component: {fileID: 7056819507063603021}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Chest (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -419,7 +419,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3755747750156704792}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HoldingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -451,7 +451,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1548218395312941387}
   - component: {fileID: 1415363428270541827}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wheel (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -538,7 +538,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2776650032825401318}
   - component: {fileID: 553821275486747298}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Arm (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -627,7 +627,7 @@ GameObject:
   m_Component:
   - component: {fileID: 519407485865566827}
   - component: {fileID: 1686946250102010093}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -714,7 +714,7 @@ GameObject:
   m_Component:
   - component: {fileID: 78227536925861112}
   - component: {fileID: 1789438215960176662}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Head (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -801,7 +801,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6375812755293990495}
   - component: {fileID: 3137296969607925147}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Arm (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -888,7 +888,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1862299611389892651}
   - component: {fileID: 1878109118310399887}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Arm (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -975,7 +975,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6257728518295146414}
   - component: {fileID: 3204818404356008628}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Chest (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1067,7 +1067,7 @@ GameObject:
   - component: {fileID: 7551429834539094613}
   - component: {fileID: 4076955661522014442}
   - component: {fileID: 3967969506070366774}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Robot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1233,7 +1233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5764496020097983192}
   - component: {fileID: 1935762462400686992}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Arm (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1320,7 +1320,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6241362648192731801}
   - component: {fileID: 975084050375467344}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Arm (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1410,7 +1410,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7360390441116001796}
   - component: {fileID: 7333217404567562078}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wheel (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1497,7 +1497,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6446354385640245582}
   - component: {fileID: 9037028142648875417}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Arm (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1583,7 +1583,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3656163607140787022}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RobotUpper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1623,7 +1623,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8324358986713178410}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RobotLower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1658,7 +1658,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7496477376724310626}
   - component: {fileID: 6162362896248048822}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wheel (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1745,7 +1745,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3678830914343679145}
   - component: {fileID: 5203397001238506730}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Head (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1832,7 +1832,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2692995565195775985}
   - component: {fileID: 364195174040349278}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}

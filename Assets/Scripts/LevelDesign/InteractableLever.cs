@@ -5,7 +5,7 @@ public class InteractableLever :MonoBehaviour {
     private Animator leverAnimator;
     [SerializeField] private GameObject[] greenLightsObjects;
     [SerializeField] private MovableObstacle obstacleToMove;
-
+    [SerializeField] private bool isActivated = false;
     private void Awake()
     {
         leverAnimator = GetComponent<Animator>();
@@ -24,9 +24,18 @@ public class InteractableLever :MonoBehaviour {
 
     public void Interact()
     {
-        leverAnimator.SetBool("Activated", true);
-        TurnOnLights();
-        obstacleToMove.RemoveObstacle();
+        if (isActivated)
+        {
+            leverAnimator.SetBool("Activated", true);
+            TurnOnLights();
+            obstacleToMove.RemoveObstacle();
+        }
+        else
+        {
+            leverAnimator.SetBool("Activated", false);
+            TurnOffLights();
+            obstacleToMove.MoveObstacleToInitialPosition();
+        }
     }
     private void TurnOnLights()
     {

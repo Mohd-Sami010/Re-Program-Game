@@ -55,6 +55,7 @@ public class RobotHealthAndEnergy :MonoBehaviour {
     public void DrainEnergy(float drainAmount)
     {
         if (GameManager.Instance.GetCurrentGameState() != GameManager.GameState.Running || RobotController.Instance == null) return;
+        if (GameManager.Instance.GetCurrentGameState() != GameManager.GameState.Running) return;
         if (energy <= 0)
         {
             energy = 0;
