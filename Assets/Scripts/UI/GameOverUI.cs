@@ -23,6 +23,10 @@ public class GameOverUI :MonoBehaviour {
     [SerializeField] private Button buyEnergyButton;
     [SerializeField] private TextMeshProUGUI buyEnergyTextMesh;
 
+    [Header("Ads UI")]
+    [SerializeField] private GameObject adLoadingUI;
+
+
     private void Start()
     {
         GameManager.Instance.OnGameOver += GameOver_OnGameOver;
@@ -34,12 +38,28 @@ public class GameOverUI :MonoBehaviour {
             
         });
         // Health
-        adForHealthButton.onClick.AddListener(() => {
+        adForHealthButton.onClick.AddListener(() =>
+        {
             SoundManager.Instance.PlayUISound1();
-            GameManager.Instance.StopGame();
-            RobotHealthAndEnergy.Instance.AddHealth(40);
-            gameObject.SetActive(false);
+
+            adLoadingUI.SetActive(true);
+
+            AdManager.Instance.ShowRewardedAdWithWait(5f, watched =>
+            {
+                adLoadingUI.SetActive(false);
+
+                if (!watched)
+                {
+                    // Optional: show "Ad not available"
+                    return;
+                }
+
+                RobotHealthAndEnergy.Instance.AddHealth(40);
+                GameManager.Instance.StopGame();
+                gameObject.SetActive(false);
+            });
         });
+
         buyHealthButton.onClick.AddListener(() => {
             SoundManager.Instance.PlayUISound1();
             if (EconomyManager.Instance.TrySpendCurrency(EconomyManager.Instance.GetHealthPrice_70percent()))
@@ -57,12 +77,28 @@ public class GameOverUI :MonoBehaviour {
         buyHealthTextMesh.text = $"70% health ({EconomyManager.Instance.GetHealthPrice_70percent()} {EconomyManager.Instance.GetCurrencyName()})";
 
         // Energy
-        adForEnergyButton.onClick.AddListener(() => {
+        adForEnergyButton.onClick.AddListener(() =>
+        {
             SoundManager.Instance.PlayUISound1();
-            GameManager.Instance.StopGame();
-            RobotHealthAndEnergy.Instance.AddEnergy(60);
-            gameObject.SetActive(false);
+
+            adLoadingUI.SetActive(true);
+
+            AdManager.Instance.ShowRewardedAdWithWait(5f, watched =>
+            {
+                adLoadingUI.SetActive(false);
+
+                if (!watched)
+                {
+                    return;
+                }
+
+                RobotHealthAndEnergy.Instance.AddEnergy(60);
+                GameManager.Instance.StopGame();
+                gameObject.SetActive(false);
+            });
         });
+
+
         buyEnergyButton.onClick.AddListener(() => {
             SoundManager.Instance.PlayUISound1();
 
