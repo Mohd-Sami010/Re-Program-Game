@@ -32,19 +32,19 @@ public class SnippetsManagerUI :MonoBehaviour {
     private void Start()
     {
         addMoveSnippetButton.onClick.AddListener(() => {
-            Instantiate(moveSnippetPrefab, snippetsContainerTransform);
+            SpawnSnippet(moveSnippetPrefab, addMoveSnippetButton.GetComponent<RectTransform>());
             SoundManager.Instance.PlaySnippetSpawnSound();
         });
         addJumpSnippetButton.onClick.AddListener(() => {
-            Instantiate(jumpSnippetPrefab, snippetsContainerTransform);
+            SpawnSnippet(jumpSnippetPrefab, addJumpSnippetButton.GetComponent<RectTransform>());
             SoundManager.Instance.PlaySnippetSpawnSound();
         });
         addTurnSnippetButton.onClick.AddListener(() => {
-            Instantiate(turnSnippetPrefab, snippetsContainerTransform);
+            SpawnSnippet(turnSnippetPrefab, addTurnSnippetButton.GetComponent<RectTransform>());
             SoundManager.Instance.PlaySnippetSpawnSound();
         });
         addInteractSnippetButton.onClick.AddListener(() => {
-            Instantiate(interactSnippetPrefab, snippetsContainerTransform);
+            SpawnSnippet(interactSnippetPrefab, addInteractSnippetButton.GetComponent<RectTransform>());
             SoundManager.Instance.PlaySnippetSpawnSound();
         });
         closeUIButton.onClick.AddListener(() => {
@@ -78,6 +78,30 @@ public class SnippetsManagerUI :MonoBehaviour {
         inputBlockerObject1.SetActive(false);
         inputBlockerObject2.SetActive(false);
     }
+    private void SpawnSnippet(GameObject prefab, RectTransform spawnButton)
+    {
+        GameObject snippetGO = Instantiate(prefab, snippetsContainerTransform);
+        RectTransform snippetRT = snippetGO.GetComponent<RectTransform>();
+
+        // Step 1: Get world position above the button
+        Vector3 worldPos = spawnButton.transform.parent.position;
+        float yOffset = spawnButton.rect.height * 3f;
+        worldPos += Vector3.up * yOffset;
+
+        // Step 2: Convert world -> local position of container
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            snippetsContainerTransform as RectTransform,
+            RectTransformUtility.WorldToScreenPoint(null, worldPos),
+            null,
+            out Vector2 localPos
+        );
+
+        snippetRT.anchoredPosition = localPos;
+        snippetRT.localScale = Vector3.one;
+
+        SoundManager.Instance.PlaySnippetSpawnSound();
+    }
+
     public void UpdateSnippetUIsList()
     {
         snippetUIs.Clear();
@@ -87,7 +111,7 @@ public class SnippetsManagerUI :MonoBehaviour {
             snippetUIs.Add(snippetUI);
             snippetUI = snippetUI.GetNextSnippet();
         }
-        //// Send the list to the CommandSnippetsManager
+        // Send the list to the CommandSnippetsManager
         CommandSnippetsManager.Instance.SetCommandSnippets(snippetUIs);
 
     }
