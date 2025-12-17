@@ -22,7 +22,7 @@ public class EconomyManager :MonoBehaviour {
         if (setInspectorBalance) PlayerPrefs.SetInt("balance", currentBalance);
         else currentBalance = PlayerPrefs.GetInt("balance", 0);
 
-        levelCompleteReward = 20 + (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex * 5);
+        levelCompleteReward = 20 + (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex * 1);
     }
     private void Start()
     {

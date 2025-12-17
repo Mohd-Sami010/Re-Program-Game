@@ -48,11 +48,13 @@ public class InteractionHandler :MonoBehaviour {
             if (collider.TryGetComponent(out InteractableLever lever))
             {
                 lever.Interact();
+                break;
             }
             else if (collider.TryGetComponent(out PickableItem item))
             {
                 item.PickUp(itemHoldingPointTransform);
                 RobotController.Instance.SetIsHoldingItem(true);
+                break;
             }
         }
     }

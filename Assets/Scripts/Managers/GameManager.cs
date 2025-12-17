@@ -24,7 +24,6 @@ public class GameManager :MonoBehaviour {
     public class OnGameOverEventArgs : EventArgs {
         public GameOverType gameOverType;
     }
-    public event EventHandler OnContinueGame;
     private void Awake()
     {
         Instance = this;
@@ -49,11 +48,6 @@ public class GameManager :MonoBehaviour {
             OnGameResume?.Invoke(this, EventArgs.Empty);
         }
     }
-    //public void ContinueGame()
-    //{
-    //    OnContinueGame?.Invoke(this, EventArgs.Empty);
-    //    StopGame();
-    //}
     public void StopGame()
     {
         currentGameState= GameState.NotRunning;
@@ -63,7 +57,12 @@ public class GameManager :MonoBehaviour {
     {
         currentGameState = GameState.GameOver;
         OnGameOver?.Invoke(this, new OnGameOverEventArgs { gameOverType = gameOverType });
-        if (gameOverType == GameOverType.win) SoundManager.Instance.PlayRobotWinSound();
+        if (gameOverType == GameOverType.win)
+        {
+            PlayerPrefs.SetInt("Level_" + UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + "_Completed", 1);
+            PlayerPrefs.SetInt("LevelToContinue", UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
+            SoundManager.Instance.PlayRobotWinSound();
+        }
         else SoundManager.Instance.PlayRobotLoseSound();
     }
     public void LoadNextLevel()

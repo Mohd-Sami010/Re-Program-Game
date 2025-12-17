@@ -35,6 +35,8 @@ public class SoundManager :MonoBehaviour {
     }
     private void Start()
     {
+        EconomyManager economyManager = EconomyManager.Instance;
+        if (economyManager == null) return;
         EconomyManager.Instance.OnTransactionSucess += EconomyManager_OnTransactionSucess;
         EconomyManager.Instance.OnTransactionFail += EconomyManager_OnTransactionFail;
     }
