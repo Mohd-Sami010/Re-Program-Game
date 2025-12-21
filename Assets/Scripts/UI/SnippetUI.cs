@@ -52,12 +52,19 @@ public class SnippetUI :MonoBehaviour {
 
     private void RegisterInputListeners()
     {
-        valueInput.onValueChanged.AddListener(ValidateAndSetValue);
-        valueInput.onSubmit.AddListener(ValidateAndSetValue);
-        valueInput.onDeselect.AddListener(_ => ValidateAndSetValue(valueInput.text));
+        valueInput.onValueChanged.AddListener(SoftParseValue);
+        valueInput.onSubmit.AddListener(HardValidateValue);
+        valueInput.onDeselect.AddListener(_ => HardValidateValue(valueInput.text));
     }
-
-    private void ValidateAndSetValue(string input)
+    private void SoftParseValue(string input)
+    {
+        if (float.TryParse(input, out float parsedValue))
+        {
+            value = parsedValue;
+            SnippetsManagerUI.Instance.UpdateSnippetUIsList();
+        }
+    }
+    private void HardValidateValue(string input)
     {
         if (!float.TryParse(input, out float parsedValue) || parsedValue <= 0f)
         {

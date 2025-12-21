@@ -10,7 +10,7 @@ public class AdManager :MonoBehaviour {
     private bool isLoadingAd;
 
     // TEST Ad Unit ID (Android)
-    private const string REWARDED_AD_UNIT_ID = "ca-app-pub-7670604770877714/8645034863";
+    private const string REWARDED_AD_UNIT_ID = "ca-app-pub-7670604770877714/8645034863"; //ca-app-pub-7670604770877714/8645034863
 
     private Action<bool> onAdResultCallback;
 

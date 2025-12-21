@@ -85,7 +85,7 @@ public class SnippetsManagerUI :MonoBehaviour {
 
         // Step 1: Get world position above the button
         Vector3 worldPos = spawnButton.transform.parent.position;
-        float yOffset = spawnButton.rect.height * 3f;
+        float yOffset = spawnButton.rect.height * 2f;
         worldPos += Vector3.up * yOffset;
 
         // Step 2: Convert world -> local position of container
