@@ -124,7 +124,7 @@ public class RobotController :MonoBehaviour {
             CommandSnippetsManager.Instance.CommandAccepted();
 
             robotState = RobotState.Jumping;
-            float minJumpPower = 20f;
+            float minJumpPower = 22f;
             float jumpPower = e.jumpPower + minJumpPower;
             robotRigidbody.velocity = new Vector2(transform.localScale.x * jumpPower /2, jumpPower);
             DrainEnergy(energyDrainInJump + e.jumpPower/10);

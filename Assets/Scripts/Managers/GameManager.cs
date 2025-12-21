@@ -4,6 +4,8 @@ using UnityEngine;
 public class GameManager :MonoBehaviour {
     public static GameManager Instance { get; private set; }
 
+    private float levelPlayTime = 0;
+    [SerializeField] private string levelTimeStr;
     public enum GameState
     {
         NotRunning,
@@ -27,6 +29,14 @@ public class GameManager :MonoBehaviour {
     private void Awake()
     {
         Instance = this;
+    }
+    private void Update()
+    {
+        levelTimeStr = GetLevelPlayTimeString();
+        if (currentGameState == GameState.NotRunning || currentGameState == GameState.Running)
+        {
+            levelPlayTime += Time.deltaTime;
+        }
     }
     public void RestartGame()
     {
@@ -91,5 +101,18 @@ public class GameManager :MonoBehaviour {
     public GameState GetCurrentGameState()
     {
         return currentGameState;
+    }
+    public String GetLevelPlayTimeString()
+    {
+        string timeString = "";
+        int levelTime = (int)Mathf.Floor(levelPlayTime);
+        if (levelTime >= 60) timeString += (int)(levelTime / 60) + "mins ";
+        timeString += levelTime % 60 + "secs";
+        return timeString;
+
+    }
+    public int GetLevelPlayTime()
+    {
+        return (int)levelPlayTime;
     }
 }

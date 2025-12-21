@@ -10,9 +10,6 @@ public class EconomyManager :MonoBehaviour {
     [SerializeField] private int healthPrice_70percent = 27;
     [SerializeField] private int energyPrice_100percent = 15;
 
-    [Space]
-    [Header("Level Reward")]
-    [SerializeField] private int levelCompleteReward = 0;
 
     public event System.Action OnTransactionSucess;
     public event System.Action OnTransactionFail;
@@ -21,8 +18,6 @@ public class EconomyManager :MonoBehaviour {
         Instance = this;
         if (setInspectorBalance) PlayerPrefs.SetInt("balance", currentBalance);
         else currentBalance = PlayerPrefs.GetInt("balance", 0);
-
-        levelCompleteReward = 12 + (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex * 1);
     }
     private void Start()
     {
@@ -33,7 +28,7 @@ public class EconomyManager :MonoBehaviour {
     {
         if (e.gameOverType == GameManager.GameOverType.win)
         {
-            AddCurrency(levelCompleteReward);
+            AddCurrency(ScoreManager.Instance.GetLevelReward());
         }
     }
 
@@ -78,9 +73,4 @@ public class EconomyManager :MonoBehaviour {
         return energyPrice_100percent;
     }
     #endregion
-
-    public int GetLevelCompleteReward()
-    {
-        return levelCompleteReward;
-    }
 }

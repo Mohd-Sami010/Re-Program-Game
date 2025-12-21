@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e20a7ff40b406418225c840431990e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currencyName: grears
+  currencyName: cc
   currentBalance: 0
   setInspectorBalance: 0
   healthPrice_70percent: 27

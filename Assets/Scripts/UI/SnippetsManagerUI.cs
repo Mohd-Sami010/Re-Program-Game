@@ -127,4 +127,8 @@ public class SnippetsManagerUI :MonoBehaviour {
     {
         return snippetsContainerTransform;
     }
+    public int GetNumberOfSnippetsUsed()
+    {
+        return snippetUIs.Count;
+    }
 }
