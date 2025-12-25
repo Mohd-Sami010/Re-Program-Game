@@ -8,4 +8,4 @@ This is a game about logic, patience, and precision.
 Every command matters. Every sequence counts.
 <br> [Play Game](https://samicode-games.itch.io/re-program)
 <br>
-### [Game C# code files](https://github.com/Mohd-Sami010/Re-Program-Game/tree/5609aaa3f96f49654c8ae70a2451ab4c4643d21f/Assets/Scripts)
+### [Game C# code files](https://github.com/Mohd-Sami010/Re-Program-Game/tree/main/Assets/Scripts)
