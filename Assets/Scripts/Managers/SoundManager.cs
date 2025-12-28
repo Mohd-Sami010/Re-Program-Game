@@ -39,6 +39,19 @@ public class SoundManager :MonoBehaviour {
         if (economyManager == null) return;
         EconomyManager.Instance.OnTransactionSucess += EconomyManager_OnTransactionSucess;
         EconomyManager.Instance.OnTransactionFail += EconomyManager_OnTransactionFail;
+
+        GameManager.Instance.OnGamePause += GameManager_OnGamePaused;
+        GameManager.Instance.OnGameResume += GameManager_OnGameResumed;
+    }
+    private void GameManager_OnGamePaused(object sender, System.EventArgs e)
+    {
+        if (robotMoveAudioSource.isPlaying) robotMoveAudioSource.Pause();
+        if (robotJumpAudioSource.isPlaying) robotJumpAudioSource.Pause();
+    }
+    private void GameManager_OnGameResumed(object sender, System.EventArgs e)
+    {
+        if (robotMoveAudioSource.clip != null) robotMoveAudioSource.UnPause();
+        if (robotJumpAudioSource.clip != null) robotJumpAudioSource.UnPause();
     }
 
     private void EconomyManager_OnTransactionSucess()
@@ -124,5 +137,15 @@ public class SoundManager :MonoBehaviour {
         if (audioSource == null) return;
         audioSource.pitch = Random.Range(0.9f, 1.1f);
         audioSource.PlayOneShot(audioSource.clip);
+    }
+    private void OnDestroy()
+    {
+        if (EconomyManager.Instance == null) return;
+        EconomyManager.Instance.OnTransactionSucess -= EconomyManager_OnTransactionSucess;
+        EconomyManager.Instance.OnTransactionFail -= EconomyManager_OnTransactionFail;
+
+        if (GameManager.Instance == null) return;
+        GameManager.Instance.OnGamePause -= GameManager_OnGamePaused;
+        GameManager.Instance.OnGameResume -= GameManager_OnGameResumed;
     }
 }
