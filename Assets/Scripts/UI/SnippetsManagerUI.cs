@@ -60,6 +60,8 @@ public class SnippetsManagerUI :MonoBehaviour {
 
         inputBlockerObject1.SetActive(false);
         inputBlockerObject2.SetActive(false);
+
+        gameObject.SetActive(false);
     }
 
     private void GameManager_OnGameOver(object sender, GameManager.OnGameOverEventArgs e)

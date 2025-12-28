@@ -133,7 +133,8 @@ public class GameOverUI :MonoBehaviour {
         {
             titleText.text = "Level Completed!";
             nextLevelButton.gameObject.SetActive(true);
-            rewardTextMesh.text = $"{ScoreManager.Instance.GetLevelReward()} {EconomyManager.Instance.GetCurrencyName()}";
+            //rewardTextMesh.text = $"{ScoreManager.Instance.GetLevelReward()} {EconomyManager.Instance.GetCurrencyName()}";
+            rewardTextMesh.text = ScoreManager.Instance.GetLevelReport();
         }
         else if (e.gameOverType == GameManager.GameOverType.robotDied)
         {

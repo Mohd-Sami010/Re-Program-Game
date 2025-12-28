@@ -107,7 +107,7 @@ public class GameManager :MonoBehaviour {
         string timeString = "";
         int levelTime = (int)Mathf.Floor(levelPlayTime);
         if (levelTime >= 60) timeString += (int)(levelTime / 60) + "mins ";
-        timeString += levelTime % 60 + "secs";
+        timeString += levelTime % 60 + "s";
         return timeString;
 
     }

@@ -21,16 +21,29 @@ public class ScoreManager :MonoBehaviour {
     public string GetLevelReport()
     {
         int diffrenceInTime = GameManager.Instance.GetLevelPlayTime() - minExpectedLevelPlayTime;
+
+        string timeDifferenceStr = $"Time taken: {GameManager.Instance.GetLevelPlayTimeString()} ";
+        if (diffrenceInTime > 0) timeDifferenceStr += $"<color=\"red\">+{diffrenceInTime}s</color>";
+        else timeDifferenceStr += $"<color=\"green\">{diffrenceInTime}s</color>";
+
+        int diffrenceInNumOfSnippets = SnippetsManagerUI.Instance.GetNumberOfSnippetsUsed() - minNumOfSnippets;
+
+        string numOfSnippetsDifferenceStr = $"Code blockes used: {SnippetsManagerUI.Instance.GetNumberOfSnippetsUsed()} ";
+        if (diffrenceInNumOfSnippets > 0) numOfSnippetsDifferenceStr += $"<color=\"red\">+{diffrenceInNumOfSnippets}</color>";
+        else numOfSnippetsDifferenceStr += $"<color=\"green\">{diffrenceInNumOfSnippets}</color>";
+
+
         //string diffrenceInTimeStr =
         //// Color a specific word using a named color tag
         //myText.text = "I want to change the <color=\"blue\">color</color> of this word.";
 
         //// Or use a hexadecimal color value
         //// myText.text = "I want this part to be <color=#FF0000>red</color>.";
-        string levelReport = 
-            $"Level: {UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex}\n" +
-            $"Time Taken: {GameManager.Instance.GetLevelPlayTimeString()}\n"+
-            $"Code blocks used: {SnippetsManagerUI.Instance.GetNumberOfSnippetsUsed()}";
+        string levelReport =
+                $"Level: {UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex}\n" +
+                $"{timeDifferenceStr}\n" +
+                $"{numOfSnippetsDifferenceStr}\n" +
+                $"<color=#FFD200>Total reward: {GetLevelReward()}{EconomyManager.Instance.GetCurrencyName()}</color>";
         return levelReport;
     }
 
