@@ -44,9 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e20a7ff40b406418225c840431990e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currencyName: cc
+  currencyName: CU
   currentBalance: 0
   setInspectorBalance: 0
   healthPrice_70percent: 27
   energyPrice_100percent: 15
-  levelCompleteReward: 0

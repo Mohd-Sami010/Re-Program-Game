@@ -6,7 +6,6 @@ public class MainMenuUI :MonoBehaviour {
 
     [SerializeField] private Button playButton;
     [SerializeField] private TextMeshProUGUI playButtonTextMesh;
-    [SerializeField] private Button quitButton;
     [SerializeField] private Button viewCodeButton;
     [SerializeField] private Button levelSelectButton;
     [SerializeField] private GameObject levelSelectorUIObject;
@@ -30,10 +29,6 @@ public class MainMenuUI :MonoBehaviour {
             SoundManager.Instance.PlayUISound1();
             levelSelectorUIObject.SetActive(true);
             gameObject.SetActive(false);
-        });
-        quitButton.onClick.AddListener(() => {
-            SoundManager.Instance.PlayUISound1();
-            Application.Quit();
         });
         viewCodeButton.onClick.AddListener(() => {
             Application.OpenURL("https://github.com/Mohd-Sami010/Re-Program-Game/tree/main/Assets/Scripts");

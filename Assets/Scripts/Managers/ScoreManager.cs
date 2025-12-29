@@ -1,50 +1,77 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager :MonoBehaviour {
     public static ScoreManager Instance { get; private set; }
 
+    [Header("Balancing")]
+    [SerializeField] private int baseReward = 5;
+    [SerializeField] private int maxTimeBonus = 10;
+    [SerializeField] private int maxSnippetBonus = 8;
+
     [SerializeField] private int minExpectedLevelPlayTime = 30;
     [SerializeField] private int minNumOfSnippets = 5;
+
+    // TMP tab stop position (tweak once, done forever)
+    private const int RIGHT_COLUMN = 460;
 
     private void Awake()
     {
         Instance = this;
     }
+
+    // -------------------- CALCULATION --------------------
+
+    private int CalculateTimeBonus()
+    {
+        int actualTime = GameManager.Instance.GetLevelPlayTime();
+        if (actualTime >= minExpectedLevelPlayTime) return 0;
+
+        float efficiency = 1f - (float)actualTime / minExpectedLevelPlayTime;
+        return Mathf.RoundToInt(efficiency * maxTimeBonus);
+    }
+
+    private int CalculateSnippetBonus()
+    {
+        int actualSnippets = SnippetsManagerUI.Instance.GetNumberOfSnippetsUsed();
+        if (actualSnippets >= minNumOfSnippets) return 0;
+
+        float efficiency = 1f - (float)actualSnippets / minNumOfSnippets;
+        return Mathf.RoundToInt(efficiency * maxSnippetBonus);
+    }
+
     public int GetLevelReward()
     {
-        int levelScore = 2 + UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
-        int playTimeScore = minExpectedLevelPlayTime * 2 / GameManager.Instance.GetLevelPlayTime();
-        int numOfSnippetsScore = minNumOfSnippets * 2 / SnippetsManagerUI.Instance.GetNumberOfSnippetsUsed();
-
-        return (levelScore + playTimeScore + numOfSnippetsScore);
+        return baseReward + CalculateTimeBonus() + CalculateSnippetBonus();
     }
+
+    // -------------------- REPORT --------------------
+
     public string GetLevelReport()
     {
-        int diffrenceInTime = GameManager.Instance.GetLevelPlayTime() - minExpectedLevelPlayTime;
+        int levelNumber = SceneManager.GetActiveScene().buildIndex;
+        string currency = EconomyManager.Instance.GetCurrencyName();
 
-        string timeDifferenceStr = $"Time taken: {GameManager.Instance.GetLevelPlayTimeString()} ";
-        if (diffrenceInTime > 0) timeDifferenceStr += $"<color=\"red\">+{diffrenceInTime}s</color>";
-        else timeDifferenceStr += $"<color=\"green\">{diffrenceInTime}s</color>";
+        int timeBonus = CalculateTimeBonus();
+        int snippetBonus = CalculateSnippetBonus();
+        int total = GetLevelReward();
 
-        int diffrenceInNumOfSnippets = SnippetsManagerUI.Instance.GetNumberOfSnippetsUsed() - minNumOfSnippets;
+        string tab = $"<pos={RIGHT_COLUMN}>";
 
-        string numOfSnippetsDifferenceStr = $"Code blockes used: {SnippetsManagerUI.Instance.GetNumberOfSnippetsUsed()} ";
-        if (diffrenceInNumOfSnippets > 0) numOfSnippetsDifferenceStr += $"<color=\"red\">+{diffrenceInNumOfSnippets}</color>";
-        else numOfSnippetsDifferenceStr += $"<color=\"green\">{diffrenceInNumOfSnippets}</color>";
+        return
+            $"<b><size=105%>LEVEL {levelNumber} RESULT</size></b>\n\n" +
 
+            $"Base reward{tab}  {baseReward} {currency}\n" +
+            $"Time bonus{tab}{FormatBonus(timeBonus, currency)}\n" +
+            $"Code efficiency{tab}{FormatBonus(snippetBonus, currency)}\n\n" +
 
-        //string diffrenceInTimeStr =
-        //// Color a specific word using a named color tag
-        //myText.text = "I want to change the <color=\"blue\">color</color> of this word.";
-
-        //// Or use a hexadecimal color value
-        //// myText.text = "I want this part to be <color=#FF0000>red</color>.";
-        string levelReport =
-                $"Level: {UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex}\n" +
-                $"{timeDifferenceStr}\n" +
-                $"{numOfSnippetsDifferenceStr}\n" +
-                $"<color=#FFD200>Total reward: {GetLevelReward()}{EconomyManager.Instance.GetCurrencyName()}</color>";
-        return levelReport;
+            $"<color=#FFD200><b>TOTAL EARNED{tab}{total} {currency}</b></color>";
     }
 
+    private string FormatBonus(int value, string currency)
+    {
+        return value > 0
+            ? $"<color=#00FF6A>+{value} {currency}</color>"
+            : $"<color=#666666>+0 {currency}</color>";
+    }
 }
