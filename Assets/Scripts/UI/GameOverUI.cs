@@ -16,9 +16,11 @@ public class GameOverUI :MonoBehaviour {
     [SerializeField] private TextMeshProUGUI winTitleText;
     [SerializeField] private Button nextLevelButton;
     [SerializeField] private TextMeshProUGUI levelReportTextMesh;
+    [SerializeField] private CanvasGroup currentBalanceCanvasGroup;
     [SerializeField] private TextMeshProUGUI currentBalanceTextMesh;
 
-
+    [Space]
+    [Header("Lose")]
     [SerializeField] private TextMeshProUGUI loseTitleText;
     [Header("Buy Health")]
     [SerializeField] private GameObject buyHealthUi;
@@ -45,7 +47,8 @@ public class GameOverUI :MonoBehaviour {
             SoundManager.Instance.PlayUISound1();
             StartCoroutine(ApplyRewardAndLoadNextLevel());
         });
-        // Health
+
+        #region Buy Health Buttons
         adForHealthButton.onClick.AddListener(() =>
         {
             SoundManager.Instance.PlayUISound1();
@@ -83,7 +86,8 @@ public class GameOverUI :MonoBehaviour {
             }
         });
         buyHealthTextMesh.text = $"70% health ({EconomyManager.Instance.GetHealthPrice_70percent()} {EconomyManager.Instance.GetCurrencyName()})";
-
+        #endregion
+        #region Buy Energy Buttons
         // Energy
         adForEnergyButton.onClick.AddListener(() =>
         {
@@ -123,27 +127,17 @@ public class GameOverUI :MonoBehaviour {
             }
         });
         buyEnergyTextMesh.text = $"100% energy ({EconomyManager.Instance.GetEnergyPrice_100percent()} {EconomyManager.Instance.GetCurrencyName()})";
+        #endregion
 
+        ResetUI();
         gameObject.SetActive(false);
-        buyHealthUi.SetActive(false);
-        buyEnergyUi.SetActive(false);
-        winTitleText.gameObject.SetActive(false);
-        loseTitleText.gameObject.SetActive(false);
-        levelReportTextMesh.gameObject.SetActive(false);
-        nextLevelButton.gameObject.SetActive(false);
     }
 
     private void GameOver_OnGameOver(object sender, GameManager.OnGameOverEventArgs e)
     {
-        gameObject.SetActive(true);
-        buyHealthUi.SetActive(false);
-        buyEnergyUi.SetActive(false);
-        winTitleText.gameObject.SetActive(false);
-        loseTitleText.gameObject.SetActive(false);
-        levelReportTextMesh.gameObject.SetActive(false);
-        nextLevelButton.gameObject.SetActive(false);
 
-        currentBalanceTextMesh.transform.parent.parent.gameObject.SetActive(false);
+        ResetUI();
+        gameObject.SetActive(true);
 
         if (e.gameOverType == GameManager.GameOverType.win)
         {
@@ -162,8 +156,8 @@ public class GameOverUI :MonoBehaviour {
             currentBalanceTextMesh.text =
                 $"{cachedBalanceBeforeReward} {EconomyManager.Instance.GetCurrencyName()}";
 
-            currentBalanceTextMesh.alpha = balanceFadeAlpha;
-            currentBalanceTextMesh.gameObject.SetActive(false);
+            currentBalanceCanvasGroup.alpha = balanceFadeAlpha;
+            currentBalanceCanvasGroup.gameObject.SetActive(false);
         }
         else if (e.gameOverType == GameManager.GameOverType.robotDied)
         {
@@ -179,15 +173,18 @@ public class GameOverUI :MonoBehaviour {
             loseTitleText.text = "No Energy";
             buyEnergyUi.SetActive(true);
         }
-        else
-        {
-            currentBalanceTextMesh.gameObject.SetActive(true);
-            currentBalanceTextMesh.alpha = 1f;
-            currentBalanceTextMesh.text =
-                $"{EconomyManager.Instance.GetCurrentBalance()} {EconomyManager.Instance.GetCurrencyName()}";
-        }
         
         currentBalanceTextMesh.text = $"{EconomyManager.Instance.GetCurrentBalance()} {EconomyManager.Instance.GetCurrencyName()}";
+    }
+    private void ResetUI()
+    {
+        buyHealthUi.SetActive(false);
+        buyEnergyUi.SetActive(false);
+        winTitleText.gameObject.SetActive(false);
+        loseTitleText.gameObject.SetActive(false);
+        levelReportTextMesh.gameObject.SetActive(false);
+        nextLevelButton.gameObject.SetActive(false);
+        currentBalanceTextMesh.transform.parent.parent.gameObject.SetActive(false);
     }
     private System.Collections.IEnumerator ApplyRewardAndLoadNextLevel()
     {
@@ -198,8 +195,7 @@ public class GameOverUI :MonoBehaviour {
         int startValue = cachedBalanceBeforeReward;
         int endValue = EconomyManager.Instance.GetCurrentBalance();
 
-        currentBalanceTextMesh.gameObject.SetActive(true);
-        currentBalanceTextMesh.transform.parent.parent.gameObject.SetActive(true);
+        currentBalanceCanvasGroup.gameObject.SetActive(true);
 
         float t = 0f;
         while (t < balanceAnimDuration)

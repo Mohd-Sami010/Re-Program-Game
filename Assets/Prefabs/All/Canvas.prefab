@@ -2389,6 +2389,7 @@ GameObject:
   - component: {fileID: 7709660471397298338}
   - component: {fileID: 3173293901005883115}
   - component: {fileID: 7098009901504432692}
+  - component: {fileID: 5905690762291992912}
   m_Layer: 5
   m_Name: CurrentBalance
   m_TagString: Untagged
@@ -2455,6 +2456,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1.5
+--- !u!225 &5905690762291992912
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831756564023772235}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1993655490685986251
 GameObject:
   m_ObjectHideFlags: 0
@@ -9419,9 +9432,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49c5d4e165f0a6a4ea16384a91eabe89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  balanceFadeAlpha: 0.8
+  balanceAnimDuration: 0.5
   winTitleText: {fileID: 6899717662178397723}
   nextLevelButton: {fileID: 5507207473597128828}
   levelReportTextMesh: {fileID: 7696111267650017597}
+  currentBalanceCanvasGroup: {fileID: 5905690762291992912}
   currentBalanceTextMesh: {fileID: 4212565534584828834}
   loseTitleText: {fileID: 2117883101693744743}
   buyHealthUi: {fileID: 8870994138126992060}
