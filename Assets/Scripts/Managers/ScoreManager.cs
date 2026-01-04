@@ -50,7 +50,6 @@ public class ScoreManager :MonoBehaviour {
     public string GetLevelReport()
     {
         int levelNumber = SceneManager.GetActiveScene().buildIndex;
-        string currency = EconomyManager.Instance.GetCurrencyName();
 
         int timeBonus = CalculateTimeBonus();
         int snippetBonus = CalculateSnippetBonus();
@@ -59,19 +58,17 @@ public class ScoreManager :MonoBehaviour {
         string tab = $"<pos={RIGHT_COLUMN}>";
 
         return
-            $"<b><size=105%>LEVEL {levelNumber} RESULT</size></b>\n\n" +
+            $"\nBase reward{tab}  {baseReward}\n" +
+            $"Time bonus{tab}  {FormatBonus(timeBonus)}\n" +
+            $"Code efficiency{tab}  {FormatBonus(snippetBonus)}\n\n" +
 
-            $"Base reward{tab}  {baseReward} {currency}\n" +
-            $"Time bonus{tab}{FormatBonus(timeBonus, currency)}\n" +
-            $"Code efficiency{tab}{FormatBonus(snippetBonus, currency)}\n\n" +
-
-            $"<color=#FFD200><b>TOTAL EARNED{tab}{total} {currency}</b></color>";
+            $"<color=#D4D4D4><b>TOTAL{tab}  {EconomyManager.Instance.GetCurrentBalance()}</b></color>";
     }
 
-    private string FormatBonus(int value, string currency)
+    private string FormatBonus(int value)
     {
         return value > 0
-            ? $"<color=#00FF6A>+{value} {currency}</color>"
-            : $"<color=#666666>+0 {currency}</color>";
+            ? $"<color=#FFFFFF>{value}</color>"
+            : $"<color=#666666>0</color>";
     }
 }

@@ -4,13 +4,7 @@ using UnityEngine.UI;
 
 public class GameOverUI :MonoBehaviour {
 
-
-    [SerializeField] private float balanceFadeAlpha = 0.25f;
-    [SerializeField] private float balanceAnimDuration = 0.5f;
-
-    private int cachedBalanceBeforeReward;
     private int levelReward;
-
 
     [Header("Next Level")]
     [SerializeField] private TextMeshProUGUI winTitleText;
@@ -45,7 +39,7 @@ public class GameOverUI :MonoBehaviour {
         nextLevelButton.onClick.AddListener(() =>
         {
             SoundManager.Instance.PlayUISound1();
-            StartCoroutine(ApplyRewardAndLoadNextLevel());
+            GameManager.Instance.LoadNextLevel();
         });
 
         #region Buy Health Buttons
@@ -137,10 +131,13 @@ public class GameOverUI :MonoBehaviour {
     {
 
         ResetUI();
+        currentBalanceTextMesh.text = EconomyManager.Instance.GetCurrentBalance().ToString();
         gameObject.SetActive(true);
 
         if (e.gameOverType == GameManager.GameOverType.win)
         {
+            EconomyManager.Instance.AddCurrency(levelReward);
+
             winTitleText.gameObject.SetActive(true);
             winTitleText.text = "Level Completed!";
             nextLevelButton.gameObject.SetActive(true);
@@ -148,16 +145,6 @@ public class GameOverUI :MonoBehaviour {
             levelReward = ScoreManager.Instance.GetLevelReward();
             levelReportTextMesh.gameObject.SetActive(true);
             levelReportTextMesh.text = ScoreManager.Instance.GetLevelReport();
-
-            // Cache balance BEFORE reward
-            cachedBalanceBeforeReward = EconomyManager.Instance.GetCurrentBalance();
-
-            // Dim / hide balance during result screen
-            currentBalanceTextMesh.text =
-                $"{cachedBalanceBeforeReward} {EconomyManager.Instance.GetCurrencyName()}";
-
-            currentBalanceCanvasGroup.alpha = balanceFadeAlpha;
-            currentBalanceCanvasGroup.gameObject.SetActive(false);
         }
         else if (e.gameOverType == GameManager.GameOverType.robotDied)
         {
@@ -185,33 +172,6 @@ public class GameOverUI :MonoBehaviour {
         levelReportTextMesh.gameObject.SetActive(false);
         nextLevelButton.gameObject.SetActive(false);
         currentBalanceTextMesh.transform.parent.parent.gameObject.SetActive(false);
-    }
-    private System.Collections.IEnumerator ApplyRewardAndLoadNextLevel()
-    {
-
-        // Apply reward NOW (player already saw breakdown)
-        EconomyManager.Instance.AddCurrency(levelReward);
-
-        int startValue = cachedBalanceBeforeReward;
-        int endValue = EconomyManager.Instance.GetCurrentBalance();
-
-        currentBalanceCanvasGroup.gameObject.SetActive(true);
-
-        float t = 0f;
-        while (t < balanceAnimDuration)
-        {
-            t += Time.unscaledDeltaTime;
-            float lerp = Mathf.Clamp01(t / balanceAnimDuration);
-            int value = Mathf.RoundToInt(Mathf.Lerp(startValue, endValue, lerp));
-            currentBalanceTextMesh.text = $"{value} {EconomyManager.Instance.GetCurrencyName()}";
-            yield return null;
-        }
-
-        currentBalanceTextMesh.text = $"{endValue} {EconomyManager.Instance.GetCurrencyName()}";
-
-        yield return new WaitForSecondsRealtime(0.15f);
-
-        GameManager.Instance.LoadNextLevel();
     }
 
     private void OnDestroy()
