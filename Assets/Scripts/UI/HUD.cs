@@ -16,7 +16,9 @@ public class HUD :MonoBehaviour {
 
     [Header("Health and Energy")]
     [SerializeField] private Image healthBarImage;
+    [SerializeField] private GameObject lowHealthWarningImage;
     [SerializeField] private Image energyBarImage;
+    [SerializeField] private GameObject lowEnergyWarningImage;
     private void Awake()
     {
         Instance = this;
@@ -76,6 +78,12 @@ public class HUD :MonoBehaviour {
     {
         healthBarImage.fillAmount = e.robotHealth / 100;
         energyBarImage.fillAmount = e.robotEnergy / 100;
+
+        if (e.robotHealth <= 25) lowHealthWarningImage.SetActive(true);
+        else lowHealthWarningImage.SetActive(false);
+
+        if (e.robotEnergy <= 25) lowEnergyWarningImage.SetActive(true);
+        else lowEnergyWarningImage.SetActive(false);
     }
 
     private void GameManager_OnGameStop(object sender, System.EventArgs e)

@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3248a2733f80125418b2ec9f8f41ecfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseReward: 5
+  maxTimeBonus: 10
+  maxSnippetBonus: 8
   minExpectedLevelPlayTime: 30
   minNumOfSnippets: 5
 --- !u!1 &2498652879597074168
