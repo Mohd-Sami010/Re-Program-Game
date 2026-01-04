@@ -7,6 +7,7 @@ public class GameOverUI :MonoBehaviour {
     private int levelReward;
 
     [Header("Next Level")]
+    [SerializeField] private GameObject nextLevelUi;
     [SerializeField] private TextMeshProUGUI winTitleText;
     [SerializeField] private Button nextLevelButton;
     [SerializeField] private TextMeshProUGUI levelReportTextMesh;
@@ -79,7 +80,7 @@ public class GameOverUI :MonoBehaviour {
                 //SoundManager.Instance.PlayErrorSound();
             }
         });
-        buyHealthTextMesh.text = $"70% health ({EconomyManager.Instance.GetHealthPrice_70percent()} {EconomyManager.Instance.GetCurrencyName()})";
+        buyHealthTextMesh.text = $"70% Health      {EconomyManager.Instance.GetHealthPrice_70percent()}";
         #endregion
         #region Buy Energy Buttons
         // Energy
@@ -120,7 +121,7 @@ public class GameOverUI :MonoBehaviour {
                 //SoundManager.Instance.PlayErrorSound();
             }
         });
-        buyEnergyTextMesh.text = $"100% energy ({EconomyManager.Instance.GetEnergyPrice_100percent()} {EconomyManager.Instance.GetCurrencyName()})";
+        buyEnergyTextMesh.text = $"100% Energy      {EconomyManager.Instance.GetEnergyPrice_100percent()}";
         #endregion
 
         ResetUI();
@@ -136,14 +137,13 @@ public class GameOverUI :MonoBehaviour {
 
         if (e.gameOverType == GameManager.GameOverType.win)
         {
+            nextLevelUi.SetActive(true);
+            levelReward = ScoreManager.Instance.GetLevelReward();
             EconomyManager.Instance.AddCurrency(levelReward);
 
             winTitleText.gameObject.SetActive(true);
             winTitleText.text = "Level Completed!";
-            nextLevelButton.gameObject.SetActive(true);
 
-            levelReward = ScoreManager.Instance.GetLevelReward();
-            levelReportTextMesh.gameObject.SetActive(true);
             levelReportTextMesh.text = ScoreManager.Instance.GetLevelReport();
         }
         else if (e.gameOverType == GameManager.GameOverType.robotDied)
@@ -152,6 +152,10 @@ public class GameOverUI :MonoBehaviour {
             loseTitleText.gameObject.SetActive(true);
             loseTitleText.text = "Robot Died";
             buyHealthUi.SetActive(true);
+            if (EconomyManager.Instance.GetHealthPrice_70percent() > EconomyManager.Instance.GetCurrentBalance())
+            {
+                buyHealthTextMesh.text = "<color=#FF6666>70% Health      " + EconomyManager.Instance.GetHealthPrice_70percent() + "</color>";
+            }
         }
         else if (e.gameOverType == GameManager.GameOverType.robotOutOfEnergy)
         {
@@ -159,18 +163,23 @@ public class GameOverUI :MonoBehaviour {
             loseTitleText.gameObject.SetActive(true);
             loseTitleText.text = "No Energy";
             buyEnergyUi.SetActive(true);
+
+            if (EconomyManager.Instance.GetEnergyPrice_100percent() > EconomyManager.Instance.GetCurrentBalance())
+            {
+                buyEnergyTextMesh.text = "<color=#FF6666>100% Energy      " + EconomyManager.Instance.GetEnergyPrice_100percent() + "</color>";
+                //buyEnergyButton.interactable = false;
+            }
         }
         
         currentBalanceTextMesh.text = $"{EconomyManager.Instance.GetCurrentBalance()} {EconomyManager.Instance.GetCurrencyName()}";
     }
     private void ResetUI()
     {
+        nextLevelUi.SetActive(false);
         buyHealthUi.SetActive(false);
         buyEnergyUi.SetActive(false);
         winTitleText.gameObject.SetActive(false);
         loseTitleText.gameObject.SetActive(false);
-        levelReportTextMesh.gameObject.SetActive(false);
-        nextLevelButton.gameObject.SetActive(false);
         currentBalanceTextMesh.transform.parent.parent.gameObject.SetActive(false);
     }
 

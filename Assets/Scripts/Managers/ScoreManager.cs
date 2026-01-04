@@ -62,7 +62,7 @@ public class ScoreManager :MonoBehaviour {
             $"Time bonus{tab}  {FormatBonus(timeBonus)}\n" +
             $"Code efficiency{tab}  {FormatBonus(snippetBonus)}\n\n" +
 
-            $"<color=#D4D4D4><b>TOTAL{tab}  {EconomyManager.Instance.GetCurrentBalance()}</b></color>";
+            $"<color=#D4D4D4><b>Total{tab}  {EconomyManager.Instance.GetCurrentBalance()}</b></color>";
     }
 
     private string FormatBonus(int value)

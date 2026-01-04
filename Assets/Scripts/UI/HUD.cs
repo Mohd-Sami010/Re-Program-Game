@@ -79,10 +79,10 @@ public class HUD :MonoBehaviour {
         healthBarImage.fillAmount = e.robotHealth / 100;
         energyBarImage.fillAmount = e.robotEnergy / 100;
 
-        if (e.robotHealth <= 15) lowHealthWarningImage.SetActive(true);
+        if (e.robotHealth <= 7) lowHealthWarningImage.SetActive(true);
         else lowHealthWarningImage.SetActive(false);
 
-        if (e.robotEnergy <= 15) lowEnergyWarningImage.SetActive(true);
+        if (e.robotEnergy <= 7) lowEnergyWarningImage.SetActive(true);
         else lowEnergyWarningImage.SetActive(false);
     }
 

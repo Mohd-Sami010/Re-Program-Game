@@ -125,7 +125,7 @@ public class RobotController :MonoBehaviour {
 
             robotState = RobotState.Jumping;
             float minJumpPower = 23f;
-            float jumpPower = e.jumpPower * minJumpPower;
+            float jumpPower = e.jumpPower + minJumpPower;
             robotRigidbody.velocity = new Vector2(transform.localScale.x * jumpPower /2, jumpPower);
             DrainEnergy(energyDrainInJump + e.jumpPower/10);
             SoundManager.Instance.PlayRobotJumpSound();
