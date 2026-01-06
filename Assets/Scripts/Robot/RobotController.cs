@@ -43,10 +43,10 @@ public class RobotController :MonoBehaviour {
 
     private void Start()
     {
-        CommandSnippetsManager.Instance.OnMoveCommand += CommandSnippetsManager_OnMoveCommand;
-        CommandSnippetsManager.Instance.OnJumpCommand += CommandSnippetsManager_OnJumpCommand;
-        CommandSnippetsManager.Instance.OnTurnCommand += CommandSnippetsManager_OnTurnCommand;
-        CommandSnippetsManager.Instance.OnInteractCommand += CommandSnippetsManager_OnInteractCommand;
+        CommandManager.Instance.OnMoveCommand += CommandSnippetsManager_OnMoveCommand;
+        CommandManager.Instance.OnJumpCommand += CommandSnippetsManager_OnJumpCommand;
+        CommandManager.Instance.OnTurnCommand += CommandSnippetsManager_OnTurnCommand;
+        CommandManager.Instance.OnInteractCommand += CommandSnippetsManager_OnInteractCommand;
 
         GroundCheck.Instance.OnGrounded += GroundCheck_OnGrounded;
 
@@ -97,7 +97,7 @@ public class RobotController :MonoBehaviour {
         if (robotState == RobotState.Jumping)
         {
             robotRigidbody.velocity = Vector2.zero;
-            CommandSnippetsManager.Instance.ReadyForCommand();
+            CommandManager.Instance.ReadyForCommand();
             robotState = RobotState.None;
             SoundManager.Instance.StopRobotJumpSound();
             
@@ -105,11 +105,11 @@ public class RobotController :MonoBehaviour {
         OnRobotLand?.Invoke(this, System.EventArgs.Empty);
     }
 
-    private void CommandSnippetsManager_OnMoveCommand(object sender, CommandSnippetsManager.OnMoveCommandEventArgs e)
+    private void CommandSnippetsManager_OnMoveCommand(object sender, CommandManager.OnMoveCommandEventArgs e)
     {
         if (robotState == RobotState.None && GroundCheck.Instance.IsGrounded())
         {
-            CommandSnippetsManager.Instance.CommandAccepted();
+            CommandManager.Instance.CommandAccepted();
 
             robotState = RobotState.Moving;
             SoundManager.Instance.PlayRobotMoveSound();
@@ -117,11 +117,11 @@ public class RobotController :MonoBehaviour {
             OnRobotStartMoving?.Invoke(this, System.EventArgs.Empty);
         }
     }
-    private void CommandSnippetsManager_OnJumpCommand(object sender, CommandSnippetsManager.OnJumpCommandEventArgs e)
+    private void CommandSnippetsManager_OnJumpCommand(object sender, CommandManager.OnJumpCommandEventArgs e)
     {
         if (robotState == RobotState.None && GroundCheck.Instance.IsGrounded())
         {
-            CommandSnippetsManager.Instance.CommandAccepted();
+            CommandManager.Instance.CommandAccepted();
 
             robotState = RobotState.Jumping;
             float minJumpPower = 23f;
@@ -136,7 +136,7 @@ public class RobotController :MonoBehaviour {
     {
         if (robotState == RobotState.None && GroundCheck.Instance.IsGrounded())
         {
-            CommandSnippetsManager.Instance.CommandAccepted();
+            CommandManager.Instance.CommandAccepted();
 
             robotState = RobotState.Turning;
             DrainEnergy(energyDrainInTurn);
@@ -148,7 +148,7 @@ public class RobotController :MonoBehaviour {
     {
         if (robotState == RobotState.None && GroundCheck.Instance.IsGrounded())
         {
-            CommandSnippetsManager.Instance.CommandAccepted();
+            CommandManager.Instance.CommandAccepted();
 
             robotState = RobotState.Interacting;
             DrainEnergy(energyDrainInInteraction);
@@ -185,7 +185,7 @@ public class RobotController :MonoBehaviour {
             yield return null;
         }
         robotRigidbody.velocity = new Vector2(0f, robotRigidbody.velocity.y);
-        CommandSnippetsManager.Instance.ReadyForCommand();
+        CommandManager.Instance.ReadyForCommand();
         robotState = RobotState.None;
         SoundManager.Instance.StopRobotMoveSound();
         OnRobotStopMoving?.Invoke(this, System.EventArgs.Empty);
@@ -202,7 +202,7 @@ public class RobotController :MonoBehaviour {
             yield return null;
         }
         transform.localScale = finalScale;
-        CommandSnippetsManager.Instance.ReadyForCommand();
+        CommandManager.Instance.ReadyForCommand();
         robotState = RobotState.None;
     }
     private IEnumerator Interact(float interactionDelay)
@@ -211,7 +211,7 @@ public class RobotController :MonoBehaviour {
         yield return new WaitForSeconds(interactionDelay);
         interactionHandler.Interact();
         yield return new WaitForSeconds(0.45f);
-        CommandSnippetsManager.Instance.ReadyForCommand();
+        CommandManager.Instance.ReadyForCommand();
         robotState = RobotState.None;
     }
     private void Update()
@@ -231,9 +231,9 @@ public class RobotController :MonoBehaviour {
     }
     private void OnDestroy()
     {
-        CommandSnippetsManager.Instance.OnMoveCommand -= CommandSnippetsManager_OnMoveCommand;
-        CommandSnippetsManager.Instance.OnJumpCommand -= CommandSnippetsManager_OnJumpCommand;
-        CommandSnippetsManager.Instance.OnTurnCommand -= CommandSnippetsManager_OnTurnCommand;
+        CommandManager.Instance.OnMoveCommand -= CommandSnippetsManager_OnMoveCommand;
+        CommandManager.Instance.OnJumpCommand -= CommandSnippetsManager_OnJumpCommand;
+        CommandManager.Instance.OnTurnCommand -= CommandSnippetsManager_OnTurnCommand;
 
         GroundCheck.Instance.OnGrounded -= GroundCheck_OnGrounded;
 

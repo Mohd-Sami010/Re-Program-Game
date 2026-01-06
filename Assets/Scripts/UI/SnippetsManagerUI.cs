@@ -114,7 +114,7 @@ public class SnippetsManagerUI :MonoBehaviour {
             snippetUI = snippetUI.GetNextSnippet();
         }
         // Send the list to the CommandSnippetsManager
-        CommandSnippetsManager.Instance.SetCommandSnippets(snippetUIs);
+        CommandManager.Instance.SetCommandSnippets(snippetUIs);
 
     }
     public void EnableDropArea()

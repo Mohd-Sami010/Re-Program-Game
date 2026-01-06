@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class CommandSnippetsManager : MonoBehaviour {
+public class CommandManager : MonoBehaviour {
 
-    public static CommandSnippetsManager Instance { get; private set; }
+    public static CommandManager Instance { get; private set; }
 
     [SerializeField] private List<SnippetUI> commandSnippets;
     private List<SnippetUI> commandSnippetsToRun;
