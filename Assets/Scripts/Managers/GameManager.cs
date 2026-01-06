@@ -23,6 +23,8 @@ public class GameManager :MonoBehaviour {
     public event EventHandler OnGamePause;
     public event EventHandler OnGameResume;
     public event EventHandler<OnGameOverEventArgs> OnGameOver;
+
+    public event System.Action OnLoadScene;
     public class OnGameOverEventArgs : EventArgs {
         public GameOverType gameOverType;
     }
@@ -77,22 +79,25 @@ public class GameManager :MonoBehaviour {
     }
     public void LoadNextLevel()
     {
+        OnLoadScene?.Invoke();
         int currentSceneIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
         int nextSceneIndex = currentSceneIndex + 1;
         if (nextSceneIndex < UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(nextSceneIndex);
+            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(nextSceneIndex);
         }
         else
         {
             // No more levels, restart the first level or show a message
-            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(0);
         }
     }
     public void LoadMainMenu()
     {
+        OnLoadScene?.Invoke();
         Time.timeScale = 1f;
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(0);
+
     }
     private void OnDestroy()
     {

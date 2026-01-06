@@ -8,8 +8,10 @@ public class MainMenuUI :MonoBehaviour {
     [SerializeField] private TextMeshProUGUI playButtonTextMesh;
     [SerializeField] private Button viewCodeButton;
     [SerializeField] private Button levelSelectButton;
+    [SerializeField] private Button settingsButton;
     [SerializeField] private GameObject levelSelectorUIObject;
-    [SerializeField] private GameObject loadingUIObject;
+    [SerializeField] private GameObject settingsUIObject;
+    [SerializeField] private LoadingUI loadingUIObject;
 
     private void Start()
     {
@@ -18,16 +20,20 @@ public class MainMenuUI :MonoBehaviour {
         if (levelToLoad == 1) playButtonTextMesh.text = "Play";
         else playButtonTextMesh.text = "Continue";
 
-        loadingUIObject.SetActive(false);
         playButton.onClick.AddListener(() => {
             SoundManager.Instance.PlayUISound1();
-            loadingUIObject.SetActive(true);
-            UnityEngine.SceneManagement.SceneManager.LoadScene(levelToLoad);
+            loadingUIObject.EnableLoadingUI();
+            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(levelToLoad);
             
         });
         levelSelectButton.onClick.AddListener(() => {
             SoundManager.Instance.PlayUISound1();
             levelSelectorUIObject.SetActive(true);
+            gameObject.SetActive(false);
+        });
+        settingsButton.onClick.AddListener(() => {
+            SoundManager.Instance.PlayUISound1();
+            settingsUIObject.SetActive(true);
             gameObject.SetActive(false);
         });
         viewCodeButton.onClick.AddListener(() => {
