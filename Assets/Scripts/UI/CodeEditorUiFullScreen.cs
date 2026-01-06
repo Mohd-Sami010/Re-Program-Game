@@ -70,7 +70,7 @@ public class CodeEditorUiFullScreen :MonoBehaviour {
             backgroundImage.color.r,
             backgroundImage.color.g,
             backgroundImage.color.b,
-            0.7f
+            0.9f
         );
 
         panZoomUI.Zoom(-0.3f);
