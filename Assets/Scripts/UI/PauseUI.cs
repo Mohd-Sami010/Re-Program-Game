@@ -22,6 +22,7 @@ public class PauseUI :MonoBehaviour {
         settingsButton.onClick.AddListener(() => {
             SoundManager.Instance.PlayUISound1();
             settingsUi.SetActive(true);
+            //gameObject.SetActive(false);
         });
         GameManager.Instance.OnGamePause += GameManager_OnGamePause;
         gameObject.SetActive(false);

@@ -42,6 +42,9 @@ public class ScoreManager :MonoBehaviour {
 
     public int GetLevelReward()
     {
+        bool isLevelCompleted = PlayerPrefs.GetInt("Level_" + UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + "_Completed", 0) == 1;
+        if (isLevelCompleted) return 0;
+
         return baseReward + CalculateTimeBonus() + CalculateSnippetBonus();
     }
 

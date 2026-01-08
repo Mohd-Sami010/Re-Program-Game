@@ -7,15 +7,23 @@ public class LevelSelectorUI :MonoBehaviour {
 
     [SerializeField] private int levelIndex;
     [SerializeField] private Button[] levelButtons;
+    [SerializeField] private GameObject[] levelButtonsSlides;
     [SerializeField] private Button closeButton;
     [SerializeField] private GameObject mainMenuUi;
     [SerializeField] private GameObject loadingUi;
 
+    [Header("Navigation buttons")]
+    [SerializeField] private Button nextSlideButton;
+    [SerializeField] private Button previousSlideButton;
+    [SerializeField] private TextMeshProUGUI slideIndicatorText;
+
     [Space]
+    [Header("Outline Colors")]
     [SerializeField] private Color completedOutlineColor;
     [SerializeField] private Color lockedOutlineColor;
     [SerializeField] private Color continueOutlineColor;
 
+    private int currentLevelsSlideIndex = 0;
     private void Awake()
     {
         for (int i = 0; i < levelButtons.Length; i++)
@@ -50,7 +58,33 @@ public class LevelSelectorUI :MonoBehaviour {
             mainMenuUi.SetActive(true);
             gameObject.SetActive(false);
         });
+        nextSlideButton.onClick.AddListener(() => {
+            SoundManager.Instance.PlayUISound1();
+            if (currentLevelsSlideIndex < levelButtonsSlides.Length - 1)
+            {
+                levelButtonsSlides[currentLevelsSlideIndex].SetActive(false);
+                currentLevelsSlideIndex++;
+                levelButtonsSlides[currentLevelsSlideIndex].SetActive(true);
+                UpdateSlideIndicator();
+            }
+        });
+        previousSlideButton.onClick.AddListener(() => {
+            SoundManager.Instance.PlayUISound1();
+            if (currentLevelsSlideIndex > 0)
+            {
+                levelButtonsSlides[currentLevelsSlideIndex].SetActive(false);
+                currentLevelsSlideIndex--;
+                levelButtonsSlides[currentLevelsSlideIndex].SetActive(true);
+                UpdateSlideIndicator();
+            }
+        });
+        UpdateSlideIndicator();
+
         gameObject.SetActive(false);
+    }
+    private void UpdateSlideIndicator()
+    {
+        slideIndicatorText.text = $"{currentLevelsSlideIndex + 1} /{levelButtonsSlides.Length}";
     }
 
 }
