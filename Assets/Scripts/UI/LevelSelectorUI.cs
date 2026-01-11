@@ -60,30 +60,41 @@ public class LevelSelectorUI :MonoBehaviour {
         });
         nextSlideButton.onClick.AddListener(() => {
             SoundManager.Instance.PlayUISound1();
-            if (currentLevelsSlideIndex < levelButtonsSlides.Length - 1)
-            {
-                levelButtonsSlides[currentLevelsSlideIndex].SetActive(false);
-                currentLevelsSlideIndex++;
-                levelButtonsSlides[currentLevelsSlideIndex].SetActive(true);
-                UpdateSlideIndicator();
-            }
+            ChangeLevelSlide(1);
         });
         previousSlideButton.onClick.AddListener(() => {
             SoundManager.Instance.PlayUISound1();
-            if (currentLevelsSlideIndex > 0)
-            {
-                levelButtonsSlides[currentLevelsSlideIndex].SetActive(false);
-                currentLevelsSlideIndex--;
-                levelButtonsSlides[currentLevelsSlideIndex].SetActive(true);
-                UpdateSlideIndicator();
-            }
+            ChangeLevelSlide(-1);
         });
-        UpdateSlideIndicator();
+        ChangeLevelSlide(0);
 
         gameObject.SetActive(false);
     }
-    private void UpdateSlideIndicator()
+    private void ChangeLevelSlide(int direction)
     {
+        currentLevelsSlideIndex += direction;
+        if (currentLevelsSlideIndex == levelButtonsSlides.Length - 1)
+        {
+            nextSlideButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            nextSlideButton.gameObject.SetActive(true);
+        }
+        if (currentLevelsSlideIndex == 0)
+        {
+            previousSlideButton.gameObject.SetActive(false);
+        }
+        else 
+        {
+            previousSlideButton.gameObject.SetActive(true);
+        }
+
+        for (int i = 0; i < levelButtonsSlides.Length; i++)
+        {
+            if (i == currentLevelsSlideIndex) levelButtonsSlides[i].SetActive(true);
+            else levelButtonsSlides[i].SetActive(false);
+        }
         slideIndicatorText.text = $"{currentLevelsSlideIndex + 1} /{levelButtonsSlides.Length}";
     }
 
