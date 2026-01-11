@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6994398691762403988}
   - component: {fileID: 3830894252335468143}
   - component: {fileID: 8197665238967271238}
+  - component: {fileID: 419565434351585}
   m_Layer: 5
   m_Name: BaseSnippet
   m_TagString: Untagged
@@ -28,7 +29,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3940241930294534536}
   - {fileID: 351778240594214270}
@@ -74,6 +75,28 @@ MonoBehaviour:
   visualColorWhenRunning: {r: 0.7, g: 0.7, b: 0.7, a: 1}
   visualColorWhenDone: {r: 0.20392157, g: 0.20392157, b: 0.20392157, a: 1}
   valueInput: {fileID: 4755101666492739242}
+--- !u!95 &419565434351585
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454176623977160153}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0a26f7db1b2ab0445ae6ce357021afba, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &823983447817888143
 GameObject:
   m_ObjectHideFlags: 0

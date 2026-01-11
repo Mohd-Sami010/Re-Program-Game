@@ -6,9 +6,9 @@ public class DropSnippetToDelete :MonoBehaviour, IDropHandler {
     {
         if (eventData.pointerDrag != null && eventData.pointerDrag.GetComponent<SnippetDragArea>().GetParentSnippet().GetComponent<StartSnippet>() == null)
         {
-            Destroy(eventData.pointerDrag.GetComponent<SnippetDragArea>().GetParentSnippet().gameObject);
-            SnippetsManagerUI.Instance.UpdateSnippetUIsList();
-            SnippetsManagerUI.Instance.DisableDropArea();
+            Transform snippetObjToDelete = eventData.pointerDrag.GetComponent<SnippetDragArea>().GetParentSnippet();
+            snippetObjToDelete.GetComponent<SnippetUI>().DeleteSnippet();
+            
             SoundManager.Instance.PlaySnippetDeleteSound();
         }
     }

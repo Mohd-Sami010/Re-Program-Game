@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,12 +23,14 @@ public class SnippetsManagerUI :MonoBehaviour {
     [SerializeField] private GameObject turnSnippetPrefab;
     [SerializeField] private GameObject interactSnippetPrefab;
 
+    private Animator animator;
 
     public event System.Action OnEnableDropArea;
     public event System.Action OnDisableDropArea;
     private void Awake()
     {
         Instance = this;
+        animator = GetComponent<Animator>();
     }
     private void Start()
     {
@@ -50,13 +53,12 @@ public class SnippetsManagerUI :MonoBehaviour {
         closeUIButton.onClick.AddListener(() => {
             HUD.Instance.ShowEditButton();
             SoundManager.Instance.PlayUISound1();
-            gameObject.SetActive(false);
+            StartCoroutine(CloseUi());
         });
         GameManager.Instance.OnGameRestart += GameManager_OnGameRestart;
         GameManager.Instance.OnGameStop += GameManager_OnGameStop;
         GameManager.Instance.OnGameOver += GameManager_OnGameOver;
         GameManager.Instance.OnGamePause += GameManager_OnGameStop;
-        //GameManager.Instance.OnContinueGame += GameManager_OnContinueGame;
 
         inputBlockerObject1.SetActive(false);
         inputBlockerObject2.SetActive(false);
@@ -132,5 +134,23 @@ public class SnippetsManagerUI :MonoBehaviour {
     public int GetNumberOfSnippetsUsed()
     {
         return snippetUIs.Count;
+    }
+
+    private IEnumerator CloseUi()
+    {
+        animator.SetTrigger("Disable");
+        yield return new WaitForSecondsRealtime(0.16f);
+        gameObject.SetActive(false);
+    }
+    private void OnEnable()
+    {
+        //animator.SetTrigger("Enable");
+        StartCoroutine(OpenUi());
+    }
+    private IEnumerator OpenUi()
+    {
+        gameObject.SetActive(true);
+        animator.SetTrigger("Enable");
+        yield return new WaitForSecondsRealtime(0.17f);
     }
 }

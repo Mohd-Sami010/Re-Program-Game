@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using System.Collections;
 
 public class SnippetUI :MonoBehaviour {
     public enum CommandType {
@@ -25,9 +26,12 @@ public class SnippetUI :MonoBehaviour {
     private bool done;
     private bool isRunning;
 
+    private Animator animator;
+
     private void Start()
     {
         visualColorDefault = visualImages[0].color;
+        animator = GetComponent<Animator>();
 
         if (commandType == CommandType.Start)
         {
@@ -123,8 +127,16 @@ public class SnippetUI :MonoBehaviour {
         }
     }
 
+    public void DeleteSnippet()
+    {
+        Destroy(gameObject, 0.12f);
+        animator.SetTrigger("Delete");
+    }
     private void OnDestroy()
     {
+        SnippetsManagerUI.Instance.UpdateSnippetUIsList();
+        SnippetsManagerUI.Instance.DisableDropArea();
+
         if (commandType == CommandType.Start)
             GameManager.Instance.OnGameRestart -= GameManager_OnGameRestart;
 

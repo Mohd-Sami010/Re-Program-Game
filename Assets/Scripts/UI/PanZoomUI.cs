@@ -1,5 +1,7 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.Haptics;
 using UnityEngine.UI;
 
 public class PanZoomUI :MonoBehaviour, IDragHandler, IScrollHandler {
@@ -97,7 +99,26 @@ public class PanZoomUI :MonoBehaviour, IDragHandler, IScrollHandler {
     }
     public void Zoom(float zoomAmount)
     {
+        //StartCoroutine(ZoomSmoothly(zoomAmount));
         float s = target.localScale.x;
+        s += zoomAmount;
+        s = Mathf.Clamp(s, minScale, maxScale);
+        target.localScale = Vector3.one * s;
+    }
+    private IEnumerator ZoomSmoothly(float zoomAmount) { 
+        float duration = 0.15f;
+        float timer = 0;
+        float targetScale = target.localScale.x;
+        while (duration > timer)
+        {
+            float scale = Mathf.Lerp(target.localScale.x, targetScale + zoomAmount, timer / duration);
+            scale = Mathf.Clamp(scale, minScale, maxScale);
+            target.localScale = Vector3.one * scale;
+
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        float s = targetScale;
         s += zoomAmount;
         s = Mathf.Clamp(s, minScale, maxScale);
         target.localScale = Vector3.one * s;
