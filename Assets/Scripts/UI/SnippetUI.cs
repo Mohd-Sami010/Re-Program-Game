@@ -129,7 +129,7 @@ public class SnippetUI :MonoBehaviour {
 
     public void DeleteSnippet()
     {
-        Destroy(gameObject, 0.12f);
+        Destroy(gameObject, 0.1f);
         animator.SetTrigger("Delete");
     }
     private void OnDestroy()
