@@ -359,6 +359,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4751260939541390769}
+  - component: {fileID: 7474060295031019385}
   m_Layer: 5
   m_Name: Buy Energy
   m_TagString: Untagged
@@ -387,6 +388,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &7474060295031019385
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604284974270166338}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &717591023430437908
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,6 +593,8 @@ MonoBehaviour:
   zoomSpeed: 0.5
   minScale: 0.5
   maxScale: 2.5
+  zoomInButton: {fileID: 3356847921095332657}
+  zoomOutButton: {fileID: 2791533443700684401}
   dragSpeed: 1
 --- !u!222 &3780850389038721467
 CanvasRenderer:
@@ -2132,19 +2147,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3282659924667766512}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 551973020749953568}
-        m_TargetAssemblyTypeName: PanZoomUI, Assembly-CSharp
-        m_MethodName: Zoom
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: -0.3
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1432944537607480640
 GameObject:
   m_ObjectHideFlags: 0
@@ -9247,19 +9250,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5363659997831529620}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 551973020749953568}
-        m_TargetAssemblyTypeName: PanZoomUI, Assembly-CSharp
-        m_MethodName: Zoom
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0.3
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &6137252742621894535
 GameObject:
   m_ObjectHideFlags: 0
@@ -10696,6 +10687,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5330499346497853695}
+  - component: {fileID: 7169087815446556827}
   m_Layer: 5
   m_Name: Level Complete
   m_TagString: Untagged
@@ -10725,6 +10717,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &7169087815446556827
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7024506959090606766}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7039525935727856460
 GameObject:
   m_ObjectHideFlags: 0
@@ -11664,6 +11668,7 @@ GameObject:
   m_Component:
   - component: {fileID: 415406201270679572}
   - component: {fileID: 1428007813073088805}
+  - component: {fileID: 9002902604407702495}
   m_Layer: 5
   m_Name: GameOverUI
   m_TagString: Untagged
@@ -11725,6 +11730,28 @@ MonoBehaviour:
   buyEnergyButton: {fileID: 8999914636143912100}
   buyEnergyTextMesh: {fileID: 1532349141034288384}
   adLoadingUI: {fileID: 9139508711481773522}
+--- !u!95 &9002902604407702495
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7807239727679316495}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 35cac62d614662346b123a12f2aa1483, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7845650197928207108
 GameObject:
   m_ObjectHideFlags: 0
@@ -12458,6 +12485,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2865840461949079941}
+  - component: {fileID: 156942878473543382}
   m_Layer: 5
   m_Name: Buy Health
   m_TagString: Untagged
@@ -12486,6 +12514,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &156942878473543382
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8870994138126992060}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8987251584636202497
 GameObject:
   m_ObjectHideFlags: 0

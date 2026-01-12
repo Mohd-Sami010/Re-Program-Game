@@ -50,7 +50,6 @@ public class CodeEditorUiFullScreen :MonoBehaviour {
             backgroundImage.color.b,
             1f
         );
-        panZoomUI.Zoom(-0.3f, true);
         fullScreenButton.gameObject.SetActive(false);
         minimizeScreenButton.gameObject.SetActive(true);
     }
@@ -73,7 +72,6 @@ public class CodeEditorUiFullScreen :MonoBehaviour {
             0.9f
         );
 
-        panZoomUI.Zoom(-0.3f, true);
         fullScreenButton.gameObject.SetActive(true);
         minimizeScreenButton.gameObject.SetActive(false);
     }

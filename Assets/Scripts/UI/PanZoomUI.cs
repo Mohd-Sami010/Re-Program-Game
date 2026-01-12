@@ -15,6 +15,9 @@ public class PanZoomUI :MonoBehaviour, IDragHandler, IScrollHandler {
     [SerializeField] private float minScale = 0.5f;
     [SerializeField] private float maxScale = 2.5f;
 
+    [SerializeField] private Button zoomInButton;
+    [SerializeField] private Button zoomOutButton;
+
     [Header("Pan Settings")]
     [SerializeField] private float dragSpeed = 1f;
 
@@ -27,6 +30,15 @@ public class PanZoomUI :MonoBehaviour, IDragHandler, IScrollHandler {
     {
         SnippetsManagerUI.Instance.OnEnableDropArea += SnippetsManagerUI_OnEnableDropArea;
         SnippetsManagerUI.Instance.OnDisableDropArea += SnippetsManagerUI_OnDisableDropArea;
+
+        zoomInButton.onClick.AddListener(() => {
+            SoundManager.Instance.PlayUISound1();
+            Zoom(0.3f);
+        });
+        zoomOutButton.onClick.AddListener(() => {
+            SoundManager.Instance.PlayUISound1();
+            Zoom(-0.3f);
+        });
     }
     private void SnippetsManagerUI_OnEnableDropArea()
     {
@@ -97,20 +109,13 @@ public class PanZoomUI :MonoBehaviour, IDragHandler, IScrollHandler {
         s = Mathf.Clamp(s, minScale, maxScale);
         target.localScale = Vector3.one * s;
     }
-    public void Zoom(float zoomAmount, bool snap = false)
+    public void Zoom(float zoomAmount)
     {
-        if (snap)
-        {
-            float s = target.localScale.x;
-            s += zoomAmount;
-            s = Mathf.Clamp(s, minScale, maxScale);
-            target.localScale = Vector3.one * s;
-        }
-        else StartCoroutine(ZoomSmoothly(zoomAmount));
+        StartCoroutine(ZoomSmoothly(zoomAmount));
 
     }
     private IEnumerator ZoomSmoothly(float zoomAmount) { 
-        float duration = 0.15f;
+        float duration = 0.1f;
         float timer = 0;
         float targetScale = target.localScale.x;
         while (duration > timer)

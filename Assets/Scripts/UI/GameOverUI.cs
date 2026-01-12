@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -62,7 +63,7 @@ public class GameOverUI :MonoBehaviour {
 
                 RobotHealthAndEnergy.Instance.AddHealth(40);
                 GameManager.Instance.StopGame();
-                gameObject.SetActive(false);
+                StartCoroutine(PlayUiDisableAnim());
             });
         });
 
@@ -72,7 +73,7 @@ public class GameOverUI :MonoBehaviour {
             {
                 RobotHealthAndEnergy.Instance.AddHealth(70);
                 GameManager.Instance.StopGame();
-                gameObject.SetActive(false);
+                StartCoroutine(PlayUiDisableAnim());
             }
             else
             {
@@ -101,7 +102,7 @@ public class GameOverUI :MonoBehaviour {
 
                 RobotHealthAndEnergy.Instance.AddEnergy(60);
                 GameManager.Instance.StopGame();
-                gameObject.SetActive(false);
+                StartCoroutine(PlayUiDisableAnim());
             });
         });
 
@@ -113,7 +114,7 @@ public class GameOverUI :MonoBehaviour {
             {
                 RobotHealthAndEnergy.Instance.AddEnergy(100);
                 GameManager.Instance.StopGame();
-                gameObject.SetActive(false);
+                StartCoroutine(PlayUiDisableAnim());
             }
             else
             {
@@ -134,7 +135,9 @@ public class GameOverUI :MonoBehaviour {
 
         ResetUI();
         currentBalanceTextMesh.text = EconomyManager.Instance.GetCurrentBalance().ToString();
+
         gameObject.SetActive(true);
+        GetComponent<Animator>().SetTrigger("Enable");
 
         if (e.gameOverType == GameManager.GameOverType.win)
         {
@@ -173,6 +176,13 @@ public class GameOverUI :MonoBehaviour {
         }
         
         currentBalanceTextMesh.text = $"{EconomyManager.Instance.GetCurrentBalance()} {EconomyManager.Instance.GetCurrencyName()}";
+
+    }
+    private IEnumerator PlayUiDisableAnim()
+    {
+        GetComponent<Animator>().SetTrigger("Disable");
+        yield return new WaitForSecondsRealtime(0.3f);
+        gameObject.SetActive(false);
     }
     private void ResetUI()
     {
