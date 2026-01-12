@@ -125,6 +125,7 @@ public class GameOverUI :MonoBehaviour {
         #endregion
 
         ResetUI();
+        adLoadingUI.SetActive(false);
         gameObject.SetActive(false);
     }
 

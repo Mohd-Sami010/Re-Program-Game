@@ -97,13 +97,17 @@ public class PanZoomUI :MonoBehaviour, IDragHandler, IScrollHandler {
         s = Mathf.Clamp(s, minScale, maxScale);
         target.localScale = Vector3.one * s;
     }
-    public void Zoom(float zoomAmount)
+    public void Zoom(float zoomAmount, bool snap = false)
     {
-        //StartCoroutine(ZoomSmoothly(zoomAmount));
-        float s = target.localScale.x;
-        s += zoomAmount;
-        s = Mathf.Clamp(s, minScale, maxScale);
-        target.localScale = Vector3.one * s;
+        if (snap)
+        {
+            float s = target.localScale.x;
+            s += zoomAmount;
+            s = Mathf.Clamp(s, minScale, maxScale);
+            target.localScale = Vector3.one * s;
+        }
+        else StartCoroutine(ZoomSmoothly(zoomAmount));
+
     }
     private IEnumerator ZoomSmoothly(float zoomAmount) { 
         float duration = 0.15f;
