@@ -137,7 +137,9 @@ public class GameOverUI :MonoBehaviour {
         currentBalanceTextMesh.text = EconomyManager.Instance.GetCurrentBalance().ToString();
 
         gameObject.SetActive(true);
-        GetComponent<Animator>().SetTrigger("Enable");
+
+        if (e.gameOverType == GameManager.GameOverType.win) GetComponent<Animator>().SetTrigger("EnableWin");
+        else GetComponent<Animator>().SetTrigger("EnableLose");
 
         if (e.gameOverType == GameManager.GameOverType.win)
         {

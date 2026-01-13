@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -62,16 +63,17 @@ public class HUD :MonoBehaviour {
 
     private void GameManager_OnGamePause(object sender, System.EventArgs e)
     {
-        gameObject.SetActive(false);
+        StartCoroutine(DisableUI());
     }
     private void GameManager_OnGameResume(object sender, System.EventArgs e)
     {
         gameObject.SetActive(true);
+        GetComponent<Animator>().SetTrigger("Enable");
         ShowEditButton();
     }
     private void GameManager_OnGameOver(object sender, GameManager.OnGameOverEventArgs e)
     {
-        gameObject.SetActive(false);
+        StartCoroutine(DisableUI());
     }
 
     private void RobotHealthAndEnergy_OnHealthOrEnergyChanged(object sender, RobotHealthAndEnergy.OnHealthOrEnergyChangedEventArgs e)
@@ -89,6 +91,7 @@ public class HUD :MonoBehaviour {
     private void GameManager_OnGameStop(object sender, System.EventArgs e)
     {
         gameObject.SetActive(true);
+        GetComponent<Animator>().SetTrigger("Enable");
         EnableRunButton();
         ShowEditButton();
     }
@@ -122,5 +125,12 @@ public class HUD :MonoBehaviour {
         playButton.gameObject.SetActive(false);
         restartButton.gameObject.SetActive(true);
         stopButton.gameObject.SetActive(true);
+    }
+
+    private IEnumerator DisableUI()
+    {
+        GetComponent<Animator>().SetTrigger("Disable");
+        yield return new WaitForSecondsRealtime(0.3f);
+        gameObject.SetActive(false);
     }
 }

@@ -121,8 +121,7 @@ public class SnippetUI :MonoBehaviour {
         {
             img.color = newColor;
 
-            Outline outline = img.GetComponent<Outline>();
-            if (outline != null)
+            if (img.gameObject.TryGetComponent<Outline>(out var outline))
                 outline.effectColor = newColor;
         }
     }

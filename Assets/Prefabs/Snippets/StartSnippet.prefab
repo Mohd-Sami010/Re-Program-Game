@@ -137,16 +137,28 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
+      propertyPath: visualColorWhenDone.b
+      value: 0.01422925
+      objectReference: {fileID: 0}
+    - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
+      propertyPath: visualColorWhenDone.g
+      value: 0.33992097
+      objectReference: {fileID: 0}
+    - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
+      propertyPath: visualColorWhenDone.r
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
       propertyPath: visualColorWhenRunning.b
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
       propertyPath: visualColorWhenRunning.g
-      value: 0.33882356
+      value: 0.7588235
       objectReference: {fileID: 0}
     - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
       propertyPath: visualColorWhenRunning.r
-      value: 0.4
+      value: 0.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
