@@ -145,6 +145,10 @@ PrefabInstance:
       value: Move for
       objectReference: {fileID: 0}
     - target: {fileID: 8050407244231329161, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050407244231329161, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
       propertyPath: m_Color.b
       value: 0
       objectReference: {fileID: 0}
@@ -170,7 +174,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
       propertyPath: visualColorWhenDone.r
-      value: 0.20347829
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
       propertyPath: visualColorWhenRunning.b

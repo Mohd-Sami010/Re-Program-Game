@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,9 +16,15 @@ public class ScoreManager :MonoBehaviour {
     // TMP tab stop position (tweak once, done forever)
     private const int RIGHT_COLUMN = 460;
 
+    private bool isLevelCompleted;
+
     private void Awake()
     {
         Instance = this;
+
+        isLevelCompleted = PlayerPrefs.GetInt("Level_" + SceneManager.GetActiveScene().buildIndex + "_Completed", 0) == 1;
+        if (isLevelCompleted) baseReward = 0;
+        else baseReward = 5 + SceneManager.GetActiveScene().buildIndex;
     }
 
     // -------------------- CALCULATION --------------------
@@ -28,7 +35,15 @@ public class ScoreManager :MonoBehaviour {
         if (actualTime >= minExpectedLevelPlayTime) return 0;
 
         float efficiency = 1f - (float)actualTime / minExpectedLevelPlayTime;
-        return Mathf.RoundToInt(efficiency * maxTimeBonus);
+        int timeBonus = Mathf.RoundToInt(efficiency * maxTimeBonus);
+
+        if (isLevelCompleted &&
+            PlayerPrefs.GetInt("Level_" + SceneManager.GetActiveScene().buildIndex + "_TimeBonus", 0) > timeBonus)
+        {
+            return 0;
+        }
+        PlayerPrefs.SetInt("Level_" + SceneManager.GetActiveScene().buildIndex + "_TimeBonus", timeBonus);
+        return timeBonus;
     }
 
     private int CalculateSnippetBonus()
@@ -37,14 +52,19 @@ public class ScoreManager :MonoBehaviour {
         if (actualSnippets >= minNumOfSnippets) return 0;
 
         float efficiency = 1f - (float)actualSnippets / minNumOfSnippets;
-        return Mathf.RoundToInt(efficiency * maxSnippetBonus);
+        int snippetBonus = Mathf.RoundToInt(efficiency * maxSnippetBonus);
+
+        if (isLevelCompleted &&
+            PlayerPrefs.GetInt("Level_" + SceneManager.GetActiveScene().buildIndex + "_SnippetBonus", 0) > snippetBonus)
+        {
+            return 0;
+        }
+        PlayerPrefs.SetInt("Level_" + SceneManager.GetActiveScene().buildIndex + "_SnippetBonus", snippetBonus);
+        return snippetBonus;
     }
 
     public int GetLevelReward()
     {
-        bool isLevelCompleted = PlayerPrefs.GetInt("Level_" + UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + "_Completed", 0) == 1;
-        if (isLevelCompleted) return 0;
-
         return baseReward + CalculateTimeBonus() + CalculateSnippetBonus();
     }
 

@@ -164,15 +164,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
       propertyPath: visualColorWhenDone.b
-      value: 0.4
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
       propertyPath: visualColorWhenDone.g
-      value: 0.2294118
+      value: 0.2908497
       objectReference: {fileID: 0}
     - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
       propertyPath: visualColorWhenDone.r
-      value: 0.18039218
+      value: 0.22549021
       objectReference: {fileID: 0}
     - target: {fileID: 8197665238967271238, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
       propertyPath: visualColorWhenRunning.a

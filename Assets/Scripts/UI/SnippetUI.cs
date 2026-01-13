@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class SnippetUI :MonoBehaviour {
     public enum CommandType {
