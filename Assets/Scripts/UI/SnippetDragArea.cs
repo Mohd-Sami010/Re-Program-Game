@@ -36,7 +36,7 @@ public class SnippetDragArea :MonoBehaviour, IDragHandler, IBeginDragHandler, IE
     {
         canvasGroup.alpha = 0.6f;
         canvasGroup.blocksRaycasts = false;
-        SnippetsManagerUI.Instance.EnableDropArea();
+        if (dragRectTransform.GetComponent<StartSnippet>() == null) SnippetsManagerUI.Instance.EnableDropArea();
         SoundManager.Instance.PlaySnippetGrabSound();
     }
 
@@ -59,7 +59,7 @@ public class SnippetDragArea :MonoBehaviour, IDragHandler, IBeginDragHandler, IE
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
         SoundManager.Instance.PlaySnippetDropSound();
-        SnippetsManagerUI.Instance.DisableDropArea();
+        if (dragRectTransform.GetComponent<StartSnippet>() == null) SnippetsManagerUI.Instance.DisableDropArea();
     }
 
     private void ClampToParent()

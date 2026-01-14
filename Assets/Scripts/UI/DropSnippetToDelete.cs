@@ -6,7 +6,8 @@ public class DropSnippetToDelete :MonoBehaviour, IDropHandler {
     private void Start()
     {
         SnippetsManagerUI.Instance.OnEnableDropArea += SnippetManagerUI_OnEnableDropArea;
-        SnippetsManagerUI.Instance.OnDisableDropArea += SnippetManagerUI_OnDisableDropArea; ;
+        SnippetsManagerUI.Instance.OnDisableDropArea += SnippetManagerUI_OnDisableDropArea;
+        gameObject.SetActive(false);
     }
 
     private void SnippetManagerUI_OnEnableDropArea()
