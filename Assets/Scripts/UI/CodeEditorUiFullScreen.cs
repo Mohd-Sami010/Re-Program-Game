@@ -9,6 +9,9 @@ public class CodeEditorUiFullScreen :MonoBehaviour {
     [SerializeField] private Button fullScreenButton;
     [SerializeField] private Button minimizeScreenButton;
 
+    [Space]
+    [SerializeField] private float zoomAmount = 0.15f;
+
     private Vector2 originalAnchorMin;
     private Vector2 originalAnchorMax;
     private Vector2 originalOffsetMin;
@@ -50,6 +53,7 @@ public class CodeEditorUiFullScreen :MonoBehaviour {
             backgroundImage.color.b,
             1f
         );
+        panZoomUI.Zoom(zoomAmount);
         fullScreenButton.gameObject.SetActive(false);
         minimizeScreenButton.gameObject.SetActive(true);
     }
@@ -71,7 +75,7 @@ public class CodeEditorUiFullScreen :MonoBehaviour {
             backgroundImage.color.b,
             0.9f
         );
-
+        panZoomUI.Zoom(zoomAmount);
         fullScreenButton.gameObject.SetActive(true);
         minimizeScreenButton.gameObject.SetActive(false);
     }

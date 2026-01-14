@@ -63,7 +63,7 @@ public class HUD :MonoBehaviour {
 
     private void GameManager_OnGamePause(object sender, System.EventArgs e)
     {
-        StartCoroutine(DisableUI());
+        gameObject.SetActive(false);
     }
     private void GameManager_OnGameResume(object sender, System.EventArgs e)
     {
