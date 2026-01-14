@@ -2,6 +2,22 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class DropSnippetToDelete :MonoBehaviour, IDropHandler {
+
+    private void Start()
+    {
+        SnippetsManagerUI.Instance.OnEnableDropArea += SnippetManagerUI_OnEnableDropArea;
+        SnippetsManagerUI.Instance.OnDisableDropArea += SnippetManagerUI_OnDisableDropArea; ;
+    }
+
+    private void SnippetManagerUI_OnEnableDropArea()
+    {
+        gameObject.SetActive(true);
+    }
+    private void SnippetManagerUI_OnDisableDropArea()
+    {
+        gameObject.SetActive(false);
+    }
+
     public void OnDrop(PointerEventData eventData)
     {
         if (eventData.pointerDrag != null && eventData.pointerDrag.GetComponent<SnippetDragArea>().GetParentSnippet().GetComponent<StartSnippet>() == null)
