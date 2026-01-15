@@ -8,8 +8,10 @@ public class MainMenuUI :MonoBehaviour {
     [SerializeField] private TextMeshProUGUI playButtonTextMesh;
     [SerializeField] private Button levelSelectButton;
     [SerializeField] private Button settingsButton;
+    [SerializeField] private Button infoButton;
     [SerializeField] private GameObject levelSelectorUIObject;
     [SerializeField] private GameObject settingsUIObject;
+    [SerializeField] private GameObject infoUIObject;
     [SerializeField] private LoadingUI loadingUIObject;
 
     private void Start()
@@ -32,6 +34,10 @@ public class MainMenuUI :MonoBehaviour {
         settingsButton.onClick.AddListener(() => {
             SoundManager.Instance.PlayUISound1();
             settingsUIObject.SetActive(true);
+        });
+        infoButton.onClick.AddListener(() => {
+            SoundManager.Instance.PlayUISound1();
+            infoUIObject.SetActive(true);
         });
     }
 

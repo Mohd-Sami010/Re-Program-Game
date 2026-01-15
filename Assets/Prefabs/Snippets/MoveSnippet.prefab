@@ -13,8 +13,12 @@ PrefabInstance:
       value: MoveSnippet
       objectReference: {fileID: 0}
     - target: {fileID: 2467273846378970031, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 92
+      objectReference: {fileID: 0}
+    - target: {fileID: 2467273846378970031, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 82.400024
+      value: 90.900024
       objectReference: {fileID: 0}
     - target: {fileID: 2633107944360884634, guid: 91a7d5a455827df4699c2df231aa9293, type: 3}
       propertyPath: m_EffectColor.g
