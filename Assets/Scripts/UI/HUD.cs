@@ -58,7 +58,13 @@ public class HUD :MonoBehaviour {
         GameManager.Instance.OnGameOver += GameManager_OnGameOver;
         GameManager.Instance.OnGamePause += GameManager_OnGamePause;
         GameManager.Instance.OnGameResume += GameManager_OnGameResume;
+        GameManager.Instance.OnRevived += GameManager_OnRevived;
         RobotHealthAndEnergy.Instance.OnHealthOrEnergyChanged += RobotHealthAndEnergy_OnHealthOrEnergyChanged;
+    }
+
+    private void GameManager_OnRevived()
+    {
+        GetComponent<Animator>().SetTrigger("Enable");
     }
 
     private void GameManager_OnGamePause(object sender, System.EventArgs e)
@@ -91,7 +97,6 @@ public class HUD :MonoBehaviour {
     private void GameManager_OnGameStop(object sender, System.EventArgs e)
     {
         gameObject.SetActive(true);
-        GetComponent<Animator>().SetTrigger("Enable");
         EnableRunButton();
         ShowEditButton();
     }

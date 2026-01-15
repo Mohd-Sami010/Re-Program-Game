@@ -23,6 +23,7 @@ public class GameManager :MonoBehaviour {
     public event EventHandler OnGamePause;
     public event EventHandler OnGameResume;
     public event EventHandler<OnGameOverEventArgs> OnGameOver;
+    public event Action OnRevived;
 
     public event System.Action OnLoadScene;
     public class OnGameOverEventArgs : EventArgs {
@@ -64,6 +65,11 @@ public class GameManager :MonoBehaviour {
     {
         currentGameState= GameState.NotRunning;
         OnGameStop?.Invoke(this, EventArgs.Empty);
+    }
+    public void ReviveAndContinue()
+    {
+        OnRevived?.Invoke();
+        StopGame();
     }
     public void GameOver(GameOverType gameOverType)
     {

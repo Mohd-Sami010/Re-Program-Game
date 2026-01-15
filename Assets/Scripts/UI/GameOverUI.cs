@@ -62,7 +62,7 @@ public class GameOverUI :MonoBehaviour {
                 }
 
                 RobotHealthAndEnergy.Instance.AddHealth(40);
-                GameManager.Instance.StopGame();
+                GameManager.Instance.ReviveAndContinue();
                 StartCoroutine(PlayUiDisableAnim());
             });
         });
@@ -72,7 +72,7 @@ public class GameOverUI :MonoBehaviour {
             if (EconomyManager.Instance.TrySpendCurrency(EconomyManager.Instance.GetHealthPrice_70percent()))
             {
                 RobotHealthAndEnergy.Instance.AddHealth(70);
-                GameManager.Instance.StopGame();
+                GameManager.Instance.ReviveAndContinue();
                 StartCoroutine(PlayUiDisableAnim());
             }
             else
@@ -101,7 +101,7 @@ public class GameOverUI :MonoBehaviour {
                 }
 
                 RobotHealthAndEnergy.Instance.AddEnergy(60);
-                GameManager.Instance.StopGame();
+                GameManager.Instance.ReviveAndContinue();
                 StartCoroutine(PlayUiDisableAnim());
             });
         });
@@ -113,7 +113,7 @@ public class GameOverUI :MonoBehaviour {
             if (EconomyManager.Instance.TrySpendCurrency(EconomyManager.Instance.GetEnergyPrice_100percent()))
             {
                 RobotHealthAndEnergy.Instance.AddEnergy(100);
-                GameManager.Instance.StopGame();
+                GameManager.Instance.ReviveAndContinue();
                 StartCoroutine(PlayUiDisableAnim());
             }
             else

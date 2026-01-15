@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -24,6 +25,9 @@ public class LevelSelectorUI :MonoBehaviour {
     [SerializeField] private Color continueOutlineColor;
 
     private int currentLevelsSlideIndex = 0;
+
+    private Animator animator;
+
     private void Awake()
     {
         for (int i = 0; i < levelButtons.Length; i++)
@@ -56,7 +60,7 @@ public class LevelSelectorUI :MonoBehaviour {
         closeButton.onClick.AddListener(() => {
             SoundManager.Instance.PlayUISound2();
             mainMenuUi.SetActive(true);
-            gameObject.SetActive(false);
+            StartCoroutine(CloseUI());
         });
         nextSlideButton.onClick.AddListener(() => {
             SoundManager.Instance.PlayUISound1();
@@ -67,7 +71,7 @@ public class LevelSelectorUI :MonoBehaviour {
             ChangeLevelSlide(-1);
         });
         ChangeLevelSlide(0);
-
+        animator = GetComponent<Animator>();
         gameObject.SetActive(false);
     }
     private void ChangeLevelSlide(int direction)
@@ -96,6 +100,16 @@ public class LevelSelectorUI :MonoBehaviour {
             else levelButtonsSlides[i].SetActive(false);
         }
         slideIndicatorText.text = $"{currentLevelsSlideIndex + 1} /{levelButtonsSlides.Length}";
+    }
+    private IEnumerator CloseUI()
+    {
+        animator.SetTrigger("Disable");
+        yield return new WaitForSeconds(0.25f);
+        gameObject.SetActive(false);
+    }
+    private void OnEnable()
+    {
+        animator.SetTrigger("Enable");
     }
 
 }

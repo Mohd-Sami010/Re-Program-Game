@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -22,6 +23,10 @@ public class SettingsUI :MonoBehaviour {
     [SerializeField] private Button confirmYesButton;
     [SerializeField] private Button confirmNoButton;
 
+    [Header("Animation")]
+    [SerializeField] private Image bgImage;
+    [SerializeField] private CanvasGroup contentCanvasGroup;
+
     private const string MASTER_VOL = "MasterVolume";
     private const string BG_VOL = "BackgroundVolume";
 
@@ -32,7 +37,6 @@ public class SettingsUI :MonoBehaviour {
     private const float MIN_DB = -80f;
     private const float ZERO_DB_SLIDER = 0.75f;
     private const float MAX_BOOST_DB = 6f;
-
     private void Awake()
     {
         // Load saved values or fallback to default (75%)
@@ -67,7 +71,7 @@ public class SettingsUI :MonoBehaviour {
         closeButton.onClick.AddListener(() => {
             SoundManager.Instance.PlayUISound1();
             if (confirmationUi != null) confirmationUi.SetActive(false);
-            gameObject.SetActive(false);
+            StartCoroutine(PlaySettingsAnimation(false));
             uiToEnableAfterClosing.SetActive(true);
         });
         gameObject.SetActive(false);
@@ -142,5 +146,41 @@ public class SettingsUI :MonoBehaviour {
 #else
         Application.Quit();
 #endif
+    }
+    private IEnumerator PlaySettingsAnimation(bool fadeIn = true)
+    {
+        float duration = 0.15f;
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            float t = Mathf.Clamp01(elapsed / duration);
+            if (fadeIn)
+            {
+                bgImage.color = new Color(0f, 0f, 0f, Mathf.Lerp(0f, 1f, t));
+                contentCanvasGroup.alpha = Mathf.Lerp(0f, 1f, t);
+            }
+            else
+            {
+                bgImage.color = new Color(0f, 0f, 0f, Mathf.Lerp(1f, 0f, t));
+                contentCanvasGroup.alpha = Mathf.Lerp(1f, 0f, t);
+            }
+            yield return null;
+        }
+        if (!fadeIn)
+        {
+            bgImage.color = new Color(0f, 0f, 0f, 0f);
+            contentCanvasGroup.alpha = 0f;
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            bgImage.color = new Color(0f, 0f, 0f, 1f);
+            contentCanvasGroup.alpha = 1f;
+        }
+    }
+    private void OnEnable()
+    {
+        StartCoroutine(PlaySettingsAnimation());
     }
 }
