@@ -64,7 +64,10 @@ public class HUD :MonoBehaviour {
 
     private void GameManager_OnRevived()
     {
+        gameObject.SetActive(true);
         GetComponent<Animator>().SetTrigger("Enable");
+        EnableRunButton();
+        ShowEditButton();
     }
 
     private void GameManager_OnGamePause(object sender, System.EventArgs e)

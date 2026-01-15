@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MainMenuSnippetsDragArea : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler {
+public class MainMenuSnippetsDragArea : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerDownHandler {
     [SerializeField] private RectTransform dragRectTransform;
     [SerializeField] private CanvasGroup canvasGroup;
 
@@ -39,7 +39,10 @@ public class MainMenuSnippetsDragArea : MonoBehaviour, IDragHandler, IBeginDragH
         canvasGroup.blocksRaycasts = true;
         SoundManager.Instance.PlaySnippetDropSound();
     }
-
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        dragRectTransform.SetAsLastSibling();
+    }
     private void ClampToParent()
     {
         if (parentRectTransform == null) return;

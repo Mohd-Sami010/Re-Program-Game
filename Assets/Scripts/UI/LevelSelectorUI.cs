@@ -11,7 +11,7 @@ public class LevelSelectorUI :MonoBehaviour {
     [SerializeField] private GameObject[] levelButtonsSlides;
     [SerializeField] private Button closeButton;
     [SerializeField] private GameObject mainMenuUi;
-    [SerializeField] private GameObject loadingUi;
+    [SerializeField] private LoadingUI loadingUi;
 
     [Header("Navigation buttons")]
     [SerializeField] private Button nextSlideButton;
@@ -35,8 +35,8 @@ public class LevelSelectorUI :MonoBehaviour {
             int index = i; // Capture the current value of i
             levelButtons[i].onClick.AddListener(() => {
                 SoundManager.Instance.PlayUISound1();
-                loadingUi.SetActive(true);
-                SceneManager.LoadScene(index + 1);
+                SceneManager.LoadSceneAsync(index + 1);
+                loadingUi.EnableLoadingUI();
             });
             bool isLevelCompleted = PlayerPrefs.GetInt("Level_" + (i+1) + "_Completed", 0) == 1;
             if (isLevelCompleted)

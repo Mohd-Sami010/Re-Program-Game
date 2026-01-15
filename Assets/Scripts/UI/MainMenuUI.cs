@@ -21,8 +21,8 @@ public class MainMenuUI :MonoBehaviour {
 
         playButton.onClick.AddListener(() => {
             SoundManager.Instance.PlayUISound1();
-            loadingUIObject.EnableLoadingUI();
             UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(levelToLoad);
+            loadingUIObject.EnableLoadingUI();
             
         });
         levelSelectButton.onClick.AddListener(() => {
