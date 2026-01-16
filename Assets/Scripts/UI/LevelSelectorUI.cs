@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -6,14 +7,21 @@ using UnityEngine.UI;
 
 public class LevelSelectorUI :MonoBehaviour {
 
-    [SerializeField] private int levelIndex;
-    [SerializeField] private Button[] levelButtons;
-    [SerializeField] private GameObject[] levelButtonsSlides;
     [SerializeField] private Button closeButton;
     [SerializeField] private GameObject mainMenuUi;
     [SerializeField] private LoadingUI loadingUi;
 
+    [Header("Level Selection")]
+    [SerializeField] private TextMeshProUGUI levelTitleText;
+    [SerializeField] private TextMeshProUGUI levelInfoText;
+    [SerializeField][TextArea(3, 6)] private string[] levelInfos;
+    [SerializeField] private Button playButton;
+    [SerializeField] private TextMeshProUGUI playButtonTextMesh;
+    [SerializeField] private int selectedLevelIndex;
+    [SerializeField] private Button[] levelButtons;
+
     [Header("Navigation buttons")]
+    [SerializeField] private GameObject[] levelButtonsSlides;
     [SerializeField] private Button nextSlideButton;
     [SerializeField] private Button previousSlideButton;
     [SerializeField] private TextMeshProUGUI slideIndicatorText;
@@ -30,33 +38,40 @@ public class LevelSelectorUI :MonoBehaviour {
 
     private void Awake()
     {
+        levelTitleText.text = "";
+        levelInfoText.text = "";
+
         for (int i = 0; i < levelButtons.Length; i++)
         {
-            int index = i; // Capture the current value of i
-            levelButtons[i].onClick.AddListener(() => {
+            int index = i;
+
+            levelButtons[index].onClick.AddListener(() => {
                 SoundManager.Instance.PlayUISound1();
-                SceneManager.LoadSceneAsync(index + 1);
-                loadingUi.EnableLoadingUI();
+                SelectThisButton(index);
             });
-            bool isLevelCompleted = PlayerPrefs.GetInt("Level_" + (i+1) + "_Completed", 0) == 1;
+            bool isLevelCompleted = PlayerPrefs.GetInt("Level_" + (index+1) + "_Completed", 0) == 1;
             if (isLevelCompleted)
             {
-                levelButtons[i].interactable = true;
                 levelButtons[i].GetComponent<Outline>().effectColor = completedOutlineColor;
             }
             else if (PlayerPrefs.GetInt("LevelToContinue", 1) == i+1)
             {
-                levelButtons[i].interactable = true;
                 levelButtons[i].GetComponent<Outline>().effectColor = continueOutlineColor;
                 levelButtons[i].GetComponentInChildren<TextMeshProUGUI>().fontSize +=10;
             }
             else
             {
-                levelButtons[i].interactable = false;
                 levelButtons[i].GetComponent<Outline>().effectColor = lockedOutlineColor;
             }
-            levelButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = i+1 + "";
+            levelButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = index +1 + "";
+
         }
+        playButton.onClick.AddListener(() => {
+            SoundManager.Instance.PlayUISound2();
+            loadingUi.EnableLoadingUI();
+            SceneManager.LoadSceneAsync(selectedLevelIndex + 1);
+        });
+
         closeButton.onClick.AddListener(() => {
             SoundManager.Instance.PlayUISound2();
             mainMenuUi.SetActive(true);
@@ -71,8 +86,48 @@ public class LevelSelectorUI :MonoBehaviour {
             ChangeLevelSlide(-1);
         });
         ChangeLevelSlide(0);
+
+        // Select the Continue level Button by Default
+        int levelIndexToContinue = PlayerPrefs.GetInt("LevelToContinue", 1) -1;
+        SelectThisButton(levelIndexToContinue);
+
+        int slideIndex = levelIndexToContinue / 9;
+        for (int i = 0; i < slideIndex; i++)
+        {
+            ChangeLevelSlide(1);
+        }
+
         animator = GetComponent<Animator>();
         gameObject.SetActive(false);
+    }
+    private void SelectThisButton(int i)
+    {
+        bool isLevelCompleted = PlayerPrefs.GetInt("Level_" + (i + 1) + "_Completed", 0) == 1;
+        selectedLevelIndex = i;
+
+        for (int j = 0; j < levelButtons.Length; j++)
+        {
+            if (j == i) levelButtons[j].GetComponent<CanvasGroup>().alpha = 0.9f;
+            else levelButtons[j].GetComponent<CanvasGroup>().alpha = 1f;
+        }
+        levelTitleText.text = "Level " + (i + 1);
+        levelInfoText.text = levelInfos[i];
+
+        playButton.interactable = true;
+        if (isLevelCompleted)
+        {
+            playButtonTextMesh.text = "Replay";
+            levelInfoText.text += "\n\n<size=40><color=#E47474><b>Note</b>: When replaying a level, finish faster or use fewer code blocks than before to earn rewards.</color></size>";
+        }
+        else if (PlayerPrefs.GetInt("LevelToContinue", 1) == i + 1)
+        {
+            playButtonTextMesh.text = "Play";
+        }
+        else
+        {
+            playButtonTextMesh.text = "Locked";
+            playButton.interactable = false;
+        }
     }
     private void ChangeLevelSlide(int direction)
     {
