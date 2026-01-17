@@ -6,6 +6,7 @@ public class DamageArea :MonoBehaviour {
     [SerializeField] private float damage = 40;
     [Space]
     [SerializeField] private bool damageOnStay = false;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (GameManager.Instance.GetCurrentGameState() != GameManager.GameState.Running) return;
@@ -23,5 +24,11 @@ public class DamageArea :MonoBehaviour {
         {
             robotHealth.TakeDamage(damage * Time.deltaTime);
         }
+    }
+    private void PlaySound()
+    {
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.pitch = Random.Range(0.8f, 1.2f);
+        audioSource.Play();
     }
 }

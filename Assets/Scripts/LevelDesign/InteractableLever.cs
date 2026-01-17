@@ -25,6 +25,7 @@ public class InteractableLever :MonoBehaviour {
         leverAnimator.SetBool("Activated", false);
         TurnOffLights();
         isActivated = false;
+        GetComponent<AudioSource>().Stop();
     }
 
     public void Interact()
@@ -43,6 +44,7 @@ public class InteractableLever :MonoBehaviour {
             obstacleToMove.MoveObstacleToInitialPosition();
             isActivated = false;
         }
+        PlaySound();
     }
     private void TurnOnLights()
     {
@@ -57,5 +59,11 @@ public class InteractableLever :MonoBehaviour {
         if (obstacleToMove == null) return;
         Gizmos.color = leverColourIndicatorSprite.color;
         Gizmos.DrawLine(transform.position, obstacleToMove.transform.position);
+    }
+    private void PlaySound()
+    {
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.pitch = Random.Range(0.8f, 1.2f);
+        audioSource.Play();
     }
 }

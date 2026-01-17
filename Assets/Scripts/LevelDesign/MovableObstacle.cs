@@ -11,6 +11,9 @@ public class MovableObstacle :MonoBehaviour {
     [SerializeField] private GameObject lightsObject;
     [SerializeField] private SpriteRenderer colourSprite;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource movingSoundAudioSource;
+    [SerializeField] private AudioSource movingStopSoundAudioSource;
     private void Awake()
     {
         initialPosition = transform.position;
@@ -24,6 +27,8 @@ public class MovableObstacle :MonoBehaviour {
     private void GameManager_OnGameRestart(object sender, System.EventArgs e)
     {
         ResetObstacle();
+        movingStopSoundAudioSource.Stop();
+        movingSoundAudioSource.Stop();
     }
 
     public void RemoveObstacle()
@@ -44,6 +49,9 @@ public class MovableObstacle :MonoBehaviour {
     }
     private IEnumerator MoveObstacle(Vector3 destinedPosition, Quaternion destinedRotation, bool lightsOn = true)
     {
+        PlayMovingSound();
+        movingStopSoundAudioSource.Stop();
+
         float duration = 1f;
         float timer = 0;
 
@@ -55,9 +63,16 @@ public class MovableObstacle :MonoBehaviour {
             transform.position = Vector3.Lerp(transform.position, destinedPosition, timer / duration);
             transform.rotation = Quaternion.Lerp(transform.rotation, destinedRotation, timer/duration);
             timer += Time.deltaTime;
+            if (timer / duration >= 0.55f && movingSoundAudioSource.isPlaying)
+            {
+                PlayMovingStopSound();
+                movingSoundAudioSource.Stop();
+            }
             yield return null;
         }
+        movingSoundAudioSource.Stop();
         transform.position = destinedPosition;
+
     }
     private void OnDestroy()
     {
@@ -107,5 +122,15 @@ public class MovableObstacle :MonoBehaviour {
         {
             colourSprite.color = colour;
         }
+    }
+    private void PlayMovingSound()
+    {
+        movingSoundAudioSource.pitch = Random.Range(0.8f, 1.2f);
+        movingSoundAudioSource.Play();
+    }
+    private void PlayMovingStopSound()
+    {
+        movingStopSoundAudioSource.pitch = movingSoundAudioSource.pitch;
+        movingStopSoundAudioSource.Play();
     }
 }

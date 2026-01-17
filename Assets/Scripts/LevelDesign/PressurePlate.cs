@@ -25,6 +25,7 @@ public class PressurePlate :MonoBehaviour {
             obstacleToMove.RemoveObstacle();
             animator.SetBool("Pressed", true);
             objectsOnPlate++;
+            PlaySound();
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -36,6 +37,7 @@ public class PressurePlate :MonoBehaviour {
             greenLightsObject.SetActive(false);
             obstacleToMove.MoveObstacleToInitialPosition();
             animator.SetBool("Pressed", false);
+            PlaySound();
         }
     }
     private void OnDrawGizmos()
@@ -43,5 +45,11 @@ public class PressurePlate :MonoBehaviour {
         if (obstacleToMove == null) return;
         Gizmos.color = leverColourIndicatorSprite.color;
         Gizmos.DrawLine(transform.position, obstacleToMove.transform.position);
+    }
+    private void PlaySound()
+    {
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.pitch = Random.Range(0.8f, 1.2f);
+        audioSource.Play();
     }
 }
