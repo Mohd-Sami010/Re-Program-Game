@@ -16,6 +16,17 @@ public class PressurePlate :MonoBehaviour {
     private void Start()
     {
         obstacleToMove.SetColour(leverColourIndicatorSprite.color);
+        GameManager.Instance.OnGameStop += GameManager_OnGameStop;
+        GameManager.Instance.OnGameRestart += GameManager_OnGameStop;
+    }
+    private void GameManager_OnGameStop(object sender, System.EventArgs e)
+    {
+        greenLightsObject.SetActive(false);
+        animator.SetBool("Pressed", false);
+        objectsOnPlate = 0;
+        obstacleToMove.MoveObstacleToInitialPosition();
+        GetComponent<AudioSource>().Stop();
+        GetComponent<AudioSource>().volume =0;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -25,6 +36,8 @@ public class PressurePlate :MonoBehaviour {
             obstacleToMove.RemoveObstacle();
             animator.SetBool("Pressed", true);
             objectsOnPlate++;
+            if (objectsOnPlate > 1) return;
+            GetComponent<AudioSource>().volume = 1;
             PlaySound();
         }
     }

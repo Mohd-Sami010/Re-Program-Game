@@ -29,6 +29,8 @@ public class MovableObstacle :MonoBehaviour {
         ResetObstacle();
         movingStopSoundAudioSource.Stop();
         movingSoundAudioSource.Stop();
+        movingSoundAudioSource.volume = 0;
+        movingStopSoundAudioSource.volume = 0;
     }
 
     public void RemoveObstacle()
@@ -49,6 +51,9 @@ public class MovableObstacle :MonoBehaviour {
     }
     private IEnumerator MoveObstacle(Vector3 destinedPosition, Quaternion destinedRotation, bool lightsOn = true)
     {
+        movingSoundAudioSource.volume = 1;
+        movingStopSoundAudioSource.volume = 1;
+
         PlayMovingSound();
         movingStopSoundAudioSource.Stop();
 
