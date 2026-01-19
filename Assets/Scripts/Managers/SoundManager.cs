@@ -10,6 +10,7 @@ public class SoundManager :MonoBehaviour {
     [SerializeField] private AudioSource robotTurnAudioSource;
     [SerializeField] private AudioSource robotLoseAudioSource;
     [SerializeField] private AudioSource robotWinAudioSource;
+    [SerializeField] private AudioSource robotHurtAudioSource;
 
     [Header("HUD Sounds")]
     [SerializeField] private AudioSource playButtonAudioSource;
@@ -92,6 +93,10 @@ public class SoundManager :MonoBehaviour {
     public void PlayRobotWinSound()
     {
         PlaySound(robotWinAudioSource);
+    }
+    public void PlayRobotHurtSound()
+    {
+        PlaySound(robotHurtAudioSource);
     }
 
     // HUD Sounds
