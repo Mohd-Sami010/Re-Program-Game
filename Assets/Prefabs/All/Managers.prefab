@@ -47,8 +47,8 @@ MonoBehaviour:
   baseReward: 5
   maxTimeBonus: 10
   maxSnippetBonus: 8
-  minExpectedLevelPlayTime: 30
-  minNumOfSnippets: 5
+  minExpectedLevelPlayTime: 15
+  minNumOfSnippets: 1
 --- !u!1 &2498652879597074168
 GameObject:
   m_ObjectHideFlags: 0

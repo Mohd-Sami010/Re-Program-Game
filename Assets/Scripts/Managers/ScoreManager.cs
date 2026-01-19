@@ -49,9 +49,9 @@ public class ScoreManager :MonoBehaviour {
     private int CalculateSnippetBonus()
     {
         int actualSnippets = SnippetsManagerUI.Instance.GetNumberOfSnippetsUsed();
-        if (actualSnippets >= minNumOfSnippets) return 0;
+        if (actualSnippets > minNumOfSnippets) return 0;
 
-        float efficiency = 1f - (float)actualSnippets / minNumOfSnippets;
+        float efficiency = 1.1f - (float)actualSnippets / minNumOfSnippets;
         int snippetBonus = Mathf.RoundToInt(efficiency * maxSnippetBonus);
 
         if (isLevelCompleted &&
@@ -72,11 +72,9 @@ public class ScoreManager :MonoBehaviour {
 
     public string GetLevelReport()
     {
-        int levelNumber = SceneManager.GetActiveScene().buildIndex;
 
         int timeBonus = CalculateTimeBonus();
         int snippetBonus = CalculateSnippetBonus();
-        int total = GetLevelReward();
 
         string tab = $"<pos={RIGHT_COLUMN}>";
 

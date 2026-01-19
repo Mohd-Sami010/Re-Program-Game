@@ -2915,36 +2915,23 @@ MonoBehaviour:
   levelTitleText: {fileID: 903164283}
   levelInfoText: {fileID: 589217426}
   levelInfos:
-  - "Introduction to basics.\n\u25CF Learn to move code blocks.\n\u25CF Move Robot
-    using move block."
-  - "Introduction to basics.\n\u25CF Learn to move code blocks.\n\u25CF Move Robot
-    using move block."
-  - "Introduction to basics.\n\u25CF Learn to move code blocks.\n\u25CF Move Robot
-    using move block."
-  - "Introduction to basics.\n\u25CF Learn to move code blocks.\n\u25CF Move Robot
-    using move block."
-  - "Introduction to basics.\n\u25CF Learn to move code blocks.\n\u25CF Move Robot
-    using move block."
-  - "Introduction to basics.\n\u25CF Learn to move code blocks.\n\u25CF Move Robot
-    using move block."
-  - "Introduction to basics.\n\u25CF Learn to move code blocks.\n\u25CF Move Robot
-    using move block."
-  - "Introduction to basics.\n\u25CF Learn to move code blocks.\n\u25CF Move Robot
-    using move block."
-  - "Introduction to basics.\n\u25CF Learn to move code blocks.\n\u25CF Move Robot
-    using move block."
-  - "Introduction to basics.\n\u25CF Learn to move code blocks.\n\u25CF Move Robot
-    using move block."
-  - "Introduction to basics.\n\u25CF Learn to move code blocks.\n\u25CF Move Robot
-    using move block."
-  - "Introduction to basics.\n\u25CF Learn to move code blocks.\n\u25CF Move Robot
-    using move block."
-  - "Introduction to basics.\n\u25CF Learn to move code blocks.\n\u25CF Move Robot
-    using move block."
-  - "Introduction to basics.\n\u25CF Learn to move code blocks.\n\u25CF Move Robot
-    using move block."
-  - "Introduction to basics.\n\u25CF Learn to move code blocks.\n\u25CF Move Robot
-    using move block."
+  - "\u25CF Learn to move code blocks.\n\u25CF Move Robot using move block."
+  - "\u25CF Move Robot using move block.\n\u25CF Learn to move robot on uneven surface."
+  - "\u25CF Introduction to Jump block.\n\u25CF Learn to jump robot over gaps."
+  - "\u25CF Another level related to jump.\n\u25CF Learn to jump robot to cliffs."
+  - "\u25CF Test of your memory.\n\u25CF Use Move and Jump to cross level."
+  - "\u25CF Introduction to Turn Block.\n\u25CF Learn to turn robot in opposite direction."
+  - "\u25CF Test of Skills\n\u25CF Use move, jump and turn to finsh level."
+  - "\u25CF Introduction to Interaction.\n\u25CF Learn to Activate lever using Interact
+    block."
+  - "\u25CF Test for Skills.\n\u25CF Use all 4 blocks to finish this level."
+  - "\u25CF Test for Problem Solving.\n\u25CF Use all 4 blocks to finish this level."
+  - "\u25CF Introduction to Pick/ Drop.\n\u25CF Learn to Pick/Drop box using interact
+    block."
+  - "\u25CF Small test.\n\u25CF Learn to Pick/Drop box using interact block."
+  - "\u25CF Advance level.\n\u25CF Apply problem solving and Don't Giveup."
+  - "\u25CF Advance level 2.\n\u25CF Apply problem solving and Don't Giveup."
+  - "\u25CF Advance level 3.\n\u25CF Apply problem solving and Don't Giveup."
   playButton: {fileID: 1922087660}
   playButtonTextMesh: {fileID: 1301533275}
   selectedLevelIndex: 0

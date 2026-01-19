@@ -413,13 +413,14 @@ PrefabInstance:
       value: MainMenu Level
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 656295577540014636, guid: feb0aab6ed18d7a4d8d2b31aa741f41d, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4582586459864508430, guid: feb0aab6ed18d7a4d8d2b31aa741f41d, type: 3}
-      insertIndex: 3
+      insertIndex: 2
       addedObject: {fileID: 4680947269595041693}
     - targetCorrespondingSourceObject: {fileID: 4582586459864508430, guid: feb0aab6ed18d7a4d8d2b31aa741f41d, type: 3}
-      insertIndex: 4
+      insertIndex: 3
       addedObject: {fileID: 8693616415119942966}
     - targetCorrespondingSourceObject: {fileID: 4582586459864508430, guid: feb0aab6ed18d7a4d8d2b31aa741f41d, type: 3}
       insertIndex: -1

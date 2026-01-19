@@ -122,7 +122,7 @@ public class GameOverUI :MonoBehaviour {
                 //SoundManager.Instance.PlayErrorSound();
             }
         });
-        buyEnergyTextMesh.text = $"100% Energy      {EconomyManager.Instance.GetEnergyPrice_100percent()}";
+        buyEnergyTextMesh.text = $"100% Battery      {EconomyManager.Instance.GetEnergyPrice_100percent()}";
         #endregion
 
         ResetUI();
@@ -167,12 +167,12 @@ public class GameOverUI :MonoBehaviour {
         {
             currentBalanceTextMesh.transform.parent.parent.gameObject.SetActive(true);
             loseTitleText.gameObject.SetActive(true);
-            loseTitleText.text = "No Energy";
+            loseTitleText.text = "No Battery";
             buyEnergyUi.SetActive(true);
 
             if (EconomyManager.Instance.GetEnergyPrice_100percent() > EconomyManager.Instance.GetCurrentBalance())
             {
-                buyEnergyTextMesh.text = "<color=#FF6666>100% Energy      " + EconomyManager.Instance.GetEnergyPrice_100percent() + "</color>";
+                buyEnergyTextMesh.text = "<color=#FF6666>100% Battery      " + EconomyManager.Instance.GetEnergyPrice_100percent() + "</color>";
                 //buyEnergyButton.interactable = false;
             }
         }
