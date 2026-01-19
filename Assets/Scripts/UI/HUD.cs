@@ -60,6 +60,7 @@ public class HUD :MonoBehaviour {
         GameManager.Instance.OnGameResume += GameManager_OnGameResume;
         GameManager.Instance.OnRevived += GameManager_OnRevived;
         RobotHealthAndEnergy.Instance.OnHealthOrEnergyChanged += RobotHealthAndEnergy_OnHealthOrEnergyChanged;
+        RobotHealthAndEnergy.Instance.OnRobotDamage += RobotHealthAndEnergy_OnRobotDamage;
     }
 
     private void GameManager_OnRevived()
@@ -95,6 +96,10 @@ public class HUD :MonoBehaviour {
 
         if (e.robotEnergy <= 7) lowEnergyWarningImage.SetActive(true);
         else lowEnergyWarningImage.SetActive(false);
+    }
+    private void RobotHealthAndEnergy_OnRobotDamage()
+    {
+        healthBarImage.transform.parent.parent.GetComponent<Animator>().SetTrigger("Shake");
     }
 
     private void GameManager_OnGameStop(object sender, System.EventArgs e)

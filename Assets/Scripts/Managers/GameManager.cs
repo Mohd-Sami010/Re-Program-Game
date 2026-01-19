@@ -81,7 +81,8 @@ public class GameManager :MonoBehaviour {
             PlayerPrefs.SetInt("LevelToContinue", UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
             SoundManager.Instance.PlayRobotWinSound();
         }
-        else SoundManager.Instance.PlayRobotLoseSound();
+        else if (gameOverType == GameOverType.robotDied) SoundManager.Instance.PlayRobotLoseHealthSound();
+        else if (gameOverType == GameOverType.robotOutOfEnergy) SoundManager.Instance.PlayRobotLoseEnergySound();
     }
     public void LoadNextLevel()
     {

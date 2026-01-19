@@ -420,6 +420,7 @@ Transform:
   - {fileID: 2253875563825728615}
   - {fileID: 7900976178467442045}
   - {fileID: 2097940347140295118}
+  - {fileID: 115553995228217353}
   - {fileID: 3833209388852397561}
   - {fileID: 7692095645437584576}
   m_Father: {fileID: 8333749128309533840}
@@ -468,6 +469,135 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: c0b90c5d5d0737c41bd6f8f1b8d469aa, type: 2}
   m_audioClip: {fileID: 8300000, guid: a4238109a6bf1d5429e54653b28190bb, type: 3}
   m_Resource: {fileID: 8300000, guid: a4238109a6bf1d5429e54653b28190bb, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!1 &2631813261140360645
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 115553995228217353}
+  - component: {fileID: 128081202872671236}
+  m_Layer: 0
+  m_Name: RobotLoseEnergy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &115553995228217353
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2631813261140360645}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8855010082220256277}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &128081202872671236
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2631813261140360645}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: c0b90c5d5d0737c41bd6f8f1b8d469aa, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 81c4c08b037724147999434bce937684, type: 3}
+  m_Resource: {fileID: 8300000, guid: 81c4c08b037724147999434bce937684, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -606,7 +736,8 @@ MonoBehaviour:
   robotMoveAudioSource: {fileID: 3388849317822923020}
   robotJumpAudioSource: {fileID: 6051704276276909919}
   robotTurnAudioSource: {fileID: 2852506441983819129}
-  robotLoseAudioSource: {fileID: 1874938810790983304}
+  robotLoseHealthAudioSource: {fileID: 1874938810790983304}
+  robotLoseEnergyAudioSource: {fileID: 128081202872671236}
   robotWinAudioSource: {fileID: 8142429669592028399}
   robotHurtAudioSource: {fileID: 3046115763968180661}
   playButtonAudioSource: {fileID: 5884484397854102852}
@@ -630,7 +761,7 @@ GameObject:
   - component: {fileID: 2097940347140295118}
   - component: {fileID: 1874938810790983304}
   m_Layer: 0
-  m_Name: RobotLose
+  m_Name: RobotLoseHealth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1503,8 +1634,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: c0b90c5d5d0737c41bd6f8f1b8d469aa, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 9fbe75fd55bfed64899e6adc0d4cc02b, type: 3}
-  m_Resource: {fileID: 8300000, guid: 9fbe75fd55bfed64899e6adc0d4cc02b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0c54662d18b57a94f988a8c6491a7766, type: 3}
+  m_Resource: {fileID: 8300000, guid: 0c54662d18b57a94f988a8c6491a7766, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

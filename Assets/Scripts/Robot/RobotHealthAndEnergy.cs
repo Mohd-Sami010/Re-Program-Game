@@ -12,6 +12,7 @@ public class RobotHealthAndEnergy :MonoBehaviour {
         public float robotHealth;
         public float robotEnergy;
     }
+    public event Action OnRobotDamage;
 
     private void Awake()
     {
@@ -48,6 +49,8 @@ public class RobotHealthAndEnergy :MonoBehaviour {
 
         UpdateUi();
         SaveHealthAndEnergy();
+        if (damage > 0) OnRobotDamage?.Invoke();
+
         if (health <= 0)
         {
             health = 0;

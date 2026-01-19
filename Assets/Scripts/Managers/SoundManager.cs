@@ -8,7 +8,8 @@ public class SoundManager :MonoBehaviour {
     [SerializeField] private AudioSource robotMoveAudioSource;
     [SerializeField] private AudioSource robotJumpAudioSource;
     [SerializeField] private AudioSource robotTurnAudioSource;
-    [SerializeField] private AudioSource robotLoseAudioSource;
+    [SerializeField] private AudioSource robotLoseHealthAudioSource;
+    [SerializeField] private AudioSource robotLoseEnergyAudioSource;
     [SerializeField] private AudioSource robotWinAudioSource;
     [SerializeField] private AudioSource robotHurtAudioSource;
 
@@ -86,9 +87,13 @@ public class SoundManager :MonoBehaviour {
     {
         PlaySound(robotTurnAudioSource);
     }
-    public void PlayRobotLoseSound()
+    public void PlayRobotLoseHealthSound()
     {
-        PlaySound(robotLoseAudioSource);
+        PlaySound(robotLoseHealthAudioSource);
+    }
+    public void PlayRobotLoseEnergySound()
+    {
+        PlaySound(robotLoseEnergyAudioSource);
     }
     public void PlayRobotWinSound()
     {
