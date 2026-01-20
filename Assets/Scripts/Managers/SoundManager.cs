@@ -27,6 +27,9 @@ public class SoundManager :MonoBehaviour {
     [SerializeField] private AudioSource uISound1AudioSource;
     [SerializeField] private AudioSource uISound2AudioSource;
 
+    [Header("Tutorial Text Pop Sound")]
+    [SerializeField] private AudioSource tutorialTextPopAudioSource;
+
     [Header("Money Sound")]
     [SerializeField] private AudioSource transactionSucessAudioSource;
     [SerializeField] private AudioSource transactionFailAudioSource;
@@ -140,6 +143,10 @@ public class SoundManager :MonoBehaviour {
     public void PlayUISound2()
     {
         PlaySound(uISound2AudioSource);
+    }
+    public void PlayTutorialTextPopSound()
+    {
+        PlaySound(tutorialTextPopAudioSource);
     }
 
     private void PlaySound(AudioSource audioSource)

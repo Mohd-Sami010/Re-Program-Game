@@ -5,10 +5,10 @@ public class TutorialManager :MonoBehaviour {
     [SerializeField] private bool isTutorialLevel = false;
 
     [SerializeField][TextArea(1, 2)] private string[] tutorialTexts = {
-        "Tap on <color=#FFC200><b></> Code</b></color> to open Code editor.",
-        "Drag and Drop <color=#FFC200><b>Move Block</b></color> under <color=#FFC200><b>Start Block</b></color>.",
-        "Change value inside <color=#FFC200><b>Move Block</b></color> to <color=#FFC200><b>10</b></color>.",
-        "Close <color=#FFC200><b>Code Editor</b></color> and press <color=#0FC400><b>RUN</b></color>.",
+        "Press <color=#FFC200><b>Code</b></color> button to open Code editor",
+        "Drag and Drop <color=#FFC200><b>Move Block</b></color> under <color=#FFC200><b>Start Block</b></color>",
+        "Change value inside <color=#FFC200><b>Move Block</b></color> to <color=#FFC200><b>10</b></color>",
+        "Close <color=#FFC200><b>Code Editor</b></color> by pressing <color=#FF4141>X</color> and press <color=#0FC400><b>RUN</b></color>",
     };
     private int currentTutorialTextIndex = 0;
 
@@ -18,6 +18,7 @@ public class TutorialManager :MonoBehaviour {
     [SerializeField] private bool textToChangeBlockValue = true;
     [SerializeField] private bool disableDeleteAreaObject = true;
     [SerializeField] private bool disableSnippetsSpawnerObject;
+    [SerializeField] private bool disableTutorialOnPlay = true;
 
     private TutorialUI tutorialUI;
 
@@ -28,6 +29,8 @@ public class TutorialManager :MonoBehaviour {
             tutorialUI = FindFirstObjectByType<TutorialUI>();
             tutorialUI.SetTutorialText(tutorialTexts[currentTutorialTextIndex]);
             currentTutorialTextIndex++;
+
+            
         }
         else
         {
@@ -40,6 +43,7 @@ public class TutorialManager :MonoBehaviour {
     public bool TextToChangeBlockValue() { return textToChangeBlockValue; }
     public bool DisableDeleteAreaObject() { return disableDeleteAreaObject; }
     public bool DisableSnippetsSpawnerObject() { return disableSnippetsSpawnerObject; }
+    public bool CheckForGameToPlay() { return disableTutorialOnPlay; }
 
     public void CodeEditorOpened()
     {
@@ -55,5 +59,13 @@ public class TutorialManager :MonoBehaviour {
     {
         tutorialUI.SetTutorialText(tutorialTexts[currentTutorialTextIndex]);
         currentTutorialTextIndex++;
+    }
+    public void GamePlayed()
+    {
+        if (currentTutorialTextIndex >= tutorialTexts.Length)
+        {
+            Destroy(tutorialUI.gameObject);
+            Destroy(this.gameObject);
+        }
     }
 }

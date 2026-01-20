@@ -18,6 +18,7 @@ public class TutorialUI :MonoBehaviour {
     [Space]
     [Header("Open Code Editor Button")]
     [SerializeField] private Button openCodeEditorButton;
+    [SerializeField] private Button runButton;
     private TutorialManager tutorialManager;
 
     private void Start()
@@ -48,7 +49,7 @@ public class TutorialUI :MonoBehaviour {
             // Block Placed under StartSnippet
             if (snippetUI != null && tutorialManager.TextToPlaceBlock())
             {
-                snippetUI.OnNextSnippetChanged += SnippetUI_OnNextSnippetChanged;
+                StartSnippet.Instance.GetComponent<SnippetUI>().OnNextSnippetChanged += SnippetUI_OnNextSnippetChanged;
                 Debug.Log("TutorialUI: Subscribed to SnippetUI OnNextSnippetChanged event.");
             }
 
@@ -60,7 +61,14 @@ public class TutorialUI :MonoBehaviour {
                     {
                         tutorialManager.BlockValueChanged();
                     }
-                    Debug.Log("TutorialUI: Snippet Input Field value changed to " + snippetUiInputField.text);
+                });
+            }
+
+            if (tutorialManager.CheckForGameToPlay())
+            {
+                runButton.onClick.AddListener(() =>
+                {
+                    tutorialManager.GamePlayed();
                 });
             }
         }
@@ -72,15 +80,17 @@ public class TutorialUI :MonoBehaviour {
 
     private void SnippetUI_OnNextSnippetChanged()
     {
-        if (snippetUI.GetNextSnippet().GetComponent<StartSnippet>() != null)
+        SnippetUI nextSnippet = StartSnippet.Instance.GetComponent<SnippetUI>().GetNextSnippet();
+        if (nextSnippet != null)
         {
             tutorialManager.BlockPlaced();
+            Debug.Log("TutorialUI: BlockPlaced event triggered.");
         }
-        Debug.Log("TutorialUI: Block Placed under StartSnippet detected.");
     }
 
     public void SetTutorialText(string text)
     {
+        SoundManager.Instance.PlayTutorialTextPopSound();
         tutorialText.transform.parent.gameObject.SetActive(true);
         if (tutorialText != null)
         {

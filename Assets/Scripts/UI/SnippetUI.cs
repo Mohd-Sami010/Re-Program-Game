@@ -99,7 +99,6 @@ public class SnippetUI :MonoBehaviour {
     {
         nextSnippetUI = snippetUI;
         OnNextSnippetChanged?.Invoke();
-        Debug.Log("Next snippet changed.");
     }
 
     public SnippetUI GetNextSnippet() => nextSnippetUI;
