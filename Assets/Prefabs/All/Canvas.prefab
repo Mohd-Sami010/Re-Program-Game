@@ -3769,8 +3769,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 500, y: -212}
-  m_SizeDelta: {x: 1000, y: 220}
+  m_AnchoredPosition: {x: 495.8916, y: -212}
+  m_SizeDelta: {x: 1008.2168, y: 220}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8092317286087238181
 CanvasRenderer:
@@ -3800,8 +3800,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: -5177388603050735206, guid: 71ebafeef3c03457483266a33ab2b270, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4436,6 +4436,7 @@ MonoBehaviour:
   tutorialText: {fileID: 1789315688221351998}
   snippetUI: {fileID: 4433672373790258291}
   snippetUiInputField: {fileID: 989075954572191135}
+  blockValueToChangeTo: 10
   deleteAreaObject: {fileID: 6695100554327036176}
   snippetsSpawnerObject: {fileID: 4538437331127783280}
   snippetSpawnerButtonObjects:
