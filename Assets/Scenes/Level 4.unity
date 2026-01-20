@@ -413,6 +413,18 @@ PrefabInstance:
       propertyPath: minExpectedLevelPlayTime
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 4252555962542104553, guid: 68b95321d7ed1e4409a5b8542890b8fb, type: 3}
+      propertyPath: tutorialTexts.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4252555962542104553, guid: 68b95321d7ed1e4409a5b8542890b8fb, type: 3}
+      propertyPath: numOfSnippetSpawnerButtonsToDisable
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4252555962542104553, guid: 68b95321d7ed1e4409a5b8542890b8fb, type: 3}
+      propertyPath: disableSomeOfSnippetSpawnerButtonObject
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5758192786989866710, guid: 68b95321d7ed1e4409a5b8542890b8fb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -529,7 +541,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1839893034198102999, guid: 18a4ac2036f31de4ca87f6ad0f03d309, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1839893034198102999, guid: 18a4ac2036f31de4ca87f6ad0f03d309, type: 3}
       propertyPath: m_LocalPosition.x
@@ -541,7 +553,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2347004858833580952, guid: 18a4ac2036f31de4ca87f6ad0f03d309, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2347004858833580952, guid: 18a4ac2036f31de4ca87f6ad0f03d309, type: 3}
       propertyPath: m_LocalPosition.x
@@ -629,7 +641,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3912926583679706263, guid: 18a4ac2036f31de4ca87f6ad0f03d309, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3912926583679706263, guid: 18a4ac2036f31de4ca87f6ad0f03d309, type: 3}
       propertyPath: m_LocalPosition.x
@@ -717,14 +729,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8121597702406825150, guid: 18a4ac2036f31de4ca87f6ad0f03d309, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8121597702406825150, guid: 18a4ac2036f31de4ca87f6ad0f03d309, type: 3}
       propertyPath: m_LocalPosition.x
       value: -70
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5335054345609991916, guid: 18a4ac2036f31de4ca87f6ad0f03d309, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18a4ac2036f31de4ca87f6ad0f03d309, type: 3}

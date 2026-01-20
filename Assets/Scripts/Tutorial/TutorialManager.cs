@@ -78,12 +78,20 @@ public class TutorialManager :MonoBehaviour {
         currentTutorialTextIndex++;
         textToChangeBlockValue = false;
     }
-    public void GamePlayed()
+    public void DisabeOnGamePlayed()
     {
-        if (currentTutorialTextIndex >= tutorialTexts.Length)
+        if (currentTutorialTextIndex >= tutorialTexts.Length && disableTutorialOnPlay)
         {
             Destroy(tutorialUI.gameObject);
             Destroy(gameObject);
+        }
+    }
+    public void RunButtonPressed()
+    {
+        if (currentTutorialTextIndex == tutorialTexts.Length-1)
+        {
+            tutorialUI.SetTutorialText(tutorialTexts[currentTutorialTextIndex]);
+            currentTutorialTextIndex++;
         }
     }
     public void TriggerButtonPressed()

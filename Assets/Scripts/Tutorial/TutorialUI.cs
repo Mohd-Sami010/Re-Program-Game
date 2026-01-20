@@ -8,6 +8,7 @@ public class TutorialUI :MonoBehaviour {
 
     [SerializeField] private SnippetUI snippetUI;
     [SerializeField] private TMP_InputField snippetUiInputField;
+    [SerializeField] private string blockValueToChangeTo = "10";
 
     [Header("Delete Area")]
     [SerializeField] private GameObject deleteAreaObject;
@@ -27,6 +28,14 @@ public class TutorialUI :MonoBehaviour {
     private void Start()
     {
         tutorialManager = FindFirstObjectByType<TutorialManager>();
+
+        if (tutorialManager.DisableSomeSnippetSpawnerButtons())
+        {
+            for (int i = 3; i > 3 - tutorialManager.GetNumOfSnippetSpawnerButtonsToDisable(); i--)
+            {
+                Destroy(snippetSpawnerButtonObjects[i]);
+            }
+        }
         if (tutorialManager != null && tutorialManager.IsTutorialLevel())
         {
             // Disable Delete Area Object
@@ -60,18 +69,26 @@ public class TutorialUI :MonoBehaviour {
             if (snippetUI != null && tutorialManager.TextToChangeBlockValue())
             {
                 snippetUiInputField.onValueChanged.AddListener(_ => {
-                    if (snippetUiInputField.text.Trim() == "10")
+                    if (snippetUiInputField.text.Trim() == blockValueToChangeTo)
                     {
                         if (tutorialManager.TextToChangeBlockValue()) tutorialManager.BlockValueChanged();
                     }
                 });
             }
 
+
+            // Run Button
             if (tutorialManager.CheckForGameToPlay())
             {
                 runButton.onClick.AddListener(() =>
                 {
-                    tutorialManager.GamePlayed();
+                    tutorialManager.DisabeOnGamePlayed();
+                });
+            }
+            else
+            {
+                runButton.onClick.AddListener(() => {
+                    tutorialManager.RunButtonPressed();
                 });
             }
 
@@ -99,7 +116,7 @@ public class TutorialUI :MonoBehaviour {
     private void SnippetUI_OnNextSnippetChanged()
     {
         SnippetUI nextSnippet = StartSnippet.Instance.GetComponent<SnippetUI>().GetNextSnippet();
-        if (nextSnippet != null)
+        if (nextSnippet != null && nextSnippet == snippetUI)
         {
             tutorialManager.BlockPlaced();
             StartSnippet.Instance.GetComponent<SnippetUI>().OnNextSnippetChanged -= SnippetUI_OnNextSnippetChanged;

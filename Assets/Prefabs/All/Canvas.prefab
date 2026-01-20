@@ -6750,11 +6750,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 7
+    m_Left: 0
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 3
+  m_ChildAlignment: 4
   m_Spacing: 1
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
@@ -13545,10 +13545,6 @@ PrefabInstance:
     - target: {fileID: 4144802307279654703, guid: ac51c677973fbe64ebbe45207b7f2d65, type: 3}
       propertyPath: m_Name
       value: LoadingUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 4144802307279654703, guid: ac51c677973fbe64ebbe45207b7f2d65, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6396236567564117070, guid: ac51c677973fbe64ebbe45207b7f2d65, type: 3}
       propertyPath: m_Pivot.x
