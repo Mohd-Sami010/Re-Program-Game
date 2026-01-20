@@ -14,11 +14,14 @@ public class TutorialUI :MonoBehaviour {
 
     [Header("Snippets Spawner")]
     [SerializeField] private GameObject snippetsSpawnerObject;
+    [SerializeField] private GameObject[] snippetSpawnerButtonObjects;
 
     [Space]
     [Header("Open Code Editor Button")]
     [SerializeField] private Button openCodeEditorButton;
     [SerializeField] private Button runButton;
+
+    [SerializeField] private Button otherTriggerButton;
     private TutorialManager tutorialManager;
 
     private void Start()
@@ -42,7 +45,7 @@ public class TutorialUI :MonoBehaviour {
             {
                 openCodeEditorButton.onClick.AddListener(() =>
                 {
-                    tutorialManager.CodeEditorOpened();
+                    if (tutorialManager.TextToOpenCodeEditor()) tutorialManager.CodeEditorOpened();
                 });
             }
 
@@ -50,7 +53,7 @@ public class TutorialUI :MonoBehaviour {
             if (snippetUI != null && tutorialManager.TextToPlaceBlock())
             {
                 StartSnippet.Instance.GetComponent<SnippetUI>().OnNextSnippetChanged += SnippetUI_OnNextSnippetChanged;
-                Debug.Log("TutorialUI: Subscribed to SnippetUI OnNextSnippetChanged event.");
+                
             }
 
             // Block Value Changed to 10
@@ -59,7 +62,7 @@ public class TutorialUI :MonoBehaviour {
                 snippetUiInputField.onValueChanged.AddListener(_ => {
                     if (snippetUiInputField.text.Trim() == "10")
                     {
-                        tutorialManager.BlockValueChanged();
+                        if (tutorialManager.TextToChangeBlockValue()) tutorialManager.BlockValueChanged();
                     }
                 });
             }
@@ -71,10 +74,25 @@ public class TutorialUI :MonoBehaviour {
                     tutorialManager.GamePlayed();
                 });
             }
+
+            if (tutorialManager.DisableSomeSnippetSpawnerButtons())
+            {
+                for (int i = tutorialManager.GetNumOfSnippetSpawnerButtonsToDisable(); i > 0; i--)
+                {
+                    Destroy(snippetSpawnerButtonObjects[i]);
+                }
+            }
+
+            if (tutorialManager.ButtonTrigger())
+            {
+                otherTriggerButton.onClick.AddListener(() => {
+                    if (tutorialManager.ButtonTrigger()) tutorialManager.TriggerButtonPressed();
+                });
+            }
         }
         else
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 
@@ -84,7 +102,7 @@ public class TutorialUI :MonoBehaviour {
         if (nextSnippet != null)
         {
             tutorialManager.BlockPlaced();
-            Debug.Log("TutorialUI: BlockPlaced event triggered.");
+            StartSnippet.Instance.GetComponent<SnippetUI>().OnNextSnippetChanged -= SnippetUI_OnNextSnippetChanged;
         }
     }
 
@@ -92,6 +110,7 @@ public class TutorialUI :MonoBehaviour {
     {
         SoundManager.Instance.PlayTutorialTextPopSound();
         tutorialText.transform.parent.gameObject.SetActive(true);
+        GetComponent<Animator>().SetTrigger("Pop");
         if (tutorialText != null)
         {
             tutorialText.text = text;

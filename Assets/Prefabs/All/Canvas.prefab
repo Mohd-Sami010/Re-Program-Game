@@ -3761,7 +3761,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 481250650570100225}
   - {fileID: 1945407630450580703}
@@ -4393,6 +4393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4885750436388121836}
   - component: {fileID: 5839422816336375228}
+  - component: {fileID: 4017318835145109839}
   m_Layer: 5
   m_Name: TutorialUI
   m_TagString: Untagged
@@ -4410,7 +4411,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7520988286680160831}
   m_Father: {fileID: 2509086382210106596}
@@ -4437,8 +4438,36 @@ MonoBehaviour:
   snippetUiInputField: {fileID: 989075954572191135}
   deleteAreaObject: {fileID: 6695100554327036176}
   snippetsSpawnerObject: {fileID: 4538437331127783280}
+  snippetSpawnerButtonObjects:
+  - {fileID: 794753320203739069}
+  - {fileID: 7061148882046691254}
+  - {fileID: 6599333891864892125}
+  - {fileID: 7059695904826954526}
   openCodeEditorButton: {fileID: 4158877511364356621}
   runButton: {fileID: 9151654707892773148}
+  otherTriggerButton: {fileID: 0}
+--- !u!95 &4017318835145109839
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3017983163799917457}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0017093ad854d14499914b87ef3a2b28, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3037199955736749702
 GameObject:
   m_ObjectHideFlags: 0
@@ -6721,11 +6750,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
+    m_Left: 7
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 4
+  m_ChildAlignment: 3
   m_Spacing: 1
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
@@ -13054,7 +13083,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5839422816336375228}
         m_TargetAssemblyTypeName: TutorialUI, Assembly-CSharp
         m_MethodName: HideTutorialText
         m_Mode: 1
