@@ -27,6 +27,8 @@ public class SnippetUI :MonoBehaviour {
     private bool done;
     private bool isRunning;
 
+    public event Action OnNextSnippetChanged;
+
     private Animator animator;
 
     private void Start()
@@ -96,6 +98,8 @@ public class SnippetUI :MonoBehaviour {
     public void SetNextSnippetUI(SnippetUI snippetUI)
     {
         nextSnippetUI = snippetUI;
+        OnNextSnippetChanged?.Invoke();
+        Debug.Log("Next snippet changed.");
     }
 
     public SnippetUI GetNextSnippet() => nextSnippetUI;

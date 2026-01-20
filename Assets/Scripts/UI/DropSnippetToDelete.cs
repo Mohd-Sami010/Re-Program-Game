@@ -29,4 +29,9 @@ public class DropSnippetToDelete :MonoBehaviour, IDropHandler {
             SoundManager.Instance.PlaySnippetDeleteSound();
         }
     }
+    private void OnDestroy()
+    {
+        SnippetsManagerUI.Instance.OnEnableDropArea -= SnippetManagerUI_OnEnableDropArea;
+        SnippetsManagerUI.Instance.OnDisableDropArea -= SnippetManagerUI_OnDisableDropArea;
+    }
 }
