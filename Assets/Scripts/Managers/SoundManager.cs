@@ -96,11 +96,11 @@ public class SoundManager :MonoBehaviour {
     }
     public void PlayRobotLoseEnergySound()
     {
-        PlaySound(robotLoseEnergyAudioSource);
+        PlaySound(robotLoseEnergyAudioSource, false);
     }
     public void PlayRobotWinSound()
     {
-        PlaySound(robotWinAudioSource);
+        PlaySound(robotWinAudioSource, false);
     }
     public void PlayRobotHurtSound()
     {
@@ -149,11 +149,18 @@ public class SoundManager :MonoBehaviour {
         PlaySound(tutorialTextPopAudioSource);
     }
 
-    private void PlaySound(AudioSource audioSource)
+    private void PlaySound(AudioSource audioSource, bool playOnce = true)
     {
         if (audioSource == null) return;
         audioSource.pitch = Random.Range(0.9f, 1.1f);
-        audioSource.PlayOneShot(audioSource.clip);
+        if (playOnce)
+        {
+            audioSource.PlayOneShot(audioSource.clip);
+        }
+        else
+        {
+            audioSource.Play();
+        }
     }
     private void OnDestroy()
     {

@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GameManager :MonoBehaviour {
     public static GameManager Instance { get; private set; }
 
@@ -77,8 +77,12 @@ public class GameManager :MonoBehaviour {
         OnGameOver?.Invoke(this, new OnGameOverEventArgs { gameOverType = gameOverType });
         if (gameOverType == GameOverType.win)
         {
-            PlayerPrefs.SetInt("Level_" + UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + "_Completed", 1);
-            PlayerPrefs.SetInt("LevelToContinue", UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
+            if (PlayerPrefs.GetInt("Level_" + SceneManager.GetActiveScene().buildIndex + "_Completed", 0) == 0
+                && SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCount)
+            {
+                PlayerPrefs.SetInt("LevelToContinue", SceneManager.GetActiveScene().buildIndex + 1);
+            }
+            PlayerPrefs.SetInt("Level_" + SceneManager.GetActiveScene().buildIndex + "_Completed", 1);
             SoundManager.Instance.PlayRobotWinSound();
         }
         else if (gameOverType == GameOverType.robotDied) SoundManager.Instance.PlayRobotLoseHealthSound();
@@ -87,23 +91,23 @@ public class GameManager :MonoBehaviour {
     public void LoadNextLevel()
     {
         OnLoadScene?.Invoke();
-        int currentSceneIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         int nextSceneIndex = currentSceneIndex + 1;
         if (nextSceneIndex < UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(nextSceneIndex);
+            SceneManager.LoadSceneAsync(nextSceneIndex);
         }
         else
         {
             // No more levels, restart the first level or show a message
-            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(0);
+            SceneManager.LoadSceneAsync(0);
         }
     }
     public void LoadMainMenu()
     {
         OnLoadScene?.Invoke();
         Time.timeScale = 1f;
-        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(0);
+        SceneManager.LoadSceneAsync(0);
 
     }
     private void OnDestroy()

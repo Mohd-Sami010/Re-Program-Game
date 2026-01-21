@@ -23,6 +23,7 @@ public class LoadingUI :MonoBehaviour {
     private IEnumerator PlayLoadingAnimation(bool fadeIn = true)
     {
         float duration = 0.07f;
+        if (!fadeIn) duration = 0.2f;
         float elapsed = 0f;
         while (elapsed < duration)
         {

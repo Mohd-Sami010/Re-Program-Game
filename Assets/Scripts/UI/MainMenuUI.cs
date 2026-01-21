@@ -14,6 +14,8 @@ public class MainMenuUI :MonoBehaviour {
     [SerializeField] private GameObject infoUIObject;
     [SerializeField] private LoadingUI loadingUIObject;
 
+    [SerializeField] private GameObject blackScreen;
+
     private void Start()
     {
         int levelToLoad = PlayerPrefs.GetInt("LevelToContinue", 1);
@@ -39,6 +41,8 @@ public class MainMenuUI :MonoBehaviour {
             SoundManager.Instance.PlayUISound1();
             infoUIObject.SetActive(true);
         });
+
+        Destroy(blackScreen, 0.7f);
     }
 
 }

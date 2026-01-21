@@ -102,6 +102,8 @@ public class LevelSelectorUI :MonoBehaviour {
     }
     private void SelectThisButton(int i)
     {
+        if (i >= levelButtons.Length) i = levelButtons.Length - 1;
+
         bool isLevelCompleted = PlayerPrefs.GetInt("Level_" + (i + 1) + "_Completed", 0) == 1;
         selectedLevelIndex = i;
 
