@@ -27,10 +27,13 @@ public class HUD :MonoBehaviour {
     private void Start()
     {
         playButton.onClick.AddListener(() => {
-            GameManager.Instance.RestartGame();
+            if (SnippetsManagerUI.Instance.GetNumberOfSnippetsUsed() > 0)
+            {
+                GameManager.Instance.RestartGame();
+                DisableRunButton();
+            }
             SoundManager.Instance.PlayPlayButtonSound();
 
-            DisableRunButton();
         });
         restartButton.onClick.AddListener(() => {
             GameManager.Instance.RestartGame();

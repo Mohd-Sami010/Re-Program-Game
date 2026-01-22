@@ -66,4 +66,9 @@ public class InteractableLever :MonoBehaviour {
         audioSource.pitch = Random.Range(0.8f, 1.2f);
         audioSource.Play();
     }
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnGameStop -= GameManager_OnGameStop;
+        GameManager.Instance.OnGameRestart -= GameManager_OnGameStop;
+    }
 }

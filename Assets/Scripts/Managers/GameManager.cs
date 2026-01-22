@@ -78,7 +78,7 @@ public class GameManager :MonoBehaviour {
         if (gameOverType == GameOverType.win)
         {
             if (PlayerPrefs.GetInt("Level_" + SceneManager.GetActiveScene().buildIndex + "_Completed", 0) == 0
-                && SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCount)
+                && SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCountInBuildSettings-1)
             {
                 PlayerPrefs.SetInt("LevelToContinue", SceneManager.GetActiveScene().buildIndex + 1);
             }

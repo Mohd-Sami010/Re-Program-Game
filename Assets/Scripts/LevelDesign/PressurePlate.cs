@@ -24,7 +24,7 @@ public class PressurePlate :MonoBehaviour {
         greenLightsObject.SetActive(false);
         animator.SetBool("Pressed", false);
         objectsOnPlate = 0;
-        obstacleToMove.MoveObstacleToInitialPosition();
+        //obstacleToMove.MoveObstacleToInitialPosition();
         GetComponent<AudioSource>().Stop();
         GetComponent<AudioSource>().volume =0;
     }
@@ -32,6 +32,7 @@ public class PressurePlate :MonoBehaviour {
     {
         if (collision.GetComponent<PickableItem>() != null || collision.GetComponent<RobotController>())
         {
+            if (obstacleToMove == null) return;
             greenLightsObject.SetActive(true);
             obstacleToMove.RemoveObstacle();
             animator.SetBool("Pressed", true);
@@ -46,7 +47,8 @@ public class PressurePlate :MonoBehaviour {
         if (collision.GetComponent<PickableItem>() != null || collision.GetComponent<RobotController>())
         {
             objectsOnPlate--;
-            if (obstacleToMove == null || objectsOnPlate > 0) return;
+            if (obstacleToMove == null || objectsOnPlate > 0 ||
+                GameManager.Instance.GetCurrentGameState() == GameManager.GameState.GameOver) return;
             greenLightsObject.SetActive(false);
             obstacleToMove.MoveObstacleToInitialPosition();
             animator.SetBool("Pressed", false);
@@ -64,5 +66,10 @@ public class PressurePlate :MonoBehaviour {
         AudioSource audioSource = GetComponent<AudioSource>();
         audioSource.pitch = Random.Range(0.8f, 1.2f);
         audioSource.Play();
+    }
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnGameStop -= GameManager_OnGameStop;
+        GameManager.Instance.OnGameRestart -= GameManager_OnGameStop;
     }
 }

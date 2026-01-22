@@ -1172,11 +1172,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionHandler: {fileID: 8638846435880156839}
   isHoldingItem: 0
-  energyDrainInMoving: 0.5
-  energyDrainInJump: 1.25
-  energyDrainInTurn: 1.5
-  energyDrainInInteraction: 1
-  energyDrainMultiplierWhileHoldingItem: 1.1
+  energyDrainInMoving: 0.75
+  energyDrainInJump: 1.875
+  energyDrainInTurn: 2.25
+  energyDrainInInteraction: 1.5
+  energyDrainMultiplierWhileHoldingItem: 1.2
 --- !u!114 &7551429834539094613
 MonoBehaviour:
   m_ObjectHideFlags: 0
