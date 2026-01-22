@@ -65,6 +65,8 @@ public class HUD :MonoBehaviour {
         GameManager.Instance.OnRevived += GameManager_OnRevived;
         RobotHealthAndEnergy.Instance.OnHealthOrEnergyChanged += RobotHealthAndEnergy_OnHealthOrEnergyChanged;
         RobotHealthAndEnergy.Instance.OnRobotDamage += RobotHealthAndEnergy_OnRobotDamage;
+
+        playButton.interactable = false;
     }
 
     private void SnippetsManagerUI_OnSnippetsListChange()
