@@ -26,12 +26,13 @@ public class HUD :MonoBehaviour {
     }
     private void Start()
     {
+        if (SnippetsManagerUI.Instance != null)
+        {
+            SnippetsManagerUI.Instance.OnSnippetsListChange += SnippetsManagerUI_OnSnippetsListChange;
+        }
         playButton.onClick.AddListener(() => {
-            if (SnippetsManagerUI.Instance.GetNumberOfSnippetsUsed() > 0)
-            {
-                GameManager.Instance.RestartGame();
-                DisableRunButton();
-            }
+            GameManager.Instance.RestartGame();
+            DisableRunButton();
             SoundManager.Instance.PlayPlayButtonSound();
 
         });
@@ -64,6 +65,18 @@ public class HUD :MonoBehaviour {
         GameManager.Instance.OnRevived += GameManager_OnRevived;
         RobotHealthAndEnergy.Instance.OnHealthOrEnergyChanged += RobotHealthAndEnergy_OnHealthOrEnergyChanged;
         RobotHealthAndEnergy.Instance.OnRobotDamage += RobotHealthAndEnergy_OnRobotDamage;
+    }
+
+    private void SnippetsManagerUI_OnSnippetsListChange()
+    {
+        if (SnippetsManagerUI.Instance.GetNumberOfSnippetsUsed() > 0)
+        {
+            playButton.interactable = true;
+        }
+        else
+        {
+            playButton.interactable = false;
+        }
     }
 
     private void GameManager_OnRevived()

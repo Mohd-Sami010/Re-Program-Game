@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,8 +26,10 @@ public class SnippetsManagerUI :MonoBehaviour {
 
     private Animator animator;
 
-    public event System.Action OnEnableDropArea;
-    public event System.Action OnDisableDropArea;
+    public event Action OnEnableDropArea;
+    public event Action OnDisableDropArea;
+
+    public event Action OnSnippetsListChange;
     private void Awake()
     {
         Instance = this;
@@ -118,6 +121,7 @@ public class SnippetsManagerUI :MonoBehaviour {
         // Send the list to the CommandSnippetsManager
         CommandManager.Instance.SetCommandSnippets(snippetUIs);
 
+        OnSnippetsListChange?.Invoke();
     }
     public void EnableDropArea()
     {
