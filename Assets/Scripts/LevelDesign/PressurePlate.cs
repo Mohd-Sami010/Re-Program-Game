@@ -9,6 +9,8 @@ public class PressurePlate :MonoBehaviour {
 
     private Animator animator;
     private int objectsOnPlate = 0;
+
+    private bool isPlateWorking = true;
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -18,18 +20,27 @@ public class PressurePlate :MonoBehaviour {
         obstacleToMove.SetColour(leverColourIndicatorSprite.color);
         GameManager.Instance.OnGameStop += GameManager_OnGameStop;
         GameManager.Instance.OnGameRestart += GameManager_OnGameStop;
+
+        GameManager.Instance.OnGameOver += GameManager_OnGameOver;
     }
+
+    private void GameManager_OnGameOver(object sender, GameManager.OnGameOverEventArgs e)
+    {
+        isPlateWorking = false;
+    }
+
     private void GameManager_OnGameStop(object sender, System.EventArgs e)
     {
+        isPlateWorking = true;
         greenLightsObject.SetActive(false);
         animator.SetBool("Pressed", false);
         objectsOnPlate = 0;
-        //obstacleToMove.MoveObstacleToInitialPosition();
         GetComponent<AudioSource>().Stop();
         GetComponent<AudioSource>().volume =0;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!isPlateWorking) return;
         if (collision.GetComponent<PickableItem>() != null || collision.GetComponent<RobotController>())
         {
             if (obstacleToMove == null) return;
@@ -44,11 +55,11 @@ public class PressurePlate :MonoBehaviour {
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (!isPlateWorking) return;
         if (collision.GetComponent<PickableItem>() != null || collision.GetComponent<RobotController>())
         {
             objectsOnPlate--;
-            if (obstacleToMove == null || objectsOnPlate > 0 ||
-                GameManager.Instance.GetCurrentGameState() == GameManager.GameState.GameOver) return;
+            if (obstacleToMove == null || objectsOnPlate > 0) return;
             greenLightsObject.SetActive(false);
             obstacleToMove.MoveObstacleToInitialPosition();
             animator.SetBool("Pressed", false);
@@ -71,5 +82,6 @@ public class PressurePlate :MonoBehaviour {
     {
         GameManager.Instance.OnGameStop -= GameManager_OnGameStop;
         GameManager.Instance.OnGameRestart -= GameManager_OnGameStop;
+        GameManager.Instance.OnGameOver -= GameManager_OnGameOver;
     }
 }
