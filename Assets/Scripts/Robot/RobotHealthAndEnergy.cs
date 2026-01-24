@@ -14,17 +14,19 @@ public class RobotHealthAndEnergy :MonoBehaviour {
     }
     public event Action OnRobotDamage;
 
+    private const string HEALTH_PLAYERPREF = "RobotHealth";
+    private const string ENERGY_PLAYERPREF = "RobotEnergy";
+
     private void Awake()
     {
         Instance = this;
-        health = PlayerPrefs.GetFloat("RobotHealth", 100f);
-        energy = PlayerPrefs.GetFloat("RobotEnergy", 100f);
+        health = PlayerPrefs.GetFloat(HEALTH_PLAYERPREF, 100f);
+        energy = PlayerPrefs.GetFloat(ENERGY_PLAYERPREF, 100f);
     }
     private void Start()
     {
         GameManager.Instance.OnGameRestart += GameManager_OnGameRestart;
-        DrainEnergy(0);
-        TakeDamage(0);
+        UpdateUi();
     }
     private bool updateUiAtStart = false;
     private void Update()
@@ -40,7 +42,6 @@ public class RobotHealthAndEnergy :MonoBehaviour {
         DrainEnergy(0);
         TakeDamage(0);
     }
-
     public void TakeDamage(float damage)
     {
         if (RobotController.Instance == null) return;
@@ -99,8 +100,8 @@ public class RobotHealthAndEnergy :MonoBehaviour {
     }
     private void SaveHealthAndEnergy()
     {
-        PlayerPrefs.SetFloat("RobotHealth", health);
-        PlayerPrefs.SetFloat("RobotEnergy", energy);
+        PlayerPrefs.SetFloat(HEALTH_PLAYERPREF, health);
+        PlayerPrefs.SetFloat(ENERGY_PLAYERPREF, energy);
     }
     private void OnDestroy()
     {
