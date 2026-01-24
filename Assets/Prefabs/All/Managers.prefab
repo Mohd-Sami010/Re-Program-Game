@@ -176,9 +176,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTutorialLevel: 0
-  openCodePanelTextObject: {fileID: 0}
+  tutorialTexts:
+  - Press <color=#FFC200><b>Code</b></color> button to open Code editor
+  - Drag and Drop <color=#FFC200><b>Move Block</b></color> under <color=#FFC200><b>Start
+    Block</b></color>
+  - Change value inside <color=#FFC200><b>Move Block</b></color> to <color=#FFC200><b>10</b></color>
+  - Close <color=#FFC200><b>Code Editor</b></color> by pressing <color=#FF4141>X</color>
+    and press <color=#0FC400><b>RUN</b></color>
+  textToOpenCodeEditor: 1
+  textToPlaceBlock: 1
+  textToChangeBlockValue: 1
   disableDeleteAreaObject: 0
   disableSnippetsSpawnerObject: 0
+  disableSomeOfSnippetSpawnerButtonObject: 0
+  numOfSnippetSpawnerButtonsToDisable: 0
+  disableTutorialOnPlay: 1
+  buttonTrigger: 0
 --- !u!1001 &1292022201791198806
 PrefabInstance:
   m_ObjectHideFlags: 0

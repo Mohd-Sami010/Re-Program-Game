@@ -20,6 +20,10 @@ public class SnippetUI :MonoBehaviour {
     [SerializeField] private Color visualColorWhenDone;
     [SerializeField] private TMP_InputField valueInput;
 
+    [Header("Values")]
+    [SerializeField] private float defaultValue = 1f;
+    [SerializeField] private float maxValue = 10f;
+
     private Color visualColorDefault;
     private SnippetUI nextSnippetUI;
 
@@ -53,8 +57,8 @@ public class SnippetUI :MonoBehaviour {
 
     private void SetDefaultValue()
     {
-        value = 1f;
-        valueInput.SetTextWithoutNotify("1");
+        value = defaultValue;
+        valueInput.SetTextWithoutNotify(defaultValue.ToString());
     }
 
     private void RegisterInputListeners()
@@ -75,8 +79,13 @@ public class SnippetUI :MonoBehaviour {
     {
         if (!float.TryParse(input, out float parsedValue) || parsedValue <= 0f)
         {
-            parsedValue = 1f;
-            valueInput.SetTextWithoutNotify("1");
+            parsedValue = defaultValue;
+            valueInput.SetTextWithoutNotify(defaultValue.ToString());
+        }
+        else if (parsedValue > maxValue)
+        {
+            parsedValue = maxValue;
+            valueInput.SetTextWithoutNotify(maxValue.ToString());
         }
 
         value = parsedValue;

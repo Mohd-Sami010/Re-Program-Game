@@ -47,5 +47,5 @@ MonoBehaviour:
   currencyName: CU
   currentBalance: 0
   setInspectorBalance: 0
-  healthPrice_70percent: 27
-  energyPrice_100percent: 15
+  healthPrice_70percent: 41
+  energyPrice_100percent: 23
