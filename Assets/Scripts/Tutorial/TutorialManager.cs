@@ -31,6 +31,7 @@ public class TutorialManager :MonoBehaviour {
     {
         if (isTutorialLevel)
         {
+            GameManager.Instance.OnGameOver += GameManager_OnGameOver;
             tutorialUI = FindFirstObjectByType<TutorialUI>();
             tutorialUI.SetTutorialText(tutorialTexts[currentTutorialTextIndex]);
             currentTutorialTextIndex++;
@@ -41,7 +42,6 @@ public class TutorialManager :MonoBehaviour {
         {
             Destroy(this);
         }
-        GameManager.Instance.OnGameOver += GameManager_OnGameOver;
     }
 
     private void GameManager_OnGameOver(object sender, GameManager.OnGameOverEventArgs e)

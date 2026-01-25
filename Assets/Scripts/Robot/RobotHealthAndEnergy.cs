@@ -25,10 +25,18 @@ public class RobotHealthAndEnergy :MonoBehaviour {
     }
     private void Start()
     {
-        GameManager.Instance.OnGameRestart += GameManager_OnGameRestart;
         UpdateUi();
+        GameManager.Instance.OnGameRestart += GameManager_OnGameRestart;
     }
-    
+    bool uiUpdated = false;
+    private void Update()
+    {
+        if (!uiUpdated)
+        {
+            UpdateUi();
+            uiUpdated = true;
+        }
+    }
     private void GameManager_OnGameRestart(object sender, System.EventArgs e)
     {
         DrainEnergy(0);
@@ -46,6 +54,7 @@ public class RobotHealthAndEnergy :MonoBehaviour {
         if (health <= 0)
         {
             health = 0;
+            SaveHealthAndEnergy();
             Die();
         }
     }
@@ -55,6 +64,7 @@ public class RobotHealthAndEnergy :MonoBehaviour {
         if (energy <= 0)
         {
             energy = 0;
+            SaveHealthAndEnergy();
             GameManager.Instance.GameOver(GameManager.GameOverType.robotOutOfEnergy);
         }
         energy -= drainAmount;
@@ -89,11 +99,13 @@ public class RobotHealthAndEnergy :MonoBehaviour {
             robotEnergy = energy,
             robotHealth = health
         });
+
     }
     private void SaveHealthAndEnergy()
     {
         PlayerPrefs.SetFloat(HEALTH_PLAYERPREF, health);
         PlayerPrefs.SetFloat(ENERGY_PLAYERPREF, energy);
+        PlayerPrefs.Save();
     }
     private void OnDestroy()
     {
