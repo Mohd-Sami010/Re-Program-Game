@@ -28,15 +28,7 @@ public class RobotHealthAndEnergy :MonoBehaviour {
         GameManager.Instance.OnGameRestart += GameManager_OnGameRestart;
         UpdateUi();
     }
-    private bool updateUiAtStart = false;
-    private void Update()
-    {
-        if (!updateUiAtStart)
-        {
-            UpdateUi();
-            updateUiAtStart = true;
-        }
-    }
+    
     private void GameManager_OnGameRestart(object sender, System.EventArgs e)
     {
         DrainEnergy(0);
