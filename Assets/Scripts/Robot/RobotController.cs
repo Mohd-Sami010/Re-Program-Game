@@ -57,7 +57,7 @@ public class RobotController :MonoBehaviour {
     private void GameManager_OnGameOver(object sender, GameManager.OnGameOverEventArgs e)
     {
         StopAllCoroutines();
-        robotRigidbody.velocity = Vector2.zero;
+        robotRigidbody.linearVelocity = Vector2.zero;
         robotState = RobotState.None;
 
         SoundManager soundManager = SoundManager.Instance;
@@ -71,7 +71,7 @@ public class RobotController :MonoBehaviour {
     private void GameManager_OnGameStop(object sender, System.EventArgs e)
     {
         StopAllCoroutines();
-        robotRigidbody.velocity = Vector2.zero;
+        robotRigidbody.linearVelocity = Vector2.zero;
         transform.localScale = new Vector3(1, 1, 1);
         transform.position = initialPosition;
         robotState = RobotState.None;
@@ -86,7 +86,7 @@ public class RobotController :MonoBehaviour {
         SoundManager.Instance.StopRobotJumpSound();
 
         StopAllCoroutines();
-        robotRigidbody.velocity = Vector2.zero;
+        robotRigidbody.linearVelocity = Vector2.zero;
         transform.localScale = new Vector3(1, 1, 1);
         transform.position = initialPosition;
         robotState = RobotState.None;
@@ -96,7 +96,7 @@ public class RobotController :MonoBehaviour {
     {
         if (robotState == RobotState.Jumping)
         {
-            robotRigidbody.velocity = Vector2.zero;
+            robotRigidbody.linearVelocity = Vector2.zero;
             CommandManager.Instance.ReadyForCommand();
             robotState = RobotState.None;
             SoundManager.Instance.StopRobotJumpSound();
@@ -126,7 +126,7 @@ public class RobotController :MonoBehaviour {
             robotState = RobotState.Jumping;
             float minJumpPower = 11f;
             float jumpPower = (e.jumpPower * 4)+ minJumpPower;
-            robotRigidbody.velocity = new Vector2(transform.localScale.x * jumpPower /2, jumpPower);
+            robotRigidbody.linearVelocity = new Vector2(transform.localScale.x * jumpPower /2, jumpPower);
             DrainEnergy(energyDrainInJump + e.jumpPower/10);
             SoundManager.Instance.PlayRobotJumpSound();
             OnRobotJump?.Invoke(this, System.EventArgs.Empty);
@@ -179,12 +179,12 @@ public class RobotController :MonoBehaviour {
         {
             float moveSpeed = 3f;
             float rotation = transform.localScale.x;
-            robotRigidbody.velocity = new Vector2(moveSpeed * rotation, robotRigidbody.velocity.y);
+            robotRigidbody.linearVelocity = new Vector2(moveSpeed * rotation, robotRigidbody.linearVelocity.y);
             DrainEnergy(energyDrainInMoving * Time.deltaTime);
             timer += Time.deltaTime;
             yield return null;
         }
-        robotRigidbody.velocity = new Vector2(0f, robotRigidbody.velocity.y);
+        robotRigidbody.linearVelocity = new Vector2(0f, robotRigidbody.linearVelocity.y);
         CommandManager.Instance.ReadyForCommand();
         robotState = RobotState.None;
         SoundManager.Instance.StopRobotMoveSound();
@@ -216,9 +216,9 @@ public class RobotController :MonoBehaviour {
     }
     private void Update()
     {
-        if (robotState == RobotState.None && robotRigidbody.velocity.magnitude > 0f)
+        if (robotState == RobotState.None && robotRigidbody.linearVelocity.magnitude > 0f)
         {
-            robotRigidbody.velocity = new Vector2(0, robotRigidbody.velocity.y);
+            robotRigidbody.linearVelocity = new Vector2(0, robotRigidbody.linearVelocity.y);
         }
     }
     private void DrainEnergy(float drainAmount)
