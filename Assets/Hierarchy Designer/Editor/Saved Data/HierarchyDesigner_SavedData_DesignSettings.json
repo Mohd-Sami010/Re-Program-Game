@@ -3,12 +3,12 @@
     "ComponentIconsOffset": 21,
     "ComponentIconsSpacing": 2.0,
     "HierarchyTreeColor": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0,
+        "r": 0.6352200508117676,
+        "g": 0.6352200508117676,
+        "b": 0.6352200508117676,
         "a": 1.0
     },
-    "TreeBranchImageType_I": 0,
+    "TreeBranchImageType_I": 2,
     "TreeBranchImageType_L": 0,
     "TreeBranchImageType_T": 0,
     "TreeBranchImageType_TerminalBud": 0,
