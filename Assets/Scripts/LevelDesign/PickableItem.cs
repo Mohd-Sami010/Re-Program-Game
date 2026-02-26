@@ -10,13 +10,13 @@ public class PickableItem :MonoBehaviour {
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
         GetComponent<Collider2D>().enabled = false;
-        GetComponent<Rigidbody2D>().isKinematic = true;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
     }
     public void Drop()
     {
         transform.SetParent(null);
         GetComponent<Collider2D>().enabled = true;
-        GetComponent<Rigidbody2D>().isKinematic = false;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
     }
     private void Awake()
     {
@@ -38,6 +38,6 @@ public class PickableItem :MonoBehaviour {
         transform.position = initialPosition;
         transform.rotation = initialRotation;
         GetComponent<Collider2D>().enabled = true;
-        GetComponent<Rigidbody2D>().isKinematic = false;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
     }
 }
