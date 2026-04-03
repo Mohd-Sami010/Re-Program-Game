@@ -1,13 +1,14 @@
 using System;
 using UnityEngine;
 
-public class RobotHealthAndEnergy :MonoBehaviour {
+public class RobotHealthAndEnergy : MonoBehaviour
+{
     public static RobotHealthAndEnergy Instance { get; private set; }
     private float health = 100;
     private float energy = 100;
 
-    public event EventHandler <OnHealthOrEnergyChangedEventArgs> OnHealthOrEnergyChanged;
-    public class OnHealthOrEnergyChangedEventArgs :EventArgs
+    public event EventHandler<OnHealthOrEnergyChangedEventArgs> OnHealthOrEnergyChanged;
+    public class OnHealthOrEnergyChangedEventArgs : EventArgs
     {
         public float robotHealth;
         public float robotEnergy;
@@ -17,11 +18,29 @@ public class RobotHealthAndEnergy :MonoBehaviour {
     private const string HEALTH_PLAYERPREF = "RobotHealth";
     private const string ENERGY_PLAYERPREF = "RobotEnergy";
 
+    private const string LAST_RESET_DATE = "LastResetDate";
     private void Awake()
     {
         Instance = this;
-        health = PlayerPrefs.GetFloat(HEALTH_PLAYERPREF, 100f);
-        energy = PlayerPrefs.GetFloat(ENERGY_PLAYERPREF, 100f);
+
+        string today = DateTime.UtcNow.Date.ToString("yyyy-MM-dd");
+        string lastReset = PlayerPrefs.GetString(LAST_RESET_DATE, "");
+
+        if (lastReset != today)
+        {
+            // New day → reset
+            health = 100f;
+            energy = 100f;
+
+            PlayerPrefs.SetString(LAST_RESET_DATE, today);
+            SaveHealthAndEnergy();
+        }
+        else
+        {
+            // Same day → load saved values
+            health = PlayerPrefs.GetFloat(HEALTH_PLAYERPREF, 100f);
+            energy = PlayerPrefs.GetFloat(ENERGY_PLAYERPREF, 100f);
+        }
     }
     private void Start()
     {
